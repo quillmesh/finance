@@ -1,0 +1,12 @@
+dist/
+preview/
+node_modules/
+site/
+test-results/
+playwright-report/
+# Echte Auszüge und Backups gehören nie ins Repo (öffentlich!)
+*.csv
+!tests/**/*.csv
+*.xml
+!tests/**/*.xml
+finanzen-backup-*.json
