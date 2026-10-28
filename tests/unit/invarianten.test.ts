@@ -6,7 +6,7 @@ import { describe, expect, setSystemTime, test, afterAll } from 'bun:test';
 import * as S from '../../src/store';
 import * as db from '../../src/db';
 import { rng } from '../../src/sample';
-import { aggregate, cashPool, catsFor, isShared, isTransfer, ledger, liveSubs, myPart, ruleKey, summary, viewTx, type View } from '../../src/logic';
+import { aggregate, cashPool, importHistory, catsFor, isShared, isTransfer, ledger, liveSubs, myPart, ruleKey, summary, viewTx, type View } from '../../src/logic';
 import { validateState } from '../../src/validate';
 import { newTx } from '../../src/parse/common';
 import type { FinEvent, State, Tx } from '../../src/types';
@@ -55,6 +55,13 @@ function randomOps(r: () => number, count: number) {
     else if (x < 0.9) {
       const m = 1 + Math.floor(r() * 12), d = 1 + Math.floor(r() * 28);
       S.addManual({ acc: r() < 0.8 ? 'privat' : 'gemeinsam', date: `2026-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}`, amount: 100 + Math.floor(r() * 9000), merchant: 'Bar', cat: 'k-einkaufen', sub: null, share: r() < 0.2 ? 5000 : null });
+    } else if (x < 0.93 && r() < 0.4) {
+      // IMP-14/IMP-15: ganzen Import oder alle offenen löschen, danach evtl. dieselben Buchungen wieder importieren
+      const imps = [...S.state.imports.values()].filter((i) => !i.removed);
+      const before = [...S.state.tx.values()].filter((y) => y.src !== 'manual');
+      if (imps.length && r() < 0.6) S.removeImport(imps[Math.floor(r() * imps.length)].id);
+      else S.removeOpen(r() < 0.5 ? undefined : 'privat');
+      if (r() < 0.5) S.importTx(before.slice(0, Math.floor(r() * before.length)).map((y) => ({ ...y, status: 'open' as const, cat: null, sub: null, share: undefined })), { name: 'wieder.csv', format: 'visa' });
     } else if (t.src === 'manual' && r() < 0.5) S.deleteManual(t.id);
     else S.patchTx(t.id, { status: 'open', cat: null, sub: null, note: '' });
   }
@@ -110,6 +117,11 @@ describe('Invarianten mit Zufallsdaten', () => {
       expect(ledger(S.state).reduce((x, t) => x + t.amount, 0), `Seed ${seed}`).toBe(raw - (withdrawn - pool.unassigned));
       expect([...pool.remaining.values()].every((v) => v >= 0), `Seed ${seed}`).toBe(true);
       expect(validateState(S.state), `Seed ${seed}`).toEqual([]);
+      // IMP-13: jede importierte Buchung gehört zu genau einem Import der Historie
+      const imported = [...S.state.tx.values()].filter((t) => t.src !== 'manual' && !t.deleted);
+      const hist = importHistory(S.state);
+      expect(hist.reduce((x, h) => x + h.total, 0), `Seed ${seed}`).toBe(imported.length);
+      expect(hist.every((h) => h.tagged + h.open + h.excluded === h.total), `Seed ${seed}`).toBe(true);
     }
   });
 

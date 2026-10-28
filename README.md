@@ -38,7 +38,7 @@ tests/run.sh                      # Typen, Unit-Tests, End-to-End
 4. **Unbekannte Ereignistypen** werden übersprungen, aber gespeichert und weiter synchronisiert.
 5. **IDs aus `src/defaults.ts` nie ändern** (Konten, Standard-Kategorien, Unterkategorien).
 6. **Beträge immer in Rappen.**
-7. **Importierte Buchungen bleiben wie im Auszug:** Betrag, Datum und Konto sind unveränderlich, löschen geht nicht.
+7. **Importierte Buchungen bleiben wie im Auszug:** Betrag, Datum und Konto sind unveränderlich. Einzeln löschen geht nicht; entfernen lassen sich nur ein ganzer Import oder alle ungetaggten (Ereignis `tx.remove`, ab 0.6.0).
 8. Nach jeder freigegebenen Version die Daten einfrieren: `bun scripts/alte-daten-einfrieren.ts <version>`.
 
 ## Sync einrichten (Live)

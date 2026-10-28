@@ -310,3 +310,34 @@ export function importWarnings(st: State, accId: string, r: { tx: Tx[]; cards: s
   }
   return w;
 }
+
+// ---------- Import-Historie (IMP-13) ----------
+
+export interface ImportInfo {
+  id: string; ts: number; acc: string; accName: string; area: Area; name: string; format: string; auto: boolean;
+  /** Zeitraum der Buchungen (YYYY-MM-DD) */
+  from: string; to: string;
+  total: number; tagged: number; open: number; excluded: number;
+}
+const FORMAT_LABEL: Record<string, string> = {
+  visa: 'Kreditkarten-CSV', visapdf: 'Kreditkarten-PDF', bank: 'Bank-CSV', bankdetail: 'Bank-CSV', camt: 'camt.053',
+};
+export const formatLabel = (f: string) => FORMAT_LABEL[f] ?? f;
+
+/** Importe mit noch vorhandenen Buchungen, neueste zuerst. `limit` = Anzahl (Standard alle). */
+export function importHistory(st: State, limit = Infinity): ImportInfo[] {
+  const out: ImportInfo[] = [];
+  for (const r of st.imports.values()) {
+    if (r.removed) continue;
+    const txs = r.ids.filter((x) => st.importOf.get(x) === r.id).map((x) => st.tx.get(x)).filter((t): t is Tx => !!t && !t.deleted);
+    if (!txs.length) continue;
+    const dates = txs.map((t) => t.date).sort();
+    const acc = st.accounts.get(r.acc);
+    out.push({
+      id: r.id, ts: r.ts, acc: r.acc, accName: acc?.name ?? r.acc, area: acc?.area ?? 'privat', name: r.name, format: r.format, auto: !!r.auto,
+      from: dates[0], to: dates[dates.length - 1], total: txs.length,
+      tagged: txs.filter((t) => t.status === 'tagged').length, open: txs.filter((t) => t.status === 'open').length, excluded: txs.filter((t) => t.status === 'excluded').length,
+    });
+  }
+  return out.sort((a, b) => b.ts - a.ts).slice(0, limit);
+}

@@ -14,7 +14,7 @@ import { ENV, IS_TEST } from './env';
 import { decryptJSON, encryptJSON, type EncryptedFile } from './crypto';
 import { CASH_CAT, DEFAULT_ACCOUNTS, defaultCategories, PALETTE } from './defaults';
 import { ruleKey } from './logic';
-import type { Category, EventType, FinEvent, Rule, State, Sub, Tx } from './types';
+import type { Category, EventType, FinEvent, ImportRec, Rule, State, Sub, Tx } from './types';
 import { validateEvent, validateState } from './validate';
 import { newTx } from './parse/common';
 
@@ -27,8 +27,13 @@ export function emptyState(): State {
     categories: new Map(defaultCategories().map((c) => [c.id, c])),
     tx: new Map(),
     rules: new Map(),
+    imports: new Map(),
+    importOf: new Map(),
   };
 }
+
+/** Ältere Importe ohne `import.log`: Buchungen desselben Geräts und Kontos, höchstens so weit auseinander, gelten als ein Import */
+export const AUTO_IMPORT_GAP_MS = 2000;
 
 export let state: State = emptyState();
 export const info = { device: '', eventCount: 0, problems: [] as string[], persistent: true };
@@ -68,10 +73,42 @@ function applyUnsafe(st: State, e: FinEvent) {
   const d = e.data;
   if (!d || typeof d !== 'object') return;
   switch (e.type as EventType) {
-    case 'tx.create':
+    case 'tx.create': {
       // Schon vorhanden (zweiter Import, zweites Gerät): die erste gilt (IMP-04)
-      if (typeof d.tx?.id === 'string' && !st.tx.has(d.tx.id)) st.tx.set(d.tx.id, normalizeTx(d.tx));
+      if (typeof d.tx?.id !== 'string' || st.tx.has(d.tx.id)) break;
+      const t = normalizeTx(d.tx);
+      st.tx.set(t.id, t);
+      if (t.src === 'manual' || st.importOf.has(t.id)) break;
+      // Import ohne Protokoll (vor 0.6.0, Beispieldaten): an den letzten passenden Import anhängen oder neuen beginnen
+      const last = [...st.imports.values()].pop();
+      if (last?.auto && !last.removed && last.device === e.device && last.acc === t.acc && e.ts - last.lastTs <= AUTO_IMPORT_GAP_MS) {
+        last.ids.push(t.id); last.lastTs = e.ts;
+        st.importOf.set(t.id, last.id);
+      } else {
+        const rec: ImportRec = { id: `auto:${e.id}`, ts: e.ts, device: e.device, acc: t.acc, name: '', format: t.src, ids: [t.id], auto: true, lastTs: e.ts };
+        st.imports.set(rec.id, rec);
+        st.importOf.set(t.id, rec.id);
+      }
       break;
+    }
+    case 'import.log': {
+      const imp = d.imp;
+      if (typeof imp?.id !== 'string' || st.imports.has(imp.id) || !Array.isArray(d.ids)) break;
+      const ids = d.ids.filter((x: unknown) => typeof x === 'string' && !st.tx.has(x as string)) as string[];
+      st.imports.set(imp.id, { id: imp.id, ts: e.ts, device: e.device, acc: String(imp.acc ?? ''), name: String(imp.name ?? ''), format: String(imp.format ?? ''), ids, lastTs: e.ts });
+      for (const x of ids) st.importOf.set(x, imp.id);
+      break;
+    }
+    case 'tx.remove': {
+      // Importierte Buchungen ganz entfernen; ein erneuter Import derselben Datei legt sie wieder an
+      if (Array.isArray(d.ids)) for (const x of d.ids) {
+        const t = st.tx.get(x);
+        if (t && t.src !== 'manual') { st.tx.delete(x); st.importOf.delete(x); }
+      }
+      const rec = typeof d.imp === 'string' ? st.imports.get(d.imp) : undefined;
+      if (rec) rec.removed = true;
+      break;
+    }
     case 'tx.patch': {
       const t = st.tx.get(d.id);
       if (!t || !d.patch) break;
@@ -170,6 +207,8 @@ export function cloneState(st: State): State {
     categories: new Map([...st.categories].map(([k, v]) => [k, { ...v, subs: v.subs.map((s) => ({ ...s })) }])),
     tx: new Map([...st.tx].map(([k, v]) => [k, { ...v }])),
     rules: new Map([...st.rules].map(([k, v]) => [k, { ...v }])),
+    imports: new Map([...st.imports].map(([k, v]) => [k, { ...v, ids: [...v.ids] }])),
+    importOf: new Map(st.importOf),
   };
 }
 
@@ -203,10 +242,13 @@ export async function mergeEvents(incoming: FinEvent[]): Promise<number> {
 
 // ---------- Buchungen ----------
 
-export interface ImportResult { added: number; duplicates: number; excluded: number }
+export interface ImportResult { added: number; duplicates: number; excluded: number; importId?: string }
 
-/** Übernimmt gelesene Buchungen. Bereits bekannte IDs werden übersprungen (IMP-04). */
-export function importTx(list: Tx[]): ImportResult {
+/**
+ * Übernimmt gelesene Buchungen. Bereits bekannte IDs werden übersprungen (IMP-04).
+ * Mit `meta` wird der Import protokolliert (IMP-13): Dateiname und Format erscheinen in der Import-Historie.
+ */
+export function importTx(list: Tx[], meta?: { name: string; format: string }): ImportResult {
   const seen = new Set<string>();
   const fresh = list.filter((t) => { if (state.tx.has(t.id) || seen.has(t.id)) return false; seen.add(t.id); return true; }).map((t) => {
     // Gutschriften eines Absenders, die nie erfasst werden sollen (TEI-10)
@@ -216,8 +258,32 @@ export function importTx(list: Tx[]): ImportResult {
     if (t.cat === CASH_CAT && (!c || c.deleted)) return { ...t, status: 'open' as const, cat: null, sub: null };
     return t;
   });
-  emitMany(fresh.map((tx) => ({ type: 'tx.create' as const, data: { tx } })));
-  return { added: fresh.length, duplicates: list.length - fresh.length, excluded: fresh.filter((t) => t.status === 'excluded').length };
+  const importId = meta && fresh.length ? uid() : undefined;
+  emitMany([
+    ...(importId ? [{ type: 'import.log' as const, data: { imp: { id: importId, acc: fresh[0].acc, name: meta!.name, format: meta!.format }, ids: fresh.map((t) => t.id) } }] : []),
+    ...fresh.map((tx) => ({ type: 'tx.create' as const, data: { tx } })),
+  ]);
+  return { added: fresh.length, duplicates: list.length - fresh.length, excluded: fresh.filter((t) => t.status === 'excluded').length, importId };
+}
+
+/** Buchungen, die noch zu diesem Import gehören (nicht entfernt) */
+export const importTxIds = (st: State, impId: string) => (st.imports.get(impId)?.ids ?? []).filter((x) => st.tx.has(x) && st.importOf.get(x) === impId);
+
+/** Ganzen Import löschen, auch getaggte Buchungen (IMP-14). Gibt die Anzahl entfernter Buchungen zurück. */
+export function removeImport(impId: string): number {
+  if (!state.imports.has(impId)) throw new Error('Import existiert nicht');
+  const ids = importTxIds(state, impId);
+  emit('tx.remove', { ids, imp: impId });
+  return ids.length;
+}
+
+/** Alle offenen (noch nicht getaggten) importierten Buchungen löschen (IMP-15); ausgeschlossene bleiben */
+export const openImportedIds = (st: State, accId?: string) =>
+  [...st.tx.values()].filter((t) => t.src !== 'manual' && !t.deleted && t.status === 'open' && (!accId || t.acc === accId)).map((t) => t.id);
+export function removeOpen(accId?: string): number {
+  const ids = openImportedIds(state, accId);
+  if (ids.length) emit('tx.remove', { ids });
+  return ids.length;
 }
 
 export function patchTx(id: string, patch: Partial<Tx>) { emit('tx.patch', { id, patch }); }
@@ -362,6 +428,7 @@ export async function purgeTestData(o: PurgeOptions, sampleEvents: Set<string>, 
   const keep = evs.filter((e) => {
     if (o.sample && sampleEvents.has(e.id)) return false;
     if ((e.type === 'tx.create' && drop.has(e.data?.tx?.id)) || (e.type === 'tx.patch' && drop.has(e.data?.id))) return false;
+    if (e.type === 'import.log' && Array.isArray(e.data?.ids) && e.data.ids.length && e.data.ids.every((x: string) => drop.has(x))) return false;
     if (o.rules && (e.type === 'rule.set' || e.type === 'rules.clear')) return false;
     if (o.categories && /^(cat|sub|acc)\./.test(e.type)) return false;
     return true;

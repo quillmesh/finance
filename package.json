@@ -1,6 +1,6 @@
 {
   "name": "finanzen",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "private": true,
   "description": "Persönliche Ausgaben aus Kreditkarte, Bank und Bargeld taggen und auswerten. Alle Daten bleiben auf dem Gerät.",
   "scripts": {

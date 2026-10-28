@@ -65,7 +65,7 @@ export interface Tx {
   cat: string | null;
   sub: string | null;
   note: string;
-  /** Nur manuelle Einträge können gelöscht werden; importierte nie (TST-05) */
+  /** Nur manuelle Einträge werden so gelöscht; importierte einzeln nie (TST-05), nur ganze Importe oder offene über `tx.remove` (ab 0.6.0) */
   deleted?: boolean;
   /**
    * Geteilte Ausgabe (TEI): mein Anteil in Basispunkten (10000 = 100 %, 5000 = 50 %, 6667 = ⅔).
@@ -80,11 +80,37 @@ export interface Tx {
  */
 export interface Rule { cat: string; sub: string | null; share?: number | null; skip?: boolean }
 
+/**
+ * Ein Import (IMP-13). Ab 0.6.0 als Ereignis `import.log` gespeichert; ältere Importe werden beim Abspielen
+ * aus zusammenhängend gespeicherten Buchungen rekonstruiert (`auto`).
+ */
+export interface ImportRec {
+  id: string;
+  /** Zeitpunkt des Imports (ms) */
+  ts: number;
+  device: string;
+  acc: string;
+  /** Dateiname(n), bei rekonstruierten leer */
+  name: string;
+  format: string;
+  /** IDs der Buchungen, die dieser Import neu angelegt hat */
+  ids: string[];
+  /** Ganzer Import gelöscht (IMP-14) */
+  removed?: boolean;
+  auto?: boolean;
+  /** intern: letzter Zeitpunkt, für das Rekonstruieren */
+  lastTs: number;
+}
+
 export interface State {
   accounts: Map<string, Account>;
   categories: Map<string, Category>;
   tx: Map<string, Tx>;
   rules: Map<string, Rule>;
+  /** Ab 0.6.0: Importe in Reihenfolge */
+  imports: Map<string, ImportRec>;
+  /** Buchungs-ID → Import-ID */
+  importOf: Map<string, string>;
 }
 
 /**
@@ -100,7 +126,9 @@ export type EventType =
   | 'sub.patch'      // { cat, id, patch }
   | 'rule.set'       // { key, rule }     rule = null → entfernt
   | 'rules.clear'    // {}
-  | 'acc.patch';     // { id, patch }
+  | 'acc.patch'      // { id, patch }
+  | 'import.log'     // { imp: { id, acc, name, format }, ids }   ab 0.6.0, vor den tx.create des Imports (IMP-13)
+  | 'tx.remove';     // { ids, imp? }     importierte Buchungen entfernen: ganzer Import oder offene (IMP-14, IMP-15)
 
 export interface FinEvent {
   id: string;

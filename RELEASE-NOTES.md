@@ -1,5 +1,11 @@
 # Release-Notes
 
+## 0.6.0
+- Import-Historie: Im Import-Tab zeigt «Import-Historie anzeigen» die letzten 5 Importe mit Datei, Konto, Bereich, Zeitraum und wie viele Buchungen getaggt und ungetaggt sind. Frühere Importe werden aus den gespeicherten Daten erkannt.
+- Einen ganzen Import löschen, z. B. eine falsch hochgeladene Abrechnung – auch aus der Historie. Sind Buchungen daraus schon getaggt, warnt die App vorher. Wird dieselbe Datei später wieder importiert, kommen die Buchungen ungetaggt zurück.
+- Einstellungen → Daten löschen: alle Importe mit Löschen-Knopf und «Alle ungetaggten Einträge löschen». Getaggte, ausgeschlossene und manuelle Einträge bleiben.
+- Gilt in Live und Test; über den Sync auch auf den anderen Geräten.
+
 ## 0.5.0
 - Kreditkarten-Abrechnung als PDF importieren. Die App liest das PDF selbst, ohne fremde Bibliothek; es wird nirgends hochgeladen. Übernommen werden Datum, Händler, Ort, Branche und Betrag, auch Gebühren und mehrere Karten pro Abrechnung. Die Zahlung der letzten Rechnung wird ausgeschlossen.
 - Summenkontrolle: Die gelesenen Buchungen werden mit «Total Karte» und dem Rechnungsbetrag verglichen. Stimmt etwas nicht, zeigt die App die Differenz und fragt, ob trotzdem importiert werden soll.

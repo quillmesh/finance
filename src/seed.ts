@@ -14,7 +14,7 @@ export function sampleFiles(today = new Date()) {
 }
 
 export function seedSample(today = new Date()) {
-  for (const f of sampleFiles(today)) S.importTx(parseFile(f.text, f.acc).tx);
+  for (const f of sampleFiles(today)) { const r = parseFile(f.text, f.acc); S.importTx(r.tx, { name: f.name, format: r.format }); }
   // Alles ausser dem laufenden Monat taggen (der bleibt zum Ausprobieren offen)
   const month = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}`;
   const groups = new Map<string, { ids: string[]; cat: string; sub: string; key: string }>();

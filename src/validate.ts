@@ -93,6 +93,24 @@ export function validateEvent(e: FinEvent, st: State): string | null {
       return null;
     }
     case 'rules.clear': return null;
+    case 'import.log': {
+      if (!isStr(d.imp?.id) || !d.imp.id) return 'Import ohne ID';
+      if (st.imports.has(d.imp.id)) return 'Import existiert schon';
+      if (!st.accounts.has(d.imp.acc)) return 'Import: unbekanntes Konto';
+      if (!Array.isArray(d.ids) || !d.ids.every(isStr)) return 'Import: Buchungen ungültig';
+      return null;
+    }
+    case 'tx.remove': {
+      if (!Array.isArray(d.ids) || !d.ids.every(isStr)) return 'Löschen: Buchungen ungültig';
+      if (d.imp !== undefined && !st.imports.has(d.imp)) return 'Import existiert nicht';
+      if (!d.ids.length && d.imp === undefined) return 'Nichts zu löschen';
+      for (const id of d.ids) {
+        const t = st.tx.get(id);
+        if (!t) return `Buchung ${id} existiert nicht`;
+        if (t.src === 'manual') return 'Manuelle Einträge werden einzeln gelöscht';
+      }
+      return null;
+    }
     default: return `Unbekannter Ereignistyp ${e.type}`;
   }
 }

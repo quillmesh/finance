@@ -1,6 +1,6 @@
 # Übergabe
 
-## Stand 0.5.0 (Test)
+## Stand 0.6.0 (Test)
 - 0.1.0: Import (Kreditkarten-CSV, Bank-CSV, camt.053), Taggen mit Vorschlägen, Sichten Persönlich/Gemeinsam/Alle Konten, Export, manuelle Einträge,
   Kategorien bearbeiten, verschlüsseltes Backup, Rappen, Ereignis-Log mit Validierung, Solarized, Sync (nur Live), Test-App.
 - 0.2.0: geteilte Ausgaben (`Tx.share` in Basispunkten, `logic.amountIn`), Gutschriften «Nicht erfassen» (Regel `skip`),
@@ -12,7 +12,10 @@
   Summenkontrolle pro Karte und Rechnungsbetrag (`check`), Rückfrage vor dem Import über `logic.importWarnings`
   (Summe IMP-10, Überschneidung CSV↔PDF nach Datum+Betrag IMP-11, Kartennummer pro Konto `Account.cards` IMP-12, nur maskiert).
   Test-PDFs: `tests/pdf-bauen.mjs` (erfunden). Fremdwährungen: bewusst nicht behandelt, es zählt der CHF-Betrag.
-- Git-Historie am 24.10.2026 bereinigt (zwei Commits). GitHub Pages: Quelle «GitHub Actions».
+- 0.6.0: Import-Historie (`State.imports`/`importOf`, Ereignis `import.log` vor den `tx.create`; ältere Importe werden beim Abspielen
+  rekonstruiert: gleiches Gerät + Konto, Abstand ≤ `AUTO_IMPORT_GAP_MS`), `logic.importHistory`. Löschen: Ereignis `tx.remove`
+  (ganzer Import IMP-14 mit `imp`, alle ungetaggten IMP-15) entfernt Buchungen aus dem Zustand; erneuter Import legt sie wieder an.
+- Git-Historie am 24.10. und 28.10.2026 bereinigt. GitHub Pages: Quelle «GitHub Actions».
 - Live (`main`) zeigt noch den Platzhalter; erste Freigabe steht aus. Nach der Freigabe Daten einfrieren (`bun scripts/alte-daten-einfrieren.ts <version>`).
 - Workflow startet nach Pushes bisher nicht automatisch; bei Bedarf `gh workflow run veroeffentlichen.yml --ref test`.
 

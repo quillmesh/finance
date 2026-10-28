@@ -8,7 +8,7 @@ import { fmt, pct } from './money';
 import { parseUpload, toCSV } from './parse';
 import { formatCardNo, normalizeCardNo } from './parse/cardpdf';
 import {
-  MONTHS, VIEW_LABEL, aggregate, importWarnings, type ImportWarning, areaOf, byAccount, cashPool, catLabel, catsFor, isShared, liveSubs, monthly, myPart, openTx, periodLabel, periods,
+  MONTHS, VIEW_LABEL, aggregate, formatLabel, importHistory, importWarnings, type ImportInfo, type ImportWarning, areaOf, byAccount, cashPool, catLabel, catsFor, isShared, liveSubs, monthly, myPart, openTx, periodLabel, periods,
   reportRows, ruleKey, shareLabel, sortedCategories, srcLabel, subName, summary, txRows, viewTx, type Slice, type View,
 } from './logic';
 import { sampleFiles } from './seed';
@@ -35,6 +35,8 @@ const tg = {
 const ov = { view: 'privat' as View, mode: 'month' as 'month' | 'year', period: '', drill: null as string | null };
 const lf = { acc: '', period: '', status: '', q: '' };
 let impAcc = 'privat';
+/** Import-Historie im Import-Tab aufgeklappt (IMP-13) */
+let impHist = false;
 let manAcc = 'privat';
 
 // ---------- Hilfen ----------
@@ -145,6 +147,7 @@ function renderImport(el: HTMLElement) {
       <strong>Datei wählen oder hierher ziehen</strong><br>
       <span class="muted small">Import ins Konto <strong>${esc(acc(impAcc).name)}</strong> · Kreditkarten-CSV und -PDF · Bank-CSV (auch mit Sammelbuchungen) · camt.053</span>
     </label>
+    <div class="row"><button type="button" class="ghost small" data-act="impHist" id="impHistBtn" aria-expanded="${impHist}">${impHist ? 'Import-Historie ausblenden' : 'Import-Historie anzeigen'}</button></div>
     <p class="muted small" id="impHint">Bereits importierte Buchungen werden erkannt und nicht doppelt übernommen. Zahlungen an die Kreditkarte und Überträge von eigenen Konten werden automatisch ausgeschlossen. Bargeldbezüge zählen als «Bargeld › Nicht zugeordnet». Bei einer Kreditkarten-Abrechnung als PDF prüft die App die Summe; stimmt etwas nicht, fragt sie vor dem Import nach.</p>
   </div>
   <div class="card">
@@ -152,7 +155,9 @@ function renderImport(el: HTMLElement) {
     <table><thead><tr><th>Konto</th><th>Bereich</th><th class="num">Buchungen</th></tr></thead><tbody>
     ${[...st().accounts.values()].map((a) => `<tr><td>${esc(a.name)}<div class="muted small">manuell: ${esc(a.manualLabel)}${a.cards?.length ? ` · Karte ${a.cards.map(formatCardNo).map(esc).join(', ')}` : ''}</div></td><td>${areaChip(a.area)}</td><td class="num">${count(a.id)}</td></tr>`).join('')}
     </tbody></table>
-  </div>`;
+  </div>
+  ${impHist ? `<div class="card" id="impHistory"><h2>Letzte Importe</h2>${importList(5)}
+    <p class="muted small">Ältere Importe und «Alle ungetaggten Einträge löschen» unter Einstellungen → Daten löschen.</p></div>` : ''}`;
   const drop = $('#drop', el);
   ['dragover', 'dragenter'].forEach((ev) => drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.add('over'); }));
   ['dragleave', 'drop'].forEach((ev) => drop.addEventListener(ev, () => drop.classList.remove('over')));
@@ -170,7 +175,7 @@ async function importFiles(files: FileList | null) {
       // Summe, Überschneidung, Kartennummer: bei Warnungen zuerst nachfragen (IMP-10 bis IMP-12)
       const warnings = importWarnings(st(), impAcc, r);
       if (warnings.length && !(await askImport(f.name, warnings))) { skipped.push(f.name); continue; }
-      const res = S.importTx(r.tx);
+      const res = S.importTx(r.tx, { name: f.name, format: r.format });
       added += res.added; dup += res.duplicates; excl += res.excluded;
     } catch (err) { errors.push(`${f.name}: ${(err as Error).message}`); }
   }
@@ -197,6 +202,52 @@ function askImport(name: string, warnings: ImportWarning[]): Promise<boolean> {
     $<HTMLButtonElement>('#impNo').focus();
   });
 }
+/** Liste der Importe mit Konto, Bereich, Zeitraum, Zählern und Löschen-Knopf (IMP-13, IMP-14) */
+function importList(limit = Infinity): string {
+  const list = importHistory(st(), limit);
+  if (!list.length) return '<p class="muted small">Noch keine Importe.</p>';
+  return `<ul class="implist">${list.map((h) => `<li data-imp="${esc(h.id)}">
+    <div class="imphead"><strong>${esc(h.name || (h.auto ? 'Früherer Import' : 'Import'))}</strong><span class="muted small">${esc(importWhen(h))} · ${esc(formatLabel(h.format))}</span></div>
+    <div class="small">Konto ${esc(h.accName)} ${areaChip(h.area)} · ${fmtDate(h.from)}${h.to !== h.from ? ` – ${fmtDate(h.to)}` : ''}</div>
+    <div class="row nowrap"><span class="small impcount">${h.total} Buchungen: ${h.tagged} getaggt · ${h.open} ungetaggt${h.excluded ? ` · ${h.excluded} ausgeschlossen` : ''}</span><span class="spacer"></span>
+    <button type="button" class="ghost small danger" data-act="impDel" data-id="${esc(h.id)}">Löschen</button></div></li>`).join('')}</ul>`;
+}
+const importWhen = (h: ImportInfo) => { const d = new Date(h.ts); return `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`; };
+
+/** Rückfrage für endgültiges Löschen. true = löschen. */
+function confirmDanger(title: string, body: string, ok: string): Promise<boolean> {
+  const d = $<HTMLDialogElement>('#dlg');
+  d.innerHTML = `<form method="dialog" id="dangerAsk"><h2>${esc(title)}</h2>${body}
+    <div class="row"><span class="spacer"></span><button type="button" data-act="impNo" id="dangerNo">Abbrechen</button><button type="button" class="danger" data-act="impYes" id="dangerYes">${esc(ok)}</button></div></form>`;
+  return new Promise((resolve) => {
+    impAnswer = resolve;
+    d.addEventListener('close', () => { if (impAnswer === resolve) { impAnswer = null; resolve(false); } }, { once: true });
+    d.showModal();
+    $<HTMLButtonElement>('#dangerNo').focus();
+  });
+}
+
+async function deleteImport(id: string) {
+  const h = importHistory(st()).find((x) => x.id === id);
+  if (!h) return;
+  const body = `<p><strong>${esc(h.name || 'Früherer Import')}</strong><br><span class="muted small">Konto ${esc(h.accName)} · ${fmtDate(h.from)}${h.to !== h.from ? ` – ${fmtDate(h.to)}` : ''}</span></p>
+    <p>${h.total} Buchungen werden gelöscht.</p>
+    ${h.tagged ? `<div class="impwarn" data-kind="sum"><strong>${h.tagged} davon sind schon getaggt.</strong><br><span class="small">Ihre Kategorien, Anteile und Notizen gehen verloren.</span></div>` : ''}
+    <p class="muted small">Importierst du dieselbe Datei später wieder, kommen die Buchungen ungetaggt zurück.</p>`;
+  if (!(await confirmDanger('Import löschen?', body, 'Löschen'))) return;
+  if (safe(() => S.removeImport(id))) { tg.history = []; toast(`Import gelöscht: ${h.total} Buchungen entfernt`); render(); }
+}
+
+async function deleteOpen() {
+  const per = [...st().accounts.values()].map((a) => ({ a, n: S.openImportedIds(st(), a.id).length })).filter((x) => x.n);
+  const total = per.reduce((x, p) => x + p.n, 0);
+  if (!total) { toast('Keine ungetaggten Einträge.'); return; }
+  const body = `<p>${total} ungetaggte Buchungen werden gelöscht:</p><ul class="small">${per.map((p) => `<li>Konto ${esc(p.a.name)}: ${p.n}</li>`).join('')}</ul>
+    <p class="muted small">Getaggte, ausgeschlossene (z. B. Kartenzahlungen) und manuelle Einträge bleiben. Ein erneuter Import bringt die Buchungen wieder.</p>`;
+  if (!(await confirmDanger('Alle ungetaggten Einträge löschen?', body, 'Löschen'))) return;
+  if (safe(() => S.removeOpen())) { tg.history = []; toast(`${total} ungetaggte Buchungen gelöscht`); render(); }
+}
+
 function answerImport(ok: boolean) {
   const r = impAnswer;
   impAnswer = null;
@@ -676,6 +727,10 @@ function renderSettings(el: HTMLElement) {
     <p class="muted small">Solche Abbuchungen werden beim Import ausgeschlossen, damit die Einkäufe der Karte nicht doppelt zählen. Gilt für künftige Importe.</p>
     ${[...st().accounts.values()].map((a) => `<label class="field"><span>Kreditkarten von ${esc(a.name)} (wie in der Abrechnung, z. B. 1234 56XX XXXX 7890; mehrere mit Komma)</span><input value="${esc((a.cards ?? []).map(formatCardNo).join(', '))}" data-acc="${a.id}" data-k="cards" id="cards-${a.id}" inputmode="text" autocomplete="off" placeholder="1234 56XX XXXX 7890"></label>`).join('')}
     <p class="muted small">Gespeichert werden nur die ersten sechs und die letzten vier Ziffern. Gehört die Karte einer Datei zu einem anderen Konto, fragt die App vor dem Import nach.</p></div>
+  <div class="card" id="delData"><h2>Daten löschen</h2>
+    <p class="muted small">Eine falsche Datei importiert? Hier lässt sich ein ganzer Import löschen. Einzelne importierte Buchungen bleiben wie im Auszug; bei Bedarf «Ignorieren».</p>
+    ${importList()}
+    <div class="row"><button type="button" class="danger" data-act="delOpen" id="delOpenBtn">Alle ungetaggten Einträge löschen (${S.openImportedIds(st()).length})</button></div></div>
   <div class="card"><h2>Gelernte Händler</h2><p class="muted small">${st().rules.size} Händler mit gespeichertem Vorschlag.</p>
     <button type="button" data-act="clearRules">Vorschläge zurücksetzen</button></div>
   <div class="card"><h2>Backup</h2>
@@ -793,6 +848,9 @@ const ACT: Record<string, Handler> = {
   editTx: (b) => editTx(b.dataset.id!),
   dlgClose: () => $<HTMLDialogElement>('#dlg').close(),
   impYes: () => answerImport(true),
+  impHist: () => { impHist = !impHist; render(); },
+  impDel: (b) => deleteImport(b.dataset.id!),
+  delOpen: () => deleteOpen(),
   impNo: () => answerImport(false),
   dlgSave: (b) => dlgSave(b.dataset.id!),
   dlgDelete: (b) => { if (confirm('Eintrag löschen?') && safe(() => S.deleteManual(b.dataset.id!))) $<HTMLDialogElement>('#dlg').close(); },
