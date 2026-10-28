@@ -1,0 +1,2583 @@
+{
+ "accounts": [
+  {
+   "id": "gemeinsam",
+   "name": "Gemeinsam",
+   "area": "gemeinsam",
+   "manualLabel": "Anna"
+  },
+  {
+   "id": "privat",
+   "name": "Privat",
+   "area": "privat",
+   "manualLabel": "Bargeld"
+  }
+ ],
+ "categories": [
+  {
+   "name": "Kinder",
+   "color": "#268bd2",
+   "scope": "beide",
+   "kind": "expense",
+   "order": 170,
+   "id": "c-4a726af1",
+   "subs": [
+    {
+     "id": "c-4a726af1-04b593d9",
+     "name": "Kleidung"
+    }
+   ]
+  },
+  {
+   "id": "k-abos",
+   "name": "Abos & Kommunikation",
+   "scope": "privat",
+   "kind": "expense",
+   "color": "#268bd2",
+   "order": 60,
+   "subs": [
+    {
+     "id": "k-abos-1",
+     "name": "Handy"
+    },
+    {
+     "id": "k-abos-2",
+     "name": "Streaming"
+    },
+    {
+     "id": "k-abos-3",
+     "name": "Software"
+    }
+   ]
+  },
+  {
+   "id": "k-auto",
+   "name": "Auto",
+   "scope": "beide",
+   "kind": "expense",
+   "color": "#b58900",
+   "order": 120,
+   "subs": [
+    {
+     "id": "k-auto-1",
+     "name": "Benzin"
+    },
+    {
+     "id": "k-auto-2",
+     "name": "Service & Reparatur"
+    },
+    {
+     "id": "k-auto-3",
+     "name": "Parkieren"
+    },
+    {
+     "id": "k-auto-4",
+     "name": "Versicherung & Steuern"
+    }
+   ]
+  },
+  {
+   "id": "k-bargeld",
+   "name": "Bargeld",
+   "scope": "beide",
+   "kind": "expense",
+   "color": "#93a1a1",
+   "order": 160,
+   "subs": [
+    {
+     "id": "k-bargeld-1",
+     "name": "Nicht zugeordnet"
+    }
+   ]
+  },
+  {
+   "id": "k-einkaufen",
+   "name": "Einkaufen",
+   "scope": "beide",
+   "kind": "expense",
+   "color": "#859900",
+   "order": 130,
+   "subs": [
+    {
+     "id": "k-einkaufen-1",
+     "name": "Lebensmittel"
+    },
+    {
+     "id": "k-einkaufen-2",
+     "name": "Drogerie"
+    },
+    {
+     "id": "k-einkaufen-3",
+     "name": "Haushalt"
+    }
+   ]
+  },
+  {
+   "id": "k-einnahmen",
+   "name": "Einnahmen",
+   "scope": "privat",
+   "kind": "income",
+   "color": "#586e75",
+   "order": 90,
+   "subs": [
+    {
+     "id": "k-einnahmen-1",
+     "name": "Lohn"
+    },
+    {
+     "id": "k-einnahmen-2",
+     "name": "Rückerstattung"
+    },
+    {
+     "id": "k-einnahmen-3",
+     "name": "Diverses"
+    }
+   ]
+  },
+  {
+   "id": "k-einzahlungen",
+   "name": "Einzahlungen",
+   "scope": "gemeinsam",
+   "kind": "income",
+   "color": "#586e75",
+   "order": 110,
+   "subs": [
+    {
+     "id": "k-einzahlungen-1",
+     "name": "Ich"
+    },
+    {
+     "id": "k-einzahlungen-2",
+     "name": "Partnerin"
+    }
+   ]
+  },
+  {
+   "id": "k-essen",
+   "name": "Essen & Ausgang",
+   "scope": "privat",
+   "kind": "expense",
+   "color": "#cb4b16",
+   "order": 30,
+   "subs": [
+    {
+     "id": "k-essen-1",
+     "name": "Restaurant"
+    },
+    {
+     "id": "k-essen-2",
+     "name": "Kantine & Take-away"
+    },
+    {
+     "id": "k-essen-3",
+     "name": "Bar"
+    },
+    {
+     "id": "k-essen-4",
+     "name": "Café & Bäckerei",
+     "deleted": true
+    }
+   ]
+  },
+  {
+   "id": "k-ferien",
+   "name": "Ferien privat",
+   "scope": "privat",
+   "kind": "expense",
+   "color": "#6c71c4",
+   "order": 20,
+   "subs": [
+    {
+     "id": "k-ferien-1",
+     "name": "Unterkunft"
+    },
+    {
+     "id": "k-ferien-2",
+     "name": "Flug & Transport"
+    },
+    {
+     "id": "k-ferien-3",
+     "name": "Essen & Trinken"
+    },
+    {
+     "id": "k-ferien-4",
+     "name": "Aktivitäten"
+    }
+   ]
+  },
+  {
+   "id": "k-freizeit",
+   "name": "Freizeit & Ausflüge",
+   "scope": "beide",
+   "kind": "expense",
+   "color": "#839496",
+   "order": 140,
+   "subs": [
+    {
+     "id": "k-freizeit-1",
+     "name": "Ausflüge"
+    },
+    {
+     "id": "k-freizeit-2",
+     "name": "Restaurant"
+    },
+    {
+     "id": "k-freizeit-3",
+     "name": "Kultur"
+    }
+   ]
+  },
+  {
+   "id": "k-haushalt",
+   "name": "Gemeinsamer Haushalt",
+   "scope": "privat",
+   "kind": "transfer",
+   "color": "#2aa198",
+   "order": 10,
+   "subs": [
+    {
+     "id": "k-haushalt-1",
+     "name": "Einzahlung gemeinsames Konto"
+    }
+   ]
+  },
+  {
+   "id": "k-hobby",
+   "name": "Hobbys",
+   "scope": "privat",
+   "kind": "expense",
+   "color": "#6c71c4",
+   "order": 40,
+   "subs": [
+    {
+     "id": "k-hobby-1",
+     "name": "Gleitschirmfliegen"
+    },
+    {
+     "id": "k-hobby-2",
+     "name": "Sport"
+    },
+    {
+     "id": "k-hobby-3",
+     "name": "Ausrüstung"
+    }
+   ]
+  },
+  {
+   "id": "k-persoenlich",
+   "name": "Persönliches",
+   "scope": "privat",
+   "kind": "expense",
+   "color": "#d33682",
+   "order": 50,
+   "subs": [
+    {
+     "id": "k-persoenlich-1",
+     "name": "Kleidung"
+    },
+    {
+     "id": "k-persoenlich-2",
+     "name": "Coiffeur"
+    },
+    {
+     "id": "k-persoenlich-3",
+     "name": "Gesundheit"
+    }
+   ]
+  },
+  {
+   "id": "k-sonstiges",
+   "name": "Sonstiges",
+   "scope": "beide",
+   "kind": "expense",
+   "color": "#586e75",
+   "order": 150,
+   "subs": [
+    {
+     "id": "k-sonstiges-1",
+     "name": "Gebühren"
+    },
+    {
+     "id": "k-sonstiges-2",
+     "name": "Spenden & Mitgliedschaften"
+    },
+    {
+     "id": "k-sonstiges-3",
+     "name": "Diverses"
+    }
+   ]
+  },
+  {
+   "id": "k-sparen",
+   "name": "Sparen & Vorsorge",
+   "scope": "privat",
+   "kind": "saving",
+   "color": "#859900",
+   "order": 80,
+   "subs": [
+    {
+     "id": "k-sparen-1",
+     "name": "Säule 3a"
+    },
+    {
+     "id": "k-sparen-2",
+     "name": "Sparkonto"
+    }
+   ]
+  },
+  {
+   "id": "k-steuern",
+   "name": "Steuern & Versicherungen",
+   "scope": "privat",
+   "kind": "expense",
+   "color": "#dc322f",
+   "order": 70,
+   "subs": [
+    {
+     "id": "k-steuern-1",
+     "name": "Steuern"
+    },
+    {
+     "id": "k-steuern-2",
+     "name": "Versicherungen"
+    },
+    {
+     "id": "k-steuern-3",
+     "name": "Krankenkasse"
+    }
+   ]
+  },
+  {
+   "id": "k-wohnen",
+   "name": "Wohnen",
+   "scope": "gemeinsam",
+   "kind": "expense",
+   "color": "#d33682",
+   "order": 100,
+   "subs": [
+    {
+     "id": "k-wohnen-1",
+     "name": "Miete"
+    },
+    {
+     "id": "k-wohnen-2",
+     "name": "Nebenkosten"
+    },
+    {
+     "id": "k-wohnen-3",
+     "name": "Einrichtung"
+    },
+    {
+     "id": "k-wohnen-4",
+     "name": "Abgaben & Versicherung"
+    }
+   ]
+  }
+ ],
+ "tx": [
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Frischmarkt",
+   "details": "TWINT",
+   "place": "Musterdorf",
+   "status": "tagged",
+   "cat": "k-einkaufen",
+   "sub": "k-einkaufen-1",
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-09-24",
+   "amount": 6835,
+   "id": "gemeinsam:bank:14718xdwo9x"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Tankstelle Blitz",
+   "details": "TWINT",
+   "place": "Musterdorf",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-10-13",
+   "amount": 8685,
+   "id": "gemeinsam:bank:14jpcbazmvs"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Max Muster",
+   "details": "Zahlungseingang · HAUSHALT",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-einzahlungen",
+   "sub": "k-einzahlungen-1",
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-08-01",
+   "amount": -150000,
+   "id": "gemeinsam:bank:1500008060"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Anna Beispiel",
+   "details": "Zahlungseingang · HAUSHALT",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-einzahlungen",
+   "sub": "k-einzahlungen-2",
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-08-01",
+   "amount": -150000,
+   "id": "gemeinsam:bank:1500016176"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Muster Immobilien AG",
+   "details": "Belastung e-banking · Miete",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-wohnen",
+   "sub": "k-wohnen-1",
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-08-01",
+   "amount": 190000,
+   "id": "gemeinsam:bank:1500024443"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "EW Musterdorf",
+   "details": "Belastung e-banking · Strom",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-wohnen",
+   "sub": "k-wohnen-2",
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-08-14",
+   "amount": 12527,
+   "id": "gemeinsam:bank:1500032669"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Max Muster",
+   "details": "Zahlungseingang · HAUSHALT",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-einzahlungen",
+   "sub": "k-einzahlungen-1",
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-09-01",
+   "amount": -150000,
+   "id": "gemeinsam:bank:1500040155"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Anna Beispiel",
+   "details": "Zahlungseingang · HAUSHALT",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-einzahlungen",
+   "sub": "k-einzahlungen-2",
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-09-01",
+   "amount": -150000,
+   "id": "gemeinsam:bank:1500048377"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Muster Immobilien AG",
+   "details": "Belastung e-banking · Miete",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-wohnen",
+   "sub": "k-wohnen-1",
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-09-01",
+   "amount": 190000,
+   "id": "gemeinsam:bank:1500055905"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "EW Musterdorf",
+   "details": "Belastung e-banking · Strom",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-wohnen",
+   "sub": "k-wohnen-2",
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-09-14",
+   "amount": 12562,
+   "id": "gemeinsam:bank:1500064129"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Garage Muster AG",
+   "details": "Belastung e-banking · Service",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-auto",
+   "sub": "k-auto-2",
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-09-19",
+   "amount": 48000,
+   "id": "gemeinsam:bank:1500071700"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Max Muster",
+   "details": "Zahlungseingang · HAUSHALT",
+   "place": "",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-10-01",
+   "amount": -150000,
+   "id": "gemeinsam:bank:1500079331"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Anna Beispiel",
+   "details": "Zahlungseingang · HAUSHALT",
+   "place": "",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-10-01",
+   "amount": -150000,
+   "id": "gemeinsam:bank:1500087740"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Muster Immobilien AG",
+   "details": "Belastung e-banking · Miete",
+   "place": "",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-10-01",
+   "amount": 190000,
+   "id": "gemeinsam:bank:1500095334"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "EW Musterdorf",
+   "details": "Belastung e-banking · Strom",
+   "place": "",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-10-14",
+   "amount": 10195,
+   "id": "gemeinsam:bank:1500103927"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Serafe AG",
+   "details": "Belastung e-banking",
+   "place": "",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-10-06",
+   "amount": 8375,
+   "id": "gemeinsam:bank:1500111031"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Tankstelle Blitz",
+   "details": "TWINT",
+   "place": "Musterdorf",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-10-01",
+   "amount": 7535,
+   "id": "gemeinsam:bank:1bh85vr4xad"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Moebelhaus Muster",
+   "details": "TWINT",
+   "place": "Beispielstadt",
+   "status": "tagged",
+   "cat": "k-wohnen",
+   "sub": "k-wohnen-3",
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-09-12",
+   "amount": 5285,
+   "id": "gemeinsam:bank:1i2q10ijtqa"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Tankstelle Blitz",
+   "details": "TWINT",
+   "place": "Musterdorf",
+   "status": "tagged",
+   "cat": "k-auto",
+   "sub": "k-auto-1",
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-08-25",
+   "amount": 7760,
+   "id": "gemeinsam:bank:1ltc13oym08"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Grossmarkt Nord",
+   "details": "TWINT",
+   "place": "Beispielstadt",
+   "status": "tagged",
+   "cat": "k-einkaufen",
+   "sub": "k-einkaufen-1",
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-08-13",
+   "amount": 6505,
+   "id": "gemeinsam:bank:20l81ocgyv9"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Tankstelle Blitz",
+   "details": "TWINT",
+   "place": "Musterdorf",
+   "status": "tagged",
+   "cat": "k-auto",
+   "sub": "k-auto-1",
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-09-17",
+   "amount": 7620,
+   "id": "gemeinsam:bank:20zp1rwczfm"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Frischmarkt",
+   "details": "TWINT",
+   "place": "Musterdorf",
+   "status": "tagged",
+   "cat": "k-einkaufen",
+   "sub": "k-einkaufen-1",
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-09-27",
+   "amount": 7920,
+   "id": "gemeinsam:bank:21ucv1enl5i"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Frischmarkt",
+   "details": "TWINT",
+   "place": "Musterdorf",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-10-03",
+   "amount": 15400,
+   "id": "gemeinsam:bank:23zg2xxn3vt"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Frischmarkt",
+   "details": "TWINT",
+   "place": "Musterdorf",
+   "status": "tagged",
+   "cat": "k-einkaufen",
+   "sub": "k-einkaufen-1",
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-08-12",
+   "amount": 15965,
+   "id": "gemeinsam:bank:2cle0n703oq"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Grossmarkt Nord",
+   "details": "TWINT",
+   "place": "Beispielstadt",
+   "status": "tagged",
+   "cat": "k-einkaufen",
+   "sub": "k-einkaufen-1",
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-09-14",
+   "amount": 8480,
+   "id": "gemeinsam:bank:2dgkm9h0ucf"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Frischmarkt",
+   "details": "TWINT",
+   "place": "Musterdorf",
+   "status": "tagged",
+   "cat": "k-einkaufen",
+   "sub": "k-einkaufen-1",
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-08-25",
+   "amount": 7960,
+   "id": "gemeinsam:bank:2e7o6kd45ru"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Tankstelle Blitz",
+   "details": "TWINT",
+   "place": "Musterdorf",
+   "status": "tagged",
+   "cat": "k-auto",
+   "sub": "k-auto-1",
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-08-13",
+   "amount": 9005,
+   "id": "gemeinsam:bank:2elodoia4f"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Frischmarkt",
+   "details": "TWINT",
+   "place": "Musterdorf",
+   "status": "tagged",
+   "cat": "k-einkaufen",
+   "sub": "k-einkaufen-1",
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-09-20",
+   "amount": 12950,
+   "id": "gemeinsam:bank:2erzguvbsz4"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Moebelhaus Muster",
+   "details": "TWINT",
+   "place": "Beispielstadt",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-10-22",
+   "amount": 17865,
+   "id": "gemeinsam:bank:2jc2xy4lxe"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Frischmarkt",
+   "details": "TWINT",
+   "place": "Musterdorf",
+   "status": "tagged",
+   "cat": "k-einkaufen",
+   "sub": "k-einkaufen-1",
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-09-02",
+   "amount": 11455,
+   "id": "gemeinsam:bank:9qrqhrmusp"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Tankstelle Blitz",
+   "details": "TWINT",
+   "place": "Musterdorf",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-10-18",
+   "amount": 9255,
+   "id": "gemeinsam:bank:gnr7v7rcez"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Grossmarkt Nord",
+   "details": "TWINT",
+   "place": "Beispielstadt",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-10-11",
+   "amount": 5540,
+   "id": "gemeinsam:bank:nrzgu8lhbp"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Grossmarkt Nord",
+   "details": "TWINT",
+   "place": "Beispielstadt",
+   "status": "tagged",
+   "cat": "k-einkaufen",
+   "sub": "k-einkaufen-1",
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-08-14",
+   "amount": 11560,
+   "id": "gemeinsam:bank:qty1ur91al"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Grossmarkt Nord",
+   "details": "TWINT",
+   "place": "Beispielstadt",
+   "status": "tagged",
+   "cat": "k-einkaufen",
+   "sub": "k-einkaufen-1",
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-08-04",
+   "amount": 6580,
+   "id": "gemeinsam:bank:stl4l1lexd"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Moebelhaus Muster",
+   "details": "TWINT",
+   "place": "Beispielstadt",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "bank",
+   "date": "2026-10-12",
+   "amount": 3500,
+   "id": "gemeinsam:bank:urtborvk9q"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Kiosk",
+   "details": "",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-essen",
+   "sub": null,
+   "note": "",
+   "acc": "privat",
+   "src": "manual",
+   "date": "2026-10-20",
+   "amount": 990,
+   "id": "manual:26a936dc-f8a1-4555-bb2b-4babb68824b7",
+   "deleted": true
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Tankstelle (Anna)",
+   "details": "",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-auto",
+   "sub": "k-auto-1",
+   "note": "",
+   "acc": "gemeinsam",
+   "src": "manual",
+   "date": "2026-09-17",
+   "amount": 7800,
+   "id": "manual:83a359f2-0e81-4ffc-beb5-a09d07cdef73"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Wochenmarkt",
+   "details": "",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-einkaufen",
+   "sub": "k-einkaufen-1",
+   "note": "",
+   "acc": "privat",
+   "src": "manual",
+   "date": "2026-09-20",
+   "amount": 2450,
+   "id": "manual:d08dd5cd-52e3-4997-b70a-94ccee42295a"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Muster Arbeitgeber AG",
+   "details": "Zahlungseingang · WAGE/SALARY 202608",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-einnahmen",
+   "sub": "k-einnahmen-1",
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-08-25",
+   "amount": -650000,
+   "id": "privat:bank:1500008203"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Gemeinschaftskonto Muster Beispiel",
+   "details": "Belastung Dauerauftrag · Haushalt",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-haushalt",
+   "sub": "k-haushalt-1",
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-08-01",
+   "amount": 150000,
+   "id": "privat:bank:1500016374"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Kartenherausgeber Muster AG",
+   "details": "Belastung: Lastschriftverfahren · BELASTUNG GEMAESS RECHNUNG KARTENKONTO 0000",
+   "place": "",
+   "status": "excluded",
+   "cat": null,
+   "sub": null,
+   "note": "Kreditkartenzahlung (Transfer)",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-08-29",
+   "amount": 127447,
+   "id": "privat:bank:1500024393"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Mobilfunk Muster AG",
+   "details": "Belastung e-banking · Abo Monat",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-abos",
+   "sub": "k-abos-1",
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-08-19",
+   "amount": 3490,
+   "id": "privat:bank:1500032562"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Muster Krankenkasse AG",
+   "details": "Belastung e-banking",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-steuern",
+   "sub": "k-steuern-3",
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-08-05",
+   "amount": 38450,
+   "id": "privat:bank:1500040196"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Steueramt Musterdorf",
+   "details": "Belastung e-banking · Steuern Raten",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-steuern",
+   "sub": "k-steuern-1",
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-08-13",
+   "amount": 85000,
+   "id": "privat:bank:1500048059"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Muster Arbeitgeber AG",
+   "details": "Zahlungseingang · WAGE/SALARY 202609",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-einnahmen",
+   "sub": "k-einnahmen-1",
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-09-25",
+   "amount": -650000,
+   "id": "privat:bank:1500056391"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Gemeinschaftskonto Muster Beispiel",
+   "details": "Belastung Dauerauftrag · Haushalt",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-haushalt",
+   "sub": "k-haushalt-1",
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-09-01",
+   "amount": 150000,
+   "id": "privat:bank:1500063975"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Kartenherausgeber Muster AG",
+   "details": "Belastung: Lastschriftverfahren · BELASTUNG GEMAESS RECHNUNG KARTENKONTO 0000",
+   "place": "",
+   "status": "excluded",
+   "cat": null,
+   "sub": null,
+   "note": "Kreditkartenzahlung (Transfer)",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-09-29",
+   "amount": 98443,
+   "id": "privat:bank:1500071694"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Mobilfunk Muster AG",
+   "details": "Belastung e-banking · Abo Monat",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-abos",
+   "sub": "k-abos-1",
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-09-19",
+   "amount": 3490,
+   "id": "privat:bank:1500079656"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Muster Krankenkasse AG",
+   "details": "Belastung e-banking",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-steuern",
+   "sub": "k-steuern-3",
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-09-05",
+   "amount": 38450,
+   "id": "privat:bank:1500087577"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Vorsorgestiftung Beispiel",
+   "details": "Belastung e-banking",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-sparen",
+   "sub": "k-sparen-1",
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-09-30",
+   "amount": 70000,
+   "id": "privat:bank:1500095731"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Gemeinschaftskonto Muster Beispiel",
+   "details": "Belastung Dauerauftrag · Haushalt",
+   "place": "",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-10-01",
+   "amount": 150000,
+   "id": "privat:bank:1500111722"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Mobilfunk Muster AG",
+   "details": "Belastung e-banking · Abo Monat",
+   "place": "",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-10-19",
+   "amount": 3490,
+   "id": "privat:bank:1500127544"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Muster Krankenkasse AG",
+   "details": "Belastung e-banking",
+   "place": "",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-10-05",
+   "amount": 38450,
+   "id": "privat:bank:1500134726"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Steueramt Musterdorf",
+   "details": "Belastung e-banking · Steuern Raten",
+   "place": "",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-10-13",
+   "amount": 85000,
+   "id": "privat:bank:1500143347"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Quartierladen Sonne",
+   "details": "TWINT",
+   "place": "Beispielstadt",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-10-07",
+   "amount": 635,
+   "id": "privat:bank:1ob2xaklchl"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Parkplatz App",
+   "details": "TWINT",
+   "place": "Beispielstadt",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-10-12",
+   "amount": 510,
+   "id": "privat:bank:1p31vtihk7k"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Bargeldbezug Bancomat Musterdorf",
+   "details": "",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-bargeld",
+   "sub": "k-bargeld-1",
+   "note": "Bargeldbezug",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-09-15",
+   "amount": 20000,
+   "id": "privat:bank:1q4amzmfhmn"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Gemuesekorb.ch",
+   "details": "TWINT",
+   "place": "Musterdorf",
+   "status": "tagged",
+   "cat": "k-einkaufen",
+   "sub": "k-einkaufen-1",
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-08-23",
+   "amount": 2490,
+   "id": "privat:bank:1sdknt8hjby"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Bargeldbezug Bancomat Musterdorf",
+   "details": "",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-bargeld",
+   "sub": "k-bargeld-1",
+   "note": "Bargeldbezug",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-10-15",
+   "amount": 20000,
+   "id": "privat:bank:1u0z7ijtgvp"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Gemuesekorb.ch",
+   "details": "TWINT",
+   "place": "Musterdorf",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-10-09",
+   "amount": 2490,
+   "id": "privat:bank:1uz60d71yjz"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Lukas Beispiel",
+   "details": "TWINT erhalten · Drinks",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-essen",
+   "sub": "k-essen-3",
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-08-17",
+   "amount": -1800,
+   "id": "privat:bank:1xrb14zxjud"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Gemuesekorb.ch",
+   "details": "TWINT",
+   "place": "Musterdorf",
+   "status": "tagged",
+   "cat": "k-einkaufen",
+   "sub": "k-einkaufen-1",
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-08-18",
+   "amount": 2490,
+   "id": "privat:bank:22a5tzrk95i"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Tickets Muster AG",
+   "details": "TWINT",
+   "place": "Bern",
+   "status": "tagged",
+   "cat": "k-freizeit",
+   "sub": "k-freizeit-3",
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-09-18",
+   "amount": 5400,
+   "id": "privat:bank:27p248rjo5b"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Quartierladen Sonne",
+   "details": "TWINT",
+   "place": "Beispielstadt",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-10-13",
+   "amount": 2115,
+   "id": "privat:bank:2c6fpebil6g"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Quartierladen Sonne",
+   "details": "TWINT",
+   "place": "Beispielstadt",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-10-09",
+   "amount": 1095,
+   "id": "privat:bank:2kwmywwxxu"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Lukas Beispiel",
+   "details": "TWINT erhalten · Drinks",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-essen",
+   "sub": "k-essen-3",
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-09-19",
+   "amount": -1800,
+   "id": "privat:bank:2wnu3i4ejd"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Lukas Beispiel",
+   "details": "TWINT erhalten · Drinks",
+   "place": "",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-10-09",
+   "amount": -1800,
+   "id": "privat:bank:3s8e7sy0kh"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Tickets Muster AG",
+   "details": "TWINT",
+   "place": "Bern",
+   "status": "tagged",
+   "cat": "k-freizeit",
+   "sub": "k-freizeit-3",
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-09-04",
+   "amount": 4995,
+   "id": "privat:bank:4x31rn5ck9"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Tickets Muster AG",
+   "details": "TWINT",
+   "place": "Bern",
+   "status": "tagged",
+   "cat": "k-freizeit",
+   "sub": "k-freizeit-3",
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-09-01",
+   "amount": 1665,
+   "id": "privat:bank:80c532i7oq"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Bargeldbezug Bancomat Musterdorf",
+   "details": "",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-bargeld",
+   "sub": "k-bargeld-1",
+   "note": "Bargeldbezug",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-08-15",
+   "amount": 20000,
+   "id": "privat:bank:aq9qrk9pbp"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Gemuesekorb.ch",
+   "details": "TWINT",
+   "place": "Musterdorf",
+   "status": "tagged",
+   "cat": "k-einkaufen",
+   "sub": "k-einkaufen-1",
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-09-02",
+   "amount": 2490,
+   "id": "privat:bank:mut5bx6vnd"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Parkplatz App",
+   "details": "TWINT",
+   "place": "Beispielstadt",
+   "status": "tagged",
+   "cat": "k-auto",
+   "sub": "k-auto-3",
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-09-18",
+   "amount": 745,
+   "id": "privat:bank:s343gqrwmt"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Tickets Muster AG",
+   "details": "TWINT",
+   "place": "Bern",
+   "status": "tagged",
+   "cat": "k-freizeit",
+   "sub": "k-freizeit-3",
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-08-07",
+   "amount": 5180,
+   "id": "privat:bank:s6uqu1kye0"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Gemuesekorb.ch",
+   "details": "TWINT",
+   "place": "Musterdorf",
+   "status": "tagged",
+   "cat": "k-einkaufen",
+   "sub": "k-einkaufen-1",
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-08-30",
+   "amount": 2490,
+   "id": "privat:bank:sqo7yksxu0"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "",
+   "merchant": "Gemuesekorb.ch",
+   "details": "TWINT",
+   "place": "Musterdorf",
+   "status": "tagged",
+   "cat": "k-einkaufen",
+   "sub": "k-einkaufen-1",
+   "note": "",
+   "acc": "privat",
+   "src": "bank",
+   "date": "2026-08-14",
+   "amount": 2490,
+   "id": "privat:bank:zm3l2vgpv0"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Sportshop Muster",
+   "details": "Sportshop Muster Musterhausen",
+   "place": "Musterhausen, CHE",
+   "status": "tagged",
+   "cat": "k-hobby",
+   "sub": "k-hobby-2",
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-08-02",
+   "amount": 11060,
+   "id": "privat:visa:TRX20260802000001"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Zahlung an Kreditkarte",
+   "details": "Ihre Zahlung - Danke",
+   "place": "",
+   "status": "excluded",
+   "cat": null,
+   "sub": null,
+   "note": "Kartenzahlung (Transfer)",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-08-03",
+   "amount": -84934,
+   "id": "privat:visa:TRX20260803000002"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Bar Zentral",
+   "details": "Bar Zentral Seestadt",
+   "place": "Seestadt, CHE",
+   "status": "tagged",
+   "cat": "k-essen",
+   "sub": "k-essen-3",
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-08-08",
+   "amount": 3265,
+   "id": "privat:visa:TRX20260808000003"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Elektro Muster",
+   "details": "Elektro Muster Zürich",
+   "place": "Zürich, CHE",
+   "status": "tagged",
+   "cat": "k-persoenlich",
+   "sub": "k-persoenlich-1",
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-08-10",
+   "amount": 23855,
+   "id": "privat:visa:TRX20260810000004"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Elektro Muster",
+   "details": "Elektro Muster Zürich",
+   "place": "Zürich, CHE",
+   "status": "tagged",
+   "cat": "k-persoenlich",
+   "sub": "k-persoenlich-1",
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-08-10",
+   "amount": 4080,
+   "id": "privat:visa:TRX20260810000005"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Bäckerei Musterbeck",
+   "details": "Bäckerei Musterbeck Musterdorf",
+   "place": "Musterdorf, CHE",
+   "status": "tagged",
+   "cat": "k-essen",
+   "sub": null,
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-08-15",
+   "amount": 900,
+   "id": "privat:visa:TRX20260815000006"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Bar Zentral",
+   "details": "Bar Zentral Seestadt",
+   "place": "Seestadt, CHE",
+   "status": "tagged",
+   "cat": "k-essen",
+   "sub": "k-essen-3",
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-08-16",
+   "amount": 3860,
+   "id": "privat:visa:TRX20260816000007"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Bäckerei Musterbeck",
+   "details": "Bäckerei Musterbeck Musterdorf",
+   "place": "Musterdorf, CHE",
+   "status": "tagged",
+   "cat": "k-essen",
+   "sub": null,
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-08-16",
+   "amount": 550,
+   "id": "privat:visa:TRX20260816000008"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Streamingdienst Muster",
+   "details": "Streamingdienst Muster",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-abos",
+   "sub": "k-abos-2",
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-08-17",
+   "amount": 1395,
+   "id": "privat:visa:TRX20260817000009"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Sportshop Muster",
+   "details": "Sportshop Muster Musterhausen",
+   "place": "Musterhausen, CHE",
+   "status": "tagged",
+   "cat": "k-hobby",
+   "sub": "k-hobby-2",
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-08-19",
+   "amount": 8390,
+   "id": "privat:visa:TRX20260819000010"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Elektro Muster",
+   "details": "Elektro Muster Zürich",
+   "place": "Zürich, CHE",
+   "status": "tagged",
+   "cat": "k-persoenlich",
+   "sub": "k-persoenlich-1",
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-08-20",
+   "amount": 7160,
+   "id": "privat:visa:TRX20260820000011"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Kantine Campus",
+   "details": "Kantine Campus Beispielstadt",
+   "place": "Beispielstadt, CHE",
+   "status": "tagged",
+   "cat": "k-essen",
+   "sub": "k-essen-2",
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-08-21",
+   "amount": 1585,
+   "id": "privat:visa:TRX20260821000012"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Sportshop Muster",
+   "details": "Sportshop Muster Musterhausen",
+   "place": "Musterhausen, CHE",
+   "status": "tagged",
+   "cat": "k-hobby",
+   "sub": "k-hobby-2",
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-08-23",
+   "amount": 9150,
+   "id": "privat:visa:TRX20260823000013"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Bar Zentral",
+   "details": "Bar Zentral Seestadt",
+   "place": "Seestadt, CHE",
+   "status": "tagged",
+   "cat": "k-essen",
+   "sub": "k-essen-3",
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-08-28",
+   "amount": 2635,
+   "id": "privat:visa:TRX20260828000014"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Bahn Ticket",
+   "details": "Bahn Ticket Bern",
+   "place": "Bern, CHE",
+   "status": "tagged",
+   "cat": "k-freizeit",
+   "sub": "k-freizeit-1",
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-08-30",
+   "amount": 655,
+   "id": "privat:visa:TRX20260830000015"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Zahlung an Kreditkarte",
+   "details": "Ihre Zahlung - Danke",
+   "place": "",
+   "status": "excluded",
+   "cat": null,
+   "sub": null,
+   "note": "Kartenzahlung (Transfer)",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-09-03",
+   "amount": -135633,
+   "id": "privat:visa:TRX20260903000016"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Kantine Campus",
+   "details": "Kantine Campus Beispielstadt",
+   "place": "Beispielstadt, CHE",
+   "status": "tagged",
+   "cat": "k-essen",
+   "sub": "k-essen-2",
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-09-07",
+   "amount": 1275,
+   "id": "privat:visa:TRX20260907000017"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Sportshop Muster",
+   "details": "Sportshop Muster Musterhausen",
+   "place": "Musterhausen, CHE",
+   "status": "tagged",
+   "cat": "k-hobby",
+   "sub": "k-hobby-2",
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-09-08",
+   "amount": 4660,
+   "id": "privat:visa:TRX20260908000018"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Sportshop Muster",
+   "details": "Sportshop Muster Musterhausen",
+   "place": "Musterhausen, CHE",
+   "status": "tagged",
+   "cat": "k-hobby",
+   "sub": "k-hobby-2",
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-09-09",
+   "amount": 5590,
+   "id": "privat:visa:TRX20260909000019"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Quartierladen Sonne",
+   "details": "Quartierladen Sonne Beispielstadt",
+   "place": "Beispielstadt, CHE",
+   "status": "tagged",
+   "cat": "k-einkaufen",
+   "sub": "k-einkaufen-1",
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-09-12",
+   "amount": 2455,
+   "id": "privat:visa:TRX20260912000020"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "EUR",
+   "merchant": "Hotel Mar Azul",
+   "details": "Hotel Mar Azul Porto",
+   "place": "Porto, PRT",
+   "status": "tagged",
+   "cat": "k-ferien",
+   "sub": "k-ferien-1",
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-09-12",
+   "amount": 41000,
+   "id": "privat:visa:TRX20260912000021"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Bar Zentral",
+   "details": "Bar Zentral Seestadt",
+   "place": "Seestadt, CHE",
+   "status": "tagged",
+   "cat": "k-essen",
+   "sub": "k-essen-3",
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-09-13",
+   "amount": 940,
+   "id": "privat:visa:TRX20260913000022"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Café Lago",
+   "details": "Café Lago Musterhausen",
+   "place": "Musterhausen, CHE",
+   "status": "tagged",
+   "cat": "k-essen",
+   "sub": null,
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-09-15",
+   "amount": 625,
+   "id": "privat:visa:TRX20260915000023"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Flugschule Alpenwind",
+   "details": "Flugschule Alpenwind Bergdorf",
+   "place": "Bergdorf, CHE",
+   "status": "tagged",
+   "cat": "k-hobby",
+   "sub": "k-hobby-1",
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-09-18",
+   "amount": 11600,
+   "id": "privat:visa:TRX20260918000024"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Sportshop Muster",
+   "details": "Sportshop Muster Musterhausen",
+   "place": "Musterhausen, CHE",
+   "status": "tagged",
+   "cat": "k-hobby",
+   "sub": "k-hobby-2",
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-09-19",
+   "amount": 5180,
+   "id": "privat:visa:TRX20260919000025"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Streamingdienst Muster",
+   "details": "Streamingdienst Muster",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-abos",
+   "sub": "k-abos-2",
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-09-20",
+   "amount": 1395,
+   "id": "privat:visa:TRX20260920000026"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Flugschule Alpenwind",
+   "details": "Flugschule Alpenwind Bergdorf",
+   "place": "Bergdorf, CHE",
+   "status": "tagged",
+   "cat": "k-hobby",
+   "sub": "k-hobby-1",
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-09-20",
+   "amount": 21725,
+   "id": "privat:visa:TRX20260920000027"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Kantine Campus",
+   "details": "Kantine Campus Beispielstadt",
+   "place": "Beispielstadt, CHE",
+   "status": "tagged",
+   "cat": "k-essen",
+   "sub": "k-essen-2",
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-09-20",
+   "amount": 1540,
+   "id": "privat:visa:TRX20260920000028"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Frischmarkt",
+   "details": "Frischmarkt Musterdorf",
+   "place": "Musterdorf, CHE",
+   "status": "tagged",
+   "cat": "k-einkaufen",
+   "sub": "k-einkaufen-1",
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-09-23",
+   "amount": 4065,
+   "id": "privat:visa:TRX20260923000029"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Streamingdienst Muster",
+   "details": "Streamingdienst Muster",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-abos",
+   "sub": "k-abos-2",
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-09-25",
+   "amount": 1395,
+   "id": "privat:visa:TRX20260925000030"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Quartierladen Sonne",
+   "details": "Quartierladen Sonne Beispielstadt",
+   "place": "Beispielstadt, CHE",
+   "status": "tagged",
+   "cat": "k-einkaufen",
+   "sub": "k-einkaufen-1",
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-09-27",
+   "amount": 2280,
+   "id": "privat:visa:TRX20260927000031"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Streamingdienst Muster",
+   "details": "Streamingdienst Muster",
+   "place": "",
+   "status": "tagged",
+   "cat": "k-abos",
+   "sub": "k-abos-2",
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-09-28",
+   "amount": 1395,
+   "id": "privat:visa:TRX20260928000032"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Café Lago",
+   "details": "Café Lago Musterhausen",
+   "place": "Musterhausen, CHE",
+   "status": "tagged",
+   "cat": "k-essen",
+   "sub": null,
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-09-30",
+   "amount": 960,
+   "id": "privat:visa:TRX20260930000033"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Café Lago",
+   "details": "Café Lago Musterhausen",
+   "place": "Musterhausen, CHE",
+   "status": "excluded",
+   "cat": null,
+   "sub": null,
+   "note": "Manuell ignoriert",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-10-01",
+   "amount": 790,
+   "id": "privat:visa:TRX20261001000034"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Frischmarkt",
+   "details": "Frischmarkt Musterdorf",
+   "place": "Musterdorf, CHE",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-10-03",
+   "amount": 5960,
+   "id": "privat:visa:TRX20261003000035"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Streamingdienst Muster",
+   "details": "Streamingdienst Muster",
+   "place": "",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-10-03",
+   "amount": 1395,
+   "id": "privat:visa:TRX20261003000036"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Zahlung an Kreditkarte",
+   "details": "Ihre Zahlung - Danke",
+   "place": "",
+   "status": "excluded",
+   "cat": null,
+   "sub": null,
+   "note": "Kartenzahlung (Transfer)",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-10-03",
+   "amount": -89460,
+   "id": "privat:visa:TRX20261003000037"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Sportshop Muster",
+   "details": "Sportshop Muster Musterhausen",
+   "place": "Musterhausen, CHE",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-10-04",
+   "amount": 8505,
+   "id": "privat:visa:TRX20261004000038"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Streamingdienst Muster",
+   "details": "Streamingdienst Muster",
+   "place": "",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-10-05",
+   "amount": 1395,
+   "id": "privat:visa:TRX20261005000039"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Streamingdienst Muster",
+   "details": "Streamingdienst Muster",
+   "place": "",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-10-06",
+   "amount": 1395,
+   "id": "privat:visa:TRX20261006000040"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Bahn Ticket",
+   "details": "Bahn Ticket Bern",
+   "place": "Bern, CHE",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-10-09",
+   "amount": 2360,
+   "id": "privat:visa:TRX20261009000041"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Elektro Muster",
+   "details": "Elektro Muster Zürich",
+   "place": "Zürich, CHE",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-10-09",
+   "amount": 20995,
+   "id": "privat:visa:TRX20261009000042"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Flugschule Alpenwind",
+   "details": "Flugschule Alpenwind Bergdorf",
+   "place": "Bergdorf, CHE",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-10-11",
+   "amount": 18570,
+   "id": "privat:visa:TRX20261011000043"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Bahn Ticket",
+   "details": "Bahn Ticket Bern",
+   "place": "Bern, CHE",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-10-17",
+   "amount": 1565,
+   "id": "privat:visa:TRX20261017000044"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Flugschule Alpenwind",
+   "details": "Flugschule Alpenwind Bergdorf",
+   "place": "Bergdorf, CHE",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-10-18",
+   "amount": 17670,
+   "id": "privat:visa:TRX20261018000045"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Quartierladen Sonne",
+   "details": "Quartierladen Sonne Beispielstadt",
+   "place": "Beispielstadt, CHE",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-10-21",
+   "amount": 5955,
+   "id": "privat:visa:TRX20261021000046"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Sportshop Muster",
+   "details": "Sportshop Muster Musterhausen",
+   "place": "Musterhausen, CHE",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-10-22",
+   "amount": 10795,
+   "id": "privat:visa:TRX20261022000047"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Flugschule Alpenwind",
+   "details": "Flugschule Alpenwind Bergdorf",
+   "place": "Bergdorf, CHE",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-10-23",
+   "amount": 11040,
+   "id": "privat:visa:TRX20261023000048"
+  },
+  {
+   "cur": "CHF",
+   "origCur": "CHF",
+   "merchant": "Bar Zentral",
+   "details": "Bar Zentral Seestadt",
+   "place": "Seestadt, CHE",
+   "status": "open",
+   "cat": null,
+   "sub": null,
+   "note": "",
+   "acc": "privat",
+   "src": "visa",
+   "date": "2026-10-23",
+   "amount": 1990,
+   "id": "privat:visa:TRX20261023000049"
+  }
+ ],
+ "rules": [
+  [
+   "gemeinsam|anna beispiel",
+   {
+    "cat": "k-einzahlungen",
+    "sub": "k-einzahlungen-2"
+   }
+  ],
+  [
+   "gemeinsam|ew musterdorf",
+   {
+    "cat": "k-wohnen",
+    "sub": "k-wohnen-2"
+   }
+  ],
+  [
+   "gemeinsam|frischmarkt",
+   {
+    "cat": "k-einkaufen",
+    "sub": "k-einkaufen-1"
+   }
+  ],
+  [
+   "gemeinsam|garage muster ag",
+   {
+    "cat": "k-auto",
+    "sub": "k-auto-2"
+   }
+  ],
+  [
+   "gemeinsam|grossmarkt nord",
+   {
+    "cat": "k-einkaufen",
+    "sub": "k-einkaufen-1"
+   }
+  ],
+  [
+   "gemeinsam|max muster",
+   {
+    "cat": "k-einzahlungen",
+    "sub": "k-einzahlungen-1"
+   }
+  ],
+  [
+   "gemeinsam|moebelhaus muster",
+   {
+    "cat": "k-wohnen",
+    "sub": "k-wohnen-3"
+   }
+  ],
+  [
+   "gemeinsam|muster immobilien ag",
+   {
+    "cat": "k-wohnen",
+    "sub": "k-wohnen-1"
+   }
+  ],
+  [
+   "gemeinsam|tankstelle blitz",
+   {
+    "cat": "k-auto",
+    "sub": "k-auto-1"
+   }
+  ],
+  [
+   "privat|bäckerei musterbeck",
+   {
+    "cat": "k-essen",
+    "sub": "k-essen-4"
+   }
+  ],
+  [
+   "privat|bahn ticket",
+   {
+    "cat": "k-freizeit",
+    "sub": "k-freizeit-1"
+   }
+  ],
+  [
+   "privat|bar zentral",
+   {
+    "cat": "k-essen",
+    "sub": "k-essen-3"
+   }
+  ],
+  [
+   "privat|café lago",
+   {
+    "cat": "k-essen",
+    "sub": "k-essen-4"
+   }
+  ],
+  [
+   "privat|elektro muster",
+   {
+    "cat": "k-persoenlich",
+    "sub": "k-persoenlich-1"
+   }
+  ],
+  [
+   "privat|flugschule alpenwind",
+   {
+    "cat": "k-hobby",
+    "sub": "k-hobby-1"
+   }
+  ],
+  [
+   "privat|frischmarkt",
+   {
+    "cat": "k-einkaufen",
+    "sub": "k-einkaufen-1"
+   }
+  ],
+  [
+   "privat|gemeinschaftskonto muster beispiel",
+   {
+    "cat": "k-haushalt",
+    "sub": "k-haushalt-1"
+   }
+  ],
+  [
+   "privat|gemuesekorb ch",
+   {
+    "cat": "k-einkaufen",
+    "sub": "k-einkaufen-1"
+   }
+  ],
+  [
+   "privat|hotel mar azul",
+   {
+    "cat": "k-ferien",
+    "sub": "k-ferien-1"
+   }
+  ],
+  [
+   "privat|kantine campus",
+   {
+    "cat": "k-essen",
+    "sub": "k-essen-2"
+   }
+  ],
+  [
+   "privat|lukas beispiel",
+   {
+    "cat": "k-essen",
+    "sub": "k-essen-3"
+   }
+  ],
+  [
+   "privat|mobilfunk muster ag",
+   {
+    "cat": "k-abos",
+    "sub": "k-abos-1"
+   }
+  ],
+  [
+   "privat|muster arbeitgeber ag",
+   {
+    "cat": "k-einnahmen",
+    "sub": "k-einnahmen-1"
+   }
+  ],
+  [
+   "privat|muster krankenkasse ag",
+   {
+    "cat": "k-steuern",
+    "sub": "k-steuern-3"
+   }
+  ],
+  [
+   "privat|parkplatz app",
+   {
+    "cat": "k-auto",
+    "sub": "k-auto-3"
+   }
+  ],
+  [
+   "privat|quartierladen sonne",
+   {
+    "cat": "k-einkaufen",
+    "sub": "k-einkaufen-1"
+   }
+  ],
+  [
+   "privat|sportshop muster",
+   {
+    "cat": "k-hobby",
+    "sub": "k-hobby-2"
+   }
+  ],
+  [
+   "privat|steueramt musterdorf",
+   {
+    "cat": "k-steuern",
+    "sub": "k-steuern-1"
+   }
+  ],
+  [
+   "privat|streamingdienst muster",
+   {
+    "cat": "k-abos",
+    "sub": "k-abos-2"
+   }
+  ],
+  [
+   "privat|tickets muster ag",
+   {
+    "cat": "k-freizeit",
+    "sub": "k-freizeit-3"
+   }
+  ],
+  [
+   "privat|vorsorgestiftung beispiel",
+   {
+    "cat": "k-sparen",
+    "sub": "k-sparen-1"
+   }
+  ]
+ ]
+}

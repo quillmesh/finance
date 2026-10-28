@@ -1,0 +1,10 @@
+{
+  "name": "Finanzen",
+  "short_name": "Finanzen",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fdf6e3",
+  "theme_color": "#002b36",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

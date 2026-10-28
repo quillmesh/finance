@@ -1,0 +1,13 @@
+{
+  "name": "finanzen",
+  "version": "0.5.0",
+  "private": true,
+  "description": "Persönliche Ausgaben aus Kreditkarte, Bank und Bargeld taggen und auswerten. Alle Daten bleiben auf dem Gerät.",
+  "scripts": {
+    "build": "bun run build.mjs",
+    "check": "tsc -p .",
+    "test": "bun test",
+    "e2e": "playwright test",
+    "alles": "tests/run.sh"
+  }
+}

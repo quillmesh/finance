@@ -1,0 +1,21 @@
+<header>
+  <div class="bar"><h1 class="brand">Finanzen</h1><span id="status"></span></div>
+  <nav id="tabs">
+    <button type="button" data-act="tab" data-tab="import">Import</button>
+    <button type="button" data-act="tab" data-tab="tag">Taggen<span id="openBadge"></span></button>
+    <button type="button" data-act="tab" data-tab="overview">Übersicht</button>
+    <button type="button" data-act="tab" data-tab="list">Transaktionen</button>
+    <button type="button" data-act="tab" data-tab="manual">Manuell</button>
+    <button type="button" data-act="tab" data-tab="settings">Einstellungen</button>
+  </nav>
+</header>
+<main id="main">
+  <section id="view-import" hidden></section>
+  <section id="view-tag" hidden></section>
+  <section id="view-overview" hidden></section>
+  <section id="view-list" hidden></section>
+  <section id="view-manual" hidden></section>
+  <section id="view-settings" hidden></section>
+</main>
+<dialog id="dlg"></dialog>
+<div id="toast" role="status" hidden></div>
