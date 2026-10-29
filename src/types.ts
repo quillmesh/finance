@@ -72,6 +72,8 @@ export interface Tx {
    * Fehlt oder null = Nur ich. Gilt nur für Ausgaben auf Konten im Bereich Persönlich. Ab 0.2.0.
    */
   share?: number | null;
+  /** Im Papierkorb seit (ms, Zeitpunkt des Ereignisses `tx.trash`); dann ist auch `deleted` gesetzt (TAG-13). Ab 0.7.0. */
+  trashedAt?: number;
 }
 
 /**
@@ -128,7 +130,9 @@ export type EventType =
   | 'rules.clear'    // {}
   | 'acc.patch'      // { id, patch }
   | 'import.log'     // { imp: { id, acc, name, format }, ids }   ab 0.6.0, vor den tx.create des Imports (IMP-13)
-  | 'tx.remove';     // { ids, imp? }     importierte Buchungen entfernen: ganzer Import oder offene (IMP-14, IMP-15)
+  | 'tx.remove'      // { ids, imp? }     importierte Buchungen entfernen: ganzer Import oder offene (IMP-14, IMP-15)
+  | 'tx.trash'       // { ids }           in den Papierkorb (TAG-13), ab 0.7.0
+  | 'tx.restore';    // { ids, reset? }   aus dem Papierkorb zurück; reset = wieder ungetaggt (TAG-15)
 
 export interface FinEvent {
   id: string;

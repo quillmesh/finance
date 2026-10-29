@@ -118,6 +118,25 @@ function applyUnsafe(st: State, e: FinEvent) {
       // Importierte Buchungen bleiben wie im Auszug (TST-05), auch bei Daten von anderen Geräten
       if (t.src !== 'manual') { for (const k of IMMUTABLE_IMPORT) delete patch[k]; delete patch.deleted; }
       Object.assign(t, patch);
+      // Verweis auf eine gelöschte Unterkategorie (z. B. gleichzeitig auf einem anderen Gerät gelöscht): ohne Unterkategorie (KAT-05)
+      if (t.sub && st.categories.get(t.cat ?? '')?.subs.find((s) => s.id === t.sub)?.deleted) t.sub = null;
+      break;
+    }
+    case 'tx.trash': {
+      if (Array.isArray(d.ids)) for (const x of d.ids) {
+        const t = st.tx.get(x);
+        if (t && !t.deleted) { t.deleted = true; t.trashedAt = e.ts; }
+      }
+      break;
+    }
+    case 'tx.restore': {
+      if (Array.isArray(d.ids)) for (const x of d.ids) {
+        const t = st.tx.get(x);
+        if (!t || !t.deleted || t.trashedAt === undefined) continue;
+        t.deleted = false;
+        delete t.trashedAt;
+        if (d.reset) Object.assign(t, { status: 'open', cat: null, sub: null, share: null });
+      }
       break;
     }
     case 'cat.create':
@@ -136,6 +155,10 @@ function applyUnsafe(st: State, e: FinEvent) {
     case 'sub.patch': {
       const s = st.categories.get(d.cat)?.subs.find((x) => x.id === d.id);
       if (s && d.patch) { const { id: _i, ...p } = d.patch; Object.assign(s, p); }
+      // Gelöscht: alle Verweise entfernen, auch solche, die von anderen Geräten nach dem Löschen kamen (KAT-05)
+      if (s?.deleted) {
+        for (const t of st.tx.values()) if (t.cat === d.cat && t.sub === s.id) t.sub = null;
+      }
       break;
     }
     case 'rule.set':
@@ -323,7 +346,16 @@ export function addManual(p: { acc: string; date: string; amount: number; mercha
   return id;
 }
 
-export function deleteManual(id: string) { emit('tx.patch', { id, patch: { deleted: true } }); }
+/** Manuelle Einträge kommen wie importierte Buchungen in den Papierkorb (TAG-13) */
+export function deleteManual(id: string) { trashTx([id]); }
+
+/** Tage, die eine Buchung im Papierkorb bleibt; danach ist sie endgültig gelöscht (TAG-13) */
+export const TRASH_DAYS = 30;
+export function trashTx(ids: string[]) { emit('tx.trash', { ids }); }
+/** Aus dem Papierkorb zurückholen. `reset`: wieder ungetaggt (beim erneuten Import nach Ablauf, TAG-15) */
+export function restoreTx(ids: string[], reset = false) { if (ids.length) emit('tx.restore', reset ? { ids, reset } : { ids }); }
+/** Einzelne Buchungen wieder ungetaggt machen (TAG-12); die Notiz bleibt */
+export function untagTx(ids: string[]) { patchMany(ids.map((id) => ({ id, patch: { status: 'open' as const, cat: null, sub: null, share: null } }))); }
 
 // ---------- Vorschläge ----------
 

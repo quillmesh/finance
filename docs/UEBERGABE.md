@@ -1,6 +1,6 @@
 # Übergabe
 
-## Stand 0.6.0 (Test)
+## Stand 0.7.0 (Test)
 - 0.1.0: Import (Kreditkarten-CSV, Bank-CSV, camt.053), Taggen mit Vorschlägen, Sichten Persönlich/Gemeinsam/Alle Konten, Export, manuelle Einträge,
   Kategorien bearbeiten, verschlüsseltes Backup, Rappen, Ereignis-Log mit Validierung, Solarized, Sync (nur Live), Test-App.
 - 0.2.0: geteilte Ausgaben (`Tx.share` in Basispunkten, `logic.amountIn`), Gutschriften «Nicht erfassen» (Regel `skip`),
@@ -15,6 +15,11 @@
 - 0.6.0: Import-Historie (`State.imports`/`importOf`, Ereignis `import.log` vor den `tx.create`; ältere Importe werden beim Abspielen
   rekonstruiert: gleiches Gerät + Konto, Abstand ≤ `AUTO_IMPORT_GAP_MS`), `logic.importHistory`. Löschen: Ereignis `tx.remove`
   (ganzer Import IMP-14 mit `imp`, alle ungetaggten IMP-15) entfernt Buchungen aus dem Zustand; erneuter Import legt sie wieder an.
+- 0.7.0: Papierkorb (`tx.trash`/`tx.restore`, `Tx.trashedAt`, `logic.trashList`, 30 Tage nur über die Uhr berechnet, keine Ereignisse beim Ablauf);
+  gelöschte Buchungen in einem neuen Import → Rückfrage (`logic.deletedInFile`). Untaggen `store.untagTx`. Wischen: `ui.swipeRows`.
+  Diagramm → Liste: `logic.sliceTx` (Summe = Betrag im Diagramm). Unterkategorien: eindeutige Namen (validate), Verweise auf
+  gelöschte werden im Reducer zu «ohne» (KAT-05); Vorschläge bleiben unverändert (alte Daten!), UI nutzt `liveSubId`.
+- Offen: Unterkategorie löschen → betroffene Buchungen neu taggen? (Rückfrage an den Nutzer, 29.10.)
 - Git-Historie am 24.10. und 28.10.2026 bereinigt. GitHub Pages: Quelle «GitHub Actions».
 - Live (`main`) zeigt noch den Platzhalter; erste Freigabe steht aus. Nach der Freigabe Daten einfrieren (`bun scripts/alte-daten-einfrieren.ts <version>`).
 - Workflow startet nach Pushes bisher nicht automatisch; bei Bedarf `gh workflow run veroeffentlichen.yml --ref test`.

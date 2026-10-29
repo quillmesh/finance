@@ -26,6 +26,8 @@ export const catsFor = (st: State, accId: string, shared = false): Category[] =>
 
 export const liveSubs = (c: Category | undefined) => (c ? c.subs.filter((s) => !s.deleted) : []);
 export const subName = (c: Category | undefined, id: string | null) => (c && id ? c.subs.find((s) => s.id === id)?.name ?? '' : '');
+/** Unterkategorie nur, wenn es sie noch gibt (Vorschläge können auf gelöschte zeigen, KAT-05) */
+export const liveSubId = (c: Category | undefined, id: string | null) => (c && id && c.subs.some((s) => s.id === id && !s.deleted) ? id : null);
 
 export function catLabel(st: State, t: Tx): string {
   if (t.status === 'excluded') return 'Ignoriert' + (t.note ? ' · ' + t.note : '');
@@ -341,3 +343,31 @@ export function importHistory(st: State, limit = Infinity): ImportInfo[] {
   }
   return out.sort((a, b) => b.ts - a.ts).slice(0, limit);
 }
+
+// ---------- Transaktionen zu einem Stück im Kuchendiagramm (AUS-07) ----------
+
+/**
+ * Buchungen, die in der Übersicht (Sicht, Zeitraum) zur Kategorie `catId` zählen; mit `subId` nur diese
+ * Unterkategorie ('' = ohne Unterkategorie). Bargeldbezüge, die teilweise zugeordnet sind, erscheinen als ganze Buchung;
+ * `sum` ist der Betrag im Diagramm.
+ */
+export function sliceTx(st: State, view: View, period: string, catId: string, subId?: string): { tx: Tx[]; sum: number } {
+  const parts = viewTx(st, view, period).filter((t) => countsAsExpense(st, t, view) && t.cat === catId && (subId === undefined || (t.sub ?? '') === subId));
+  const ids = [...new Set(parts.map((t) => t.id.split('~')[0]))];
+  const tx = ids.map((id) => st.tx.get(id)!).filter(Boolean).sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
+  return { tx, sum: parts.reduce((a, t) => a + amountIn(st, t, view), 0) };
+}
+
+// ---------- Papierkorb (TAG-13, TAG-15) ----------
+
+export const DAY_MS = 86_400_000;
+/** Buchungen im Papierkorb, die noch wiederhergestellt werden können (jünger als `days`), neueste zuerst */
+export function trashList(st: State, now = Date.now(), days = 30): { tx: Tx; daysLeft: number }[] {
+  return [...st.tx.values()]
+    .filter((t) => t.deleted && t.trashedAt !== undefined && now - t.trashedAt < days * DAY_MS)
+    .sort((a, b) => b.trashedAt! - a.trashedAt!)
+    .map((tx) => ({ tx, daysLeft: Math.min(days, Math.max(1, Math.ceil((tx.trashedAt! + days * DAY_MS - now) / DAY_MS))) }));
+}
+/** Buchungen einer Datei, die früher einzeln gelöscht wurden (Papierkorb oder endgültig): beim Import nachfragen (TAG-15) */
+export const deletedInFile = (st: State, list: Pick<Tx, 'id'>[]): Tx[] =>
+  list.map((t) => st.tx.get(t.id)).filter((t): t is Tx => !!t && !!t.deleted && t.trashedAt !== undefined && t.src !== 'manual');

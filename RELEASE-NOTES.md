@@ -1,5 +1,11 @@
 # Release-Notes
 
+## 0.7.0
+- Übersicht: Nach dem Klick auf eine Kategorie (Tabelle oder Kuchendiagramm) zeigt «Transaktionen anzeigen» alle Buchungen dazu, für die gewählte Sicht und den Zeitraum. Ein Tipp auf eine Unterkategorie zeigt nur deren Buchungen.
+- Transaktionen: einzelne Buchungen wieder ungetaggt machen oder in den Papierkorb legen – auf dem Handy nach links wischen und bestätigen, am Computer im Bearbeiten-Dialog.
+- Papierkorb unter Einstellungen: gelöschte Buchungen 30 Tage lang zurückholen, danach endgültig gelöscht. Kommt eine gelöschte Buchung in einem späteren Import wieder vor, fragt die App, ob sie weggelassen oder wieder aufgenommen werden soll.
+- Unterkategorien: Umbenennen auf einen Namen, den es in der Kategorie schon gibt, wird abgelehnt. Wird eine Unterkategorie auf einem Gerät gelöscht und auf einem anderen gleichzeitig noch verwendet, landen die Buchungen nach dem Sync sauber «ohne Unterkategorie».
+
 ## 0.6.0
 - Import-Historie: Im Import-Tab zeigt «Import-Historie anzeigen» die letzten 5 Importe mit Datei, Konto, Bereich, Zeitraum und wie viele Buchungen getaggt und ungetaggt sind. Frühere Importe werden aus den gespeicherten Daten erkannt.
 - Einen ganzen Import löschen, z. B. eine falsch hochgeladene Abrechnung – auch aus der Historie. Sind Buchungen daraus schon getaggt, warnt die App vorher. Wird dieselbe Datei später wieder importiert, kommen die Buchungen ungetaggt zurück.

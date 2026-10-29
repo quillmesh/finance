@@ -10,6 +10,8 @@ const STATUS = ['open', 'tagged', 'excluded'];
 const SRC = ['visa', 'bank', 'manual'];
 const SCOPES = ['privat', 'gemeinsam', 'beide'];
 const KINDS = ['expense', 'transfer', 'income', 'saving'];
+const sameName = (subs: { name: string; deleted?: boolean }[], name: string) =>
+  subs.some((s) => !s.deleted && s.name.trim().toLowerCase() === name.trim().toLowerCase());
 
 export function txProblems(t: Partial<Tx>, st: State): string[] {
   const p: string[] = [];
@@ -23,7 +25,7 @@ export function txProblems(t: Partial<Tx>, st: State): string[] {
   if (t.status === 'tagged') {
     const c = t.cat ? st.categories.get(t.cat) : undefined;
     if (!c) p.push(`Buchung ${t.id}: Kategorie fehlt`);
-    else if (t.sub && !c.subs.some((s) => s.id === t.sub)) p.push(`Buchung ${t.id}: Unterkategorie gehört nicht zur Kategorie`);
+    else if (t.sub && !c.subs.some((s) => s.id === t.sub && !s.deleted)) p.push(`Buchung ${t.id}: Unterkategorie gehört nicht zur Kategorie oder ist gelöscht`);
   }
   return p;
 }
@@ -67,12 +69,16 @@ export function validateEvent(e: FinEvent, st: State): string | null {
       if (!c) return 'Kategorie existiert nicht';
       if (!isStr(d.sub?.id) || !isStr(d.sub?.name) || !d.sub.name.trim()) return 'Unterkategorie ohne Namen';
       if (c.subs.some((s) => s.id === d.sub.id)) return 'Unterkategorie existiert schon';
+      if (sameName(c.subs, d.sub.name)) return `Unterkategorie «${d.sub.name.trim()}» gibt es schon`;
       return null;
     }
     case 'sub.patch': {
       const c = st.categories.get(d.cat);
       if (!c || !c.subs.some((s) => s.id === d.id)) return 'Unterkategorie existiert nicht';
       if (d.patch && 'name' in d.patch && (!isStr(d.patch.name) || !d.patch.name.trim())) return 'Unterkategorie ohne Namen';
+      // Eindeutige Namen pro Kategorie, sonst lassen sich Unterkategorien nicht mehr unterscheiden (KAT-04)
+      if (d.patch && 'name' in d.patch && sameName(c.subs.filter((s) => s.id !== d.id), d.patch.name)) return `Unterkategorie «${d.patch.name.trim()}» gibt es schon`;
+      if (d.patch?.deleted === false && sameName(c.subs.filter((s) => s.id !== d.id), c.subs.find((s) => s.id === d.id)!.name)) return 'Eine Unterkategorie mit diesem Namen gibt es schon';
       return null;
     }
     case 'acc.patch': {
@@ -93,6 +99,16 @@ export function validateEvent(e: FinEvent, st: State): string | null {
       return null;
     }
     case 'rules.clear': return null;
+    case 'tx.trash': case 'tx.restore': {
+      if (!Array.isArray(d.ids) || !d.ids.length || !d.ids.every(isStr)) return 'Buchungen ungültig';
+      for (const id of d.ids) {
+        const t = st.tx.get(id);
+        if (!t) return `Buchung ${id} existiert nicht`;
+        if (e.type === 'tx.trash' && t.deleted) return 'Buchung ist schon gelöscht';
+        if (e.type === 'tx.restore' && (!t.deleted || t.trashedAt === undefined)) return 'Buchung ist nicht im Papierkorb';
+      }
+      return null;
+    }
     case 'import.log': {
       if (!isStr(d.imp?.id) || !d.imp.id) return 'Import ohne ID';
       if (st.imports.has(d.imp.id)) return 'Import existiert schon';

@@ -8,7 +8,7 @@ import { fmt, pct } from './money';
 import { parseUpload, toCSV } from './parse';
 import { formatCardNo, normalizeCardNo } from './parse/cardpdf';
 import {
-  MONTHS, VIEW_LABEL, aggregate, formatLabel, importHistory, importWarnings, type ImportInfo, type ImportWarning, areaOf, byAccount, cashPool, catLabel, catsFor, isShared, liveSubs, monthly, myPart, openTx, periodLabel, periods,
+  MONTHS, VIEW_LABEL, aggregate, liveSubId, sliceTx, trashList, deletedInFile, DAY_MS, formatLabel, importHistory, importWarnings, type ImportInfo, type ImportWarning, areaOf, byAccount, cashPool, catLabel, catsFor, isShared, liveSubs, monthly, myPart, openTx, periodLabel, periods,
   reportRows, ruleKey, shareLabel, sortedCategories, srcLabel, subName, summary, txRows, viewTx, type Slice, type View,
 } from './logic';
 import { sampleFiles } from './seed';
@@ -34,6 +34,8 @@ const tg = {
 };
 const ov = { view: 'privat' as View, mode: 'month' as 'month' | 'year', period: '', drill: null as string | null };
 const lf = { acc: '', period: '', status: '', q: '' };
+/** Liste gefiltert auf ein Stück im Diagramm (AUS-07); sub '' = ohne Unterkategorie, undefined = ganze Kategorie */
+let lfSlice: { view: View; period: string; cat: string; sub?: string } | null = null;
 let impAcc = 'privat';
 /** Import-Historie im Import-Tab aufgeklappt (IMP-13) */
 let impHist = false;
@@ -175,8 +177,24 @@ async function importFiles(files: FileList | null) {
       // Summe, Überschneidung, Kartennummer: bei Warnungen zuerst nachfragen (IMP-10 bis IMP-12)
       const warnings = importWarnings(st(), impAcc, r);
       if (warnings.length && !(await askImport(f.name, warnings))) { skipped.push(f.name); continue; }
+      // TAG-15: früher einzeln gelöschte Buchungen nicht still übernehmen
+      const gone = deletedInFile(st(), r.tx);
+      let back = false;
+      if (gone.length) {
+        const old = gone.filter((t) => Date.now() - t.trashedAt! >= S.TRASH_DAYS * DAY_MS).length;
+        back = await confirmDanger(`${gone.length === 1 ? '1 Buchung' : `${gone.length} Buchungen`} hattest du gelöscht`,
+          `<p class="muted small">${esc(f.name)}</p><ul class="small">${gone.slice(0, 5).map((t) => `<li>${fmtDate(t.date)} · ${esc(t.merchant)} · ${money(t.amount)}</li>`).join('')}${gone.length > 5 ? `<li>… und ${gone.length - 5} weitere</li>` : ''}</ul>
+          <p class="small">Sie kommen in dieser Datei wieder vor. Weglassen = sie bleiben gelöscht, der Rest wird importiert.${old ? ' Endgültig gelöschte kommen ungetaggt zurück.' : ''}</p>`,
+          'Wieder aufnehmen', 'Weglassen', 'primary');
+      }
       const res = S.importTx(r.tx, { name: f.name, format: r.format });
-      added += res.added; dup += res.duplicates; excl += res.excluded;
+      if (back) {
+        const cut = Date.now() - S.TRASH_DAYS * DAY_MS;
+        S.restoreTx(gone.filter((t) => t.trashedAt! > cut).map((t) => t.id));
+        S.restoreTx(gone.filter((t) => t.trashedAt! <= cut).map((t) => t.id), true);
+        added += gone.length;
+      }
+      added += res.added; dup += res.duplicates - (back ? gone.length : 0); excl += res.excluded;
     } catch (err) { errors.push(`${f.name}: ${(err as Error).message}`); }
   }
   const msg = `${added} neu ins Konto ${acc(impAcc).name}${excl ? `, davon ${excl} ausgeschlossen` : ''}${dup ? ` · ${dup} Duplikate übersprungen` : ''}`;
@@ -187,8 +205,9 @@ async function importFiles(files: FileList | null) {
 
 /** Rückfrage vor dem Import. true = trotzdem importieren. Abbrechen/Escape = nicht importieren. */
 let impAnswer: ((ok: boolean) => void) | null = null;
-function askImport(name: string, warnings: ImportWarning[]): Promise<boolean> {
+async function askImport(name: string, warnings: ImportWarning[]): Promise<boolean> {
   const d = $<HTMLDialogElement>('#dlg');
+  await closeDialog(d);
   const title: Record<ImportWarning['kind'], string> = { sum: 'Summe stimmt nicht', overlap: 'Schon importiert?', card: 'Falsches Konto?' };
   d.innerHTML = `<form method="dialog" id="impAsk">
     <h2>Bitte prüfen</h2>
@@ -215,10 +234,13 @@ function importList(limit = Infinity): string {
 const importWhen = (h: ImportInfo) => { const d = new Date(h.ts); return `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`; };
 
 /** Rückfrage für endgültiges Löschen. true = löschen. */
-function confirmDanger(title: string, body: string, ok: string): Promise<boolean> {
+const closeDialog = (d: HTMLDialogElement) => new Promise<void>((res) => { if (!d.open) return res(); d.addEventListener('close', () => res(), { once: true }); d.close(); });
+async function confirmDanger(title: string, body: string, ok: string, cancel = 'Abbrechen', okClass = 'danger'): Promise<boolean> {
   const d = $<HTMLDialogElement>('#dlg');
+  // Offenen Dialog zuerst schliessen und warten: sonst beendet sein «close»-Ereignis gleich die neue Rückfrage
+  await closeDialog(d);
   d.innerHTML = `<form method="dialog" id="dangerAsk"><h2>${esc(title)}</h2>${body}
-    <div class="row"><span class="spacer"></span><button type="button" data-act="impNo" id="dangerNo">Abbrechen</button><button type="button" class="danger" data-act="impYes" id="dangerYes">${esc(ok)}</button></div></form>`;
+    <div class="row"><span class="spacer"></span><button type="button" data-act="impNo" id="dangerNo">${esc(cancel)}</button><button type="button" class="${okClass}" data-act="impYes" id="dangerYes">${esc(ok)}</button></div></form>`;
   return new Promise((resolve) => {
     impAnswer = resolve;
     d.addEventListener('close', () => { if (impAnswer === resolve) { impAnswer = null; resolve(false); } }, { once: true });
@@ -236,6 +258,43 @@ async function deleteImport(id: string) {
     <p class="muted small">Importierst du dieselbe Datei später wieder, kommen die Buchungen ungetaggt zurück.</p>`;
   if (!(await confirmDanger('Import löschen?', body, 'Löschen'))) return;
   if (safe(() => S.removeImport(id))) { tg.history = []; toast(`Import gelöscht: ${h.total} Buchungen entfernt`); render(); }
+}
+
+/** Einzelne Buchung wieder ungetaggt (TAG-12) oder in den Papierkorb (TAG-13), jeweils mit Rückfrage */
+async function untagOne(id: string) {
+  const t = st().tx.get(id);
+  if (!t) return;
+  const body = `<p><strong>${esc(t.merchant)}</strong><br><span class="muted small">${fmtDate(t.date)} · ${money(t.amount)} · ${esc(catLabel(st(), t))}</span></p>
+    <p class="small">Kategorie${t.share != null ? ', Anteil' : ''} und Unterkategorie fallen weg; die Buchung erscheint wieder unter «Taggen». Die Notiz bleibt.</p>`;
+  if (!(await confirmDanger('Wieder ungetaggt?', body, 'Untaggen', 'Abbrechen', 'primary'))) return;
+  if (safe(() => S.untagTx([id]))) { tg.history = []; toast('Buchung ist wieder ungetaggt'); render(); }
+}
+async function trashOne(id: string) {
+  const t = st().tx.get(id);
+  if (!t) return;
+  const body = `<p><strong>${esc(t.merchant)}</strong><br><span class="muted small">${fmtDate(t.date)} · ${money(t.amount)} · Konto ${esc(acc(t.acc).name)}</span></p>
+    <p class="small">Die Buchung zählt nirgends mehr. Unter Einstellungen → Papierkorb kannst du sie ${S.TRASH_DAYS} Tage lang zurückholen, danach ist sie endgültig gelöscht.</p>`;
+  if (!(await confirmDanger('In den Papierkorb?', body, 'Löschen'))) return;
+  if (safe(() => S.trashTx([id]))) { tg.history = []; toast('In den Papierkorb verschoben'); render(); }
+}
+
+/** Wischen nach links auf dem Handy zeigt «Untaggen» und «Löschen» (TAG-14) */
+function swipeRows(list: HTMLElement | null) {
+  if (!list) return;
+  let row: HTMLElement | null = null, x0 = 0, y0 = 0, done = false;
+  list.addEventListener('touchstart', (e) => {
+    const t = e.touches[0];
+    row = (e.target as HTMLElement).closest<HTMLElement>('.swipe');
+    x0 = t.clientX; y0 = t.clientY; done = false;
+  }, { passive: true });
+  list.addEventListener('touchmove', (e) => {
+    if (!row || done) return;
+    const t = e.touches[0], dx = t.clientX - x0, dy = t.clientY - y0;
+    if (Math.abs(dx) < 30 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+    done = true;
+    list.querySelectorAll('.swipe.open').forEach((r) => { if (r !== row) r.classList.remove('open'); });
+    row.classList.toggle('open', dx < 0);
+  }, { passive: true });
 }
 
 async function deleteOpen() {
@@ -310,7 +369,7 @@ function renderTag(el: HTMLElement) {
   if (tg.cat && !cats.some((c) => c.id === tg.cat)) tg.cat = null;
   let step: string;
   if (!tg.cat) {
-    step = `${ruleCat ? `<button type="button" class="primary suggest" data-act="accept">Vorschlag: ${esc(ruleCat.name)}${subName(ruleCat, rule!.sub) ? ' › ' + esc(subName(ruleCat, rule!.sub)) : ''}${canShare(t) && rule!.share ? ` · ${shareLabel(rule!.share)}` : ''} <span class="k">↵</span></button>` : ''}
+    step = `${ruleCat ? `<button type="button" class="primary suggest" data-act="accept">Vorschlag: ${esc(ruleCat.name)}${liveSubId(ruleCat, rule!.sub) ? ' › ' + esc(subName(ruleCat, rule!.sub)) : ''}${canShare(t) && rule!.share ? ` · ${shareLabel(rule!.share)}` : ''} <span class="k">↵</span></button>` : ''}
       <div class="catgrid" id="catgrid">${cats.map((c, i) => `<button type="button" class="catbtn${rule?.cat === c.id ? ' sug' : ''}" data-act="pickCat" data-id="${c.id}"><span class="dot" data-bg="${c.color}"></span><span class="cn">${esc(c.name)}${c.kind !== 'expense' ? `<span class="kind">${KIND_LABEL[c.kind]}</span>` : ''}</span>${i < 10 ? `<span class="k">${(i + 1) % 10}</span>` : ''}</button>`).join('')}</div>`;
   } else {
     const c = cat(tg.cat)!;
@@ -437,7 +496,7 @@ function undo() {
 }
 
 // ---------- Diagramme (SVG) ----------
-function donutSVG(items: Slice[], top: string, bottom: string): string {
+function donutSVG(items: Slice[], top: string, bottom: string, act = ''): string {
   const pos = items.filter((i) => i.value > 0);
   const total = pos.reduce((a, i) => a + i.value, 0);
   const R = 90, r = 58, cx = 100, cy = 100, mid = (R + r) / 2;
@@ -449,7 +508,7 @@ function donutSVG(items: Slice[], top: string, bottom: string): string {
     const P = (rad: number, ang: number) => `${(cx + rad * Math.cos(ang)).toFixed(2)} ${(cy + rad * Math.sin(ang)).toFixed(2)}`;
     for (const it of pos) {
       const f = it.value / total, a2 = a + f * 2 * Math.PI, L = f > 0.5 ? 1 : 0;
-      svg += `<path class="seg-gap" d="M${P(R, a)} A${R} ${R} 0 ${L} 1 ${P(R, a2)} L${P(r, a2)} A${r} ${r} 0 ${L} 0 ${P(r, a)} Z" fill="${it.color}" fill-opacity="${it.shade}" stroke-width="2"><title>${esc(it.label)}: ${fmt(it.value)} (${pct(it.value, total)} %)</title></path>`;
+      svg += `<path class="seg-gap${act ? ' click' : ''}" ${act ? `data-act="${act}" data-id="${esc(it.id)}"` : ''} d="M${P(R, a)} A${R} ${R} 0 ${L} 1 ${P(R, a2)} L${P(r, a2)} A${r} ${r} 0 ${L} 0 ${P(r, a)} Z" fill="${it.color}" fill-opacity="${it.shade}" stroke-width="2"><title>${esc(it.label)}: ${fmt(it.value)} (${pct(it.value, total)} %)</title></path>`;
       a = a2;
     }
   }
@@ -533,17 +592,18 @@ function renderOverview(el: HTMLElement) {
     ${s.open ? `<p class="small warn">${s.open} Buchungen (CHF ${fmt(s.openSum)}) noch nicht getaggt und nicht in der Aufteilung. <button type="button" class="link" data-act="tab" data-tab="tag">Jetzt taggen →</button></p>` : ''}
   </div>
   <div class="card">
-    <div class="row">${dc ? `<button type="button" class="ghost" data-act="ovBack">← Alle</button><span class="dot" data-bg="${dc.color}"></span><h2 id="ovTitle">${esc(dc.name)}</h2>` : '<h2 id="ovTitle">Nach Kategorie</h2>'}</div>
+    <div class="row">${dc ? `<button type="button" class="ghost" data-act="ovBack">← Alle</button><span class="dot" data-bg="${dc.color}"></span><h2 id="ovTitle">${esc(dc.name)}</h2><span class="spacer"></span>
+      <button type="button" class="primary small" data-act="ovTx" id="ovTxBtn">Transaktionen anzeigen (${sliceTx(st(), ov.view, ov.period, dc.id).tx.length})</button>` : '<h2 id="ovTitle">Nach Kategorie</h2>'}</div>
     ${items.length ? `<div class="split">
-      ${donutSVG(items, dc ? dc.name.slice(0, 18) : VIEW_LABEL[ov.view], 'CHF ' + fmt(base))}
+      ${donutSVG(items, dc ? dc.name.slice(0, 18) : VIEW_LABEL[ov.view], 'CHF ' + fmt(base), dc ? 'ovTx' : 'ovDrill')}
       <div><table id="ovTable"><thead><tr><th>${dc ? 'Unterkategorie' : 'Kategorie'}</th><th class="num">CHF</th><th class="num">%</th></tr></thead><tbody>
-      ${items.map((it) => `<tr class="${dc ? '' : 'click'}" ${dc ? '' : `data-act="ovDrill" data-id="${it.id}"`}>
+      ${items.map((it) => `<tr class="click" data-act="${dc ? 'ovTx' : 'ovDrill'}" data-id="${esc(it.id)}">
         <td><div class="row nowrap"><span class="dot" data-bg="${it.color}" data-op="${it.shade}"></span>${esc(it.label)}</div>
         <div class="pctbar"><div data-bg="${it.color}" data-op="${it.shade}" data-w="${base ? (it.value / base) * 100 : 0}"></div></div></td>
         <td class="num">${fmt(it.value)}</td><td class="num">${pct(it.value, base)}</td></tr>`).join('')}
       <tr><td><strong>Total</strong></td><td class="num"><strong>${fmt(base)}</strong></td><td class="num">100.0</td></tr>
       </tbody></table>${accSplit}</div></div>
-      ${dc ? '' : '<p class="muted small">Tippe auf eine Kategorie für Unterkategorien und Aufteilung nach Konto.</p>'}`
+      ${dc ? '<p class="muted small">Tippe auf eine Unterkategorie für ihre Transaktionen.</p>' : '<p class="muted small">Tippe auf eine Kategorie für Unterkategorien und Aufteilung nach Konto.</p>'}`
       : '<p class="empty">In diesem Zeitraum ist noch nichts getaggt.</p>'}
   </div>
   ${yearChart}
@@ -558,23 +618,30 @@ function renderList(el: HTMLElement) {
   const all = [...st().tx.values()].filter((t) => !t.deleted);
   const months = [...new Set(all.map((t) => t.date.slice(0, 7)))].sort().reverse();
   const q = lf.q.toLowerCase();
-  const list = all.filter((t) => (!lf.acc || t.acc === lf.acc) && (!lf.period || t.date.startsWith(lf.period)) && (!lf.status || t.status === lf.status)
+  const sl = lfSlice ? sliceTx(st(), lfSlice.view, lfSlice.period, lfSlice.cat, lfSlice.sub) : null;
+  const slc = lfSlice ? cat(lfSlice.cat) : undefined;
+  const list = sl ? sl.tx : all.filter((t) => (!lf.acc || t.acc === lf.acc) && (!lf.period || t.date.startsWith(lf.period)) && (!lf.status || t.status === lf.status)
     && (!q || `${t.merchant} ${t.details} ${t.note} ${catLabel(st(), t)}`.toLowerCase().includes(q)))
     .sort((a, b) => b.date.localeCompare(a.date) || b.id.localeCompare(a.id));
   const shown = list.slice(0, 400);
   el.innerHTML = `<div class="card">
+    ${sl && lfSlice ? `<div class="slicechip" id="lfSlice"><span class="dot" data-bg="${slc?.color ?? '#93a1a1'}"></span><span><strong>${esc(slc?.name ?? '')}${lfSlice.sub !== undefined ? ` › ${esc(subName(slc, lfSlice.sub) || 'Ohne Unterkategorie')}` : ''}</strong><br>
+      <span class="muted small">${esc(periodLabel(lfSlice.period))} · ${VIEW_LABEL[lfSlice.view]} · CHF ${fmt(sl.sum)}</span></span><span class="spacer"></span>
+      <button type="button" class="ghost small" data-act="lfBack">← Übersicht</button><button type="button" class="ghost iconbtn" data-act="lfSliceOff" title="Filter entfernen" aria-label="Filter entfernen">✕</button></div>` : `
     <div class="grid2">
       <select id="lfA"><option value="">Alle Konten</option>${[...st().accounts.values()].map((a) => `<option value="${a.id}" ${a.id === lf.acc ? 'selected' : ''}>${esc(a.name)}</option>`).join('')}</select>
       <select id="lfP"><option value="">Alle Monate</option>${months.map((m) => `<option value="${m}" ${m === lf.period ? 'selected' : ''}>${periodLabel(m)}</option>`).join('')}</select>
       <select id="lfS">${[['', 'Alle Status'], ['open', 'Nicht getaggt'], ['tagged', 'Getaggt'], ['excluded', 'Ignoriert']].map(([v, l]) => `<option value="${v}" ${v === lf.status ? 'selected' : ''}>${l}</option>`).join('')}</select>
       <input id="lfQ" type="search" placeholder="Händler, Notiz oder Kategorie suchen …" value="${esc(lf.q)}">
-    </div>
+    </div>`}
     <p class="muted small">${list.length} Einträge</p>
   </div>
   <div class="card flush" id="txlist">${shown.length ? shown.map(txRow).join('') : '<p class="empty">Keine Einträge.</p>'}
     ${list.length > shown.length ? `<p class="muted small">Nur die ersten ${shown.length} angezeigt – Filter verwenden.</p>` : ''}
   </div>`;
+  swipeRows($('#txlist', el));
   const qi = $<HTMLInputElement>('#lfQ', el);
+  if (!qi) return;
   let t = 0;
   qi.addEventListener('input', () => {
     lf.q = qi.value;
@@ -584,11 +651,12 @@ function renderList(el: HTMLElement) {
 }
 function txRow(t: Tx): string {
   const a = acc(t.acc);
-  return `<div class="txrow${t.status === 'excluded' ? ' ex' : ''}" data-act="editTx" data-id="${esc(t.id)}">
+  return `<div class="swipe${t.status === 'open' ? ' one' : ''}" data-row="${esc(t.id)}"><div class="swipeact">${t.status !== 'open' ? `<button type="button" data-act="rowUntag" data-id="${esc(t.id)}">Untaggen</button>` : ''}<button type="button" class="danger" data-act="rowTrash" data-id="${esc(t.id)}">Löschen</button></div>
+  <div class="txrow${t.status === 'excluded' ? ' ex' : ''}" data-act="editTx" data-id="${esc(t.id)}">
     <div class="d">${fmtDate(t.date).slice(0, 6)}</div><div class="m">${esc(t.merchant)}</div>
     <div class="a${t.amount < 0 ? ' credit' : ''}">${money(t.amount)}${isShared(st(), t) ? `<span class="mine">dein Anteil ${fmt(myPart(t))}</span>` : ''}</div>
     <div class="c"><span class="area ${a.area}">${esc(t.src === 'manual' ? a.manualLabel : a.name)}</span> <span class="${t.status === 'open' ? 'warn' : ''}">${esc(catLabel(st(), t))}</span>${t.note && t.status !== 'excluded' ? ` · ${esc(t.note)}` : ''}</div>
-  </div>`;
+  </div></div>`;
 }
 
 const catOptions = (accId: string, sel: string | null, shared = false) => '<option value="">– Kategorie wählen –</option>' + catsFor(st(), accId, shared).map((c) => `<option value="${c.id}" ${c.id === sel ? 'selected' : ''}>${esc(c.name)}${c.kind !== 'expense' ? ` (${KIND_LABEL[c.kind]})` : ''}</option>`).join('');
@@ -628,7 +696,8 @@ function editTx(id: string) {
     <div class="grid2"><label class="field"><span>Kategorie</span><select id="eCat">${catOptions(t.acc, t.cat, isShared(st(), t))}</select></label>
     <label class="field"><span>Unterkategorie</span><select id="eSub">${subOptions(t.cat, t.sub)}</select></label></div>
     <label class="field"><span>Notiz</span><input id="eNote" value="${esc(t.note)}"></label>
-    <div class="row">${man ? `<button type="button" class="danger" data-act="dlgDelete" data-id="${esc(t.id)}">Löschen</button>` : ''}<span class="spacer"></span>
+    <div class="row"><button type="button" class="ghost danger" data-act="rowTrash" data-id="${esc(t.id)}" id="dlgTrash">In den Papierkorb</button>${t.status !== 'open' ? `<button type="button" class="ghost" data-act="rowUntag" data-id="${esc(t.id)}" id="dlgUntag">Untaggen</button>` : ''}</div>
+    <div class="row"><span class="spacer"></span>
     <button type="button" data-act="dlgClose">Abbrechen</button><button type="button" class="primary" data-act="dlgSave" data-id="${esc(t.id)}">Speichern</button></div></form>`;
   d.showModal();
 }
@@ -731,6 +800,13 @@ function renderSettings(el: HTMLElement) {
     <p class="muted small">Eine falsche Datei importiert? Hier lässt sich ein ganzer Import löschen. Einzelne importierte Buchungen bleiben wie im Auszug; bei Bedarf «Ignorieren».</p>
     ${importList()}
     <div class="row"><button type="button" class="danger" data-act="delOpen" id="delOpenBtn">Alle ungetaggten Einträge löschen (${S.openImportedIds(st()).length})</button></div></div>
+  <div class="card" id="trash"><h2>Papierkorb</h2>
+    ${(() => { const tr = trashList(st(), Date.now(), S.TRASH_DAYS); return tr.length
+      ? `<p class="muted small">Gelöschte Buchungen bleiben ${S.TRASH_DAYS} Tage hier und zählen nirgends. Danach sind sie endgültig gelöscht.</p><ul class="implist">${tr.map(({ tx: t, daysLeft }) => `<li data-trash="${esc(t.id)}">
+        <div class="imphead"><strong>${esc(t.merchant)}</strong><span class="muted small">${fmtDate(t.date)} · ${money(t.amount)} · Konto ${esc(acc(t.acc).name)}</span></div>
+        <div class="row nowrap"><span class="small muted">${esc(t.status === 'tagged' ? catLabel(st(), t) : t.status === 'excluded' ? 'Ignoriert' : 'Ungetaggt')} · noch ${daysLeft} ${daysLeft === 1 ? 'Tag' : 'Tage'}</span><span class="spacer"></span>
+        <button type="button" class="ghost small" data-act="restore" data-id="${esc(t.id)}">Zurückholen</button></div></li>`).join('')}</ul>`
+      : '<p class="muted small">Leer. Gelöschte Buchungen bleiben hier 30 Tage, bevor sie endgültig gelöscht sind.</p>'; })()}</div>
   <div class="card"><h2>Gelernte Händler</h2><p class="muted small">${st().rules.size} Händler mit gespeichertem Vorschlag.</p>
     <button type="button" data-act="clearRules">Vorschläge zurücksetzen</button></div>
   <div class="card"><h2>Backup</h2>
@@ -828,7 +904,7 @@ const ACT: Record<string, Handler> = {
   backCat: () => { tg.cat = null; render(); },
   accept: () => {
     const t = currentTx(); const r = t && st().rules.get(ruleKey(t));
-    if (t && r && !r.skip && catsFor(st(), t.acc, tg.share != null).some((c) => c.id === r.cat)) applyTag(r.cat, r.sub);
+    if (t && r && !r.skip && catsFor(st(), t.acc, tg.share != null).some((c) => c.id === r.cat)) applyTag(r.cat, liveSubId(cat(r.cat), r.sub));
     render();
   },
   skip: () => { const t = currentTx(); if (t) { tg.skipped.add(t.id); tg.cat = null; render(); } },
@@ -845,7 +921,12 @@ const ACT: Record<string, Handler> = {
     const list = [...st().tx.values()].filter((t) => !t.deleted && (ov.view === 'alle' || areaOf(st(), t.acc) === ov.view) && t.date.startsWith(ov.period)).sort((a, b) => a.date.localeCompare(b.date));
     download(`finanzen-transaktionen-${ov.view}-${ov.period}.csv`, toCSV(txRows(st(), list)), 'text/csv;charset=utf-8');
   },
-  editTx: (b) => editTx(b.dataset.id!),
+  editTx: (b) => {
+    // Nach dem Wischen: Tippen schliesst die Aktionen, statt zu bearbeiten
+    const sw = b.closest('.swipe');
+    if (sw?.classList.contains('open')) { sw.classList.remove('open'); return; }
+    editTx(b.dataset.id!);
+  },
   dlgClose: () => $<HTMLDialogElement>('#dlg').close(),
   impYes: () => answerImport(true),
   impHist: () => { impHist = !impHist; render(); },
@@ -853,7 +934,17 @@ const ACT: Record<string, Handler> = {
   delOpen: () => deleteOpen(),
   impNo: () => answerImport(false),
   dlgSave: (b) => dlgSave(b.dataset.id!),
-  dlgDelete: (b) => { if (confirm('Eintrag löschen?') && safe(() => S.deleteManual(b.dataset.id!))) $<HTMLDialogElement>('#dlg').close(); },
+  rowUntag: (b) => untagOne(b.dataset.id!),
+  rowTrash: (b) => trashOne(b.dataset.id!),
+  restore: (b) => { if (safe(() => S.restoreTx([b.dataset.id!]))) { toast('Buchung zurückgeholt'); render(); } },
+  // AUS-07: Knopf = ganze Kategorie, Unterkategorie in Tabelle oder Diagramm = nur diese
+  ovTx: (b) => {
+    if (!ov.drill) return;
+    lfSlice = { view: ov.view, period: ov.period, cat: ov.drill, sub: b.id === 'ovTxBtn' ? undefined : b.dataset.id ?? '' };
+    show('list');
+  },
+  lfSliceOff: () => { lfSlice = null; render(); },
+  lfBack: () => { lfSlice = null; show('overview'); },
   addManual: () => addManual(),
   theme: (b) => setTheme(b.dataset.value as Theme),
   addCat: () => { safe(() => S.createCategory({ name: 'Neue Kategorie', scope: 'beide' })); },

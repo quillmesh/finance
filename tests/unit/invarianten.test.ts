@@ -6,7 +6,7 @@ import { describe, expect, setSystemTime, test, afterAll } from 'bun:test';
 import * as S from '../../src/store';
 import * as db from '../../src/db';
 import { rng } from '../../src/sample';
-import { aggregate, cashPool, importHistory, catsFor, isShared, isTransfer, ledger, liveSubs, myPart, ruleKey, summary, viewTx, type View } from '../../src/logic';
+import { aggregate, cashPool, importHistory, sliceTx, catsFor, isShared, isTransfer, ledger, liveSubs, myPart, ruleKey, summary, viewTx, type View } from '../../src/logic';
 import { validateState } from '../../src/validate';
 import { newTx } from '../../src/parse/common';
 import type { FinEvent, State, Tx } from '../../src/types';
@@ -62,6 +62,13 @@ function randomOps(r: () => number, count: number) {
       if (imps.length && r() < 0.6) S.removeImport(imps[Math.floor(r() * imps.length)].id);
       else S.removeOpen(r() < 0.5 ? undefined : 'privat');
       if (r() < 0.5) S.importTx(before.slice(0, Math.floor(r() * before.length)).map((y) => ({ ...y, status: 'open' as const, cat: null, sub: null, share: undefined })), { name: 'wieder.csv', format: 'visa' });
+    } else if (x < 0.96) {
+      // TAG-12/TAG-13: untaggen, in den Papierkorb, zurückholen (auch ungetaggt)
+      const trashed = [...S.state.tx.values()].filter((y) => y.deleted && y.trashedAt !== undefined);
+      const y = r();
+      if (y < 0.3) S.untagTx([t.id]);
+      else if (y < 0.7) S.trashTx([t.id]);
+      else if (trashed.length) S.restoreTx([trashed[Math.floor(r() * trashed.length)].id], r() < 0.5);
     } else if (t.src === 'manual' && r() < 0.5) S.deleteManual(t.id);
     else S.patchTx(t.id, { status: 'open', cat: null, sub: null, note: '' });
   }
@@ -117,6 +124,8 @@ describe('Invarianten mit Zufallsdaten', () => {
       expect(ledger(S.state).reduce((x, t) => x + t.amount, 0), `Seed ${seed}`).toBe(raw - (withdrawn - pool.unassigned));
       expect([...pool.remaining.values()].every((v) => v >= 0), `Seed ${seed}`).toBe(true);
       expect(validateState(S.state), `Seed ${seed}`).toEqual([]);
+      // AUS-07: Liste zu jedem Stück im Diagramm ergibt genau dessen Betrag
+      for (const v of VIEWS) for (const sl of aggregate(S.state, viewTx(S.state, v, '2026'), v)) expect(sliceTx(S.state, v, '2026', sl.id).sum, `Seed ${seed} ${v} ${sl.id}`).toBe(sl.value);
       // IMP-13: jede importierte Buchung gehört zu genau einem Import der Historie
       const imported = [...S.state.tx.values()].filter((t) => t.src !== 'manual' && !t.deleted);
       const hist = importHistory(S.state);

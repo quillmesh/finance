@@ -240,3 +240,15 @@ button.wide { width: 100%; padding: 12px; }
 .implist li:first-child { border-top: 0; }
 .imphead { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: baseline; }
 .imphead strong { overflow-wrap: anywhere; }
+
+/* ---------- 0.7.0: Wischen, Filter aus dem Diagramm ---------- */
+.swipe { position: relative; overflow: hidden; }
+.swipe .txrow { position: relative; background: var(--surface); transition: transform .18s ease; }
+.swipe.open .txrow { transform: translateX(-176px); }
+.swipeact { position: absolute; inset: 0 0 0 auto; display: flex; align-items: stretch; }
+.swipeact button { border: 0; border-radius: 0; width: 88px; font-size: 14px; background: var(--sunken); color: var(--text); }
+.swipeact button.danger { background: var(--danger); color: #fdf6e3; }
+.slicechip { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.donut path.click { cursor: pointer; }
+.donut path.click:hover { filter: brightness(1.08); }
+.swipe.one.open .txrow { transform: translateX(-88px); }
