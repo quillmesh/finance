@@ -8,29 +8,14 @@ Anforderungen und Feature-Liste: Dokument «Finanzapp – Anforderungen» im Cla
 | | Branch | Version | Hinweis |
 | --- | --- | --- | --- |
 | Live | `main` | 0.7.0 | freigegeben 1.11.2026; Sync mit dem privaten Daten-Repo ist eingerichtet; der Nutzer importiert seine echten Daten selbst |
-| Test | `test` | 0.8.0 | wartet auf «freigeben» |
+| Test | `test` | 0.9.0 | enthält 0.8.0 und 0.9.0, wartet auf «freigeben» |
 
 Eingefrorene Daten: `tests/unit/alte-daten/v0.3.0*`, `v0.7.0*`. Nach der nächsten Freigabe: `bun scripts/alte-daten-einfrieren.ts <version>`
 (das Skript erzeugt alle Ereignistypen; neue Ereignistypen dort ergänzen).
 
-## Nächste Aufgaben (vom Nutzer gewünscht, noch nicht umgesetzt)
+## Nächste Aufgaben
 
-Vorgehen laut `CLAUDE.md`: Gestaltungsfragen zuerst mit Screenshots zeigen (Handy und Computer, hell und dunkel), umsetzen erst nach OK.
-
-1. **GUI-01 – Klares Layout ohne Überlappungen.** In mehreren Ansichten überlappen sich Felder oder sind ungleich gross,
-   z. B. in Einstellungen → Kategorien (Farbfeld, Name, Auswahl Bereich/Art/Standard-Anteil laufen ineinander, lange Texte wie
-   «Einzahlung aufs gemeinsame Konto» sprengen die Auswahl). Ganze Oberfläche durchgehen: einheitliche Höhen, Abstände und
-   Rasterbreiten, nichts überlappt, auch bei langen Namen, auf Handy (360–430 px), Tablet (~800–1024 px) und Computer.
-   Ein Playwright-Test soll Überlappungen automatisch finden (Bounding-Boxen benachbarter Bedienelemente schneiden sich nicht,
-   kein seitliches Scrollen) für alle Tabs und Dialoge.
-2. **TAG-16 – Kategorien beim Taggen immer am selben Ort.** Heute hängt die Auswahl von Konto/Bereich und von «geteilt» ab
-   (`logic.catsFor`), dadurch verschieben sich die Knöpfe. Neu: immer alle Kategorien in fester Reihenfolge (`order`) an fester
-   Stelle; Kategorien, die für dieses Konto bzw. diese Aufteilung nicht gelten, werden ausgegraut und sind nicht wählbar.
-   Gleiches für Unterkategorien innerhalb einer Kategorie (gelöschte nicht anzeigen). Tasten 1–0 bleiben an die feste Position
-   gebunden. TAG-11 (alles ohne Scrollen sichtbar auf dem Handy) muss weiter gelten.
-3. **KAT-07 – Kategorien in den Einstellungen nur auf Knopfdruck.** Die Kategorien-Karte zeigt standardmässig nur eine Zeile
-   (z. B. «16 Kategorien») und einen Knopf «Kategorien bearbeiten»; erst danach erscheint die Liste. Optional: pro Kategorie
-   aufklappbar.
+Keine offenen Aufträge. GUI-01, TAG-16 und KAT-07 sind in 0.9.0 umgesetzt (Entscheide unten), warten auf Prüfung und «freigeben».
 
 Nicht weiterverfolgen (Entscheid des Nutzers): Textfeld bereits beim Tippen speichern; Kartenabbuchung auf dem gemeinsamen
 Konto per Stichwort ausschliessen; Sicherheits-Ausbau (eigene Domain, App-Sperre, kurze Token-Laufzeit); Fremdwährungen.
@@ -55,17 +40,26 @@ Konto per Stichwort ausschliessen; Sicherheits-Ausbau (eigene Domain, App-Sperre
   Diagramm → Liste: `logic.sliceTx`. Unterkategorien: eindeutige Namen (validate), Verweise auf gelöschte werden im Reducer zu
   «ohne» (KAT-05); Vorschläge bleiben unverändert (alte Daten!), UI nutzt `liveSubId`.
 - 0.8.0: Unterkategorie löschen mit Auswahl «Neu taggen» / «Ohne Unterkategorie lassen» (`store.deleteSub(cat, id, retag)`, KAT-06).
+- 0.9.0: TAG-16 festes Raster `logic.tagGrid` (alle Kategorien nach `order`, `enabled` = `catsFor`, Tasten 1–0 an Platz 1–10, Plätze 11+
+  ohne Taste – Entscheid des Nutzers). Aufteilungs-Zeile mit fester Höhe (`.shareline`); ohne Aufteilung (gemeinsames Konto) dieselben
+  Elemente unsichtbar und `inert` (`.sharebox.ghost`), damit die Kategorien überall gleich hoch stehen; Vorschlagsplatz `.suggestslot`
+  fest, ohne Vorschlag leer (Entscheid). Gutschriften haben zusätzlich die Box «Nicht erfassen» und stehen daher tiefer.
+  KAT-07: Kategorien-Karte zu, «Kategorien bearbeiten» öffnet alle (Entscheid: nicht einzeln aufklappbar), «Fertig» schliesst.
+  GUI-01: Raster `.cehead`/`.cefields`, `--ctl` 40 px für Felder in Formularen und Dialogen; Prüfung `layoutProbleme` in
+  `e2e/hilfen.mjs` (Überlappung, Mindestabstand 4 px, abgeschnittener Text in Auswahl/Knöpfen, gleiche Höhe pro Zeile, kein
+  Querscrollen) in `e2e/layout.spec.mjs` für Handy 360/390, Android 412, Tablet hoch/quer, Computer, alle Tabs und Dialoge.
+  Überlappungen waren in Chrome auf Tablet-Grösse und auf Android sichtbar.
 
 ## Anforderungs-IDs
 
 Belegt: IMP-01–15, TAG-01–15, KAT-01–06, AUS-01–07, BER-01–08, TEI-01–11, BAR-01–06, EXP-01–02, EIN-01–02, DAT-01–02, NF-01–08,
-UMG-01–05, TST-01–08, LAB-01–03, BUD-01–02, FIX-01–02, MUL-01–02, BEL-01. Neu vorgesehen: GUI-01, TAG-16, KAT-07.
+UMG-01–05, TST-01–08, LAB-01–03, BUD-01–02, FIX-01–02, MUL-01–02, BEL-01. Neu in 0.9.0: GUI-01, TAG-16, KAT-07 (TAG-01–16, KAT-01–07).
 Im Anforderungsdokument nachführen (Tab Anforderungen + Zeile in der Feature-Liste mit Status «Offen/Im Test/Live» und Version).
 
 ## Arbeitsumgebung (für Claude)
 
 - Repo lokal: `/home/claude/finance`, immer auf Branch `test` arbeiten.
-- Tests: `PATH=/opt/npm-tools/node_modules/.bin:$PATH tests/run.sh` (Typen, Unit, End-to-End); einzeln `tests/run.sh --nur-e2e <name>`.
+- Tests: `PATH=/opt/npm-tools/node_modules/.bin:$PATH PLAYWRIGHT_MODULE=/opt/npm-tools/node_modules/playwright/package.json tests/run.sh` (Typen, Unit, End-to-End); einzeln `tests/run.sh --nur-e2e <name>`.
   Playwright liegt unter `/opt/npm-tools/node_modules/playwright` (Symlink in `node_modules`), Chromium ist vorinstalliert.
 - Pushes starten den Workflow nicht von selbst: `gh workflow run -R quillmesh/finance veroeffentlichen.yml --ref test`
   (bzw. `--ref main` nach einer Freigabe), dann `gh run list` abwarten. GitHub Pages: Quelle «GitHub Actions».

@@ -24,6 +24,14 @@ export const catsFor = (st: State, accId: string, shared = false): Category[] =>
   return sortedCategories(st).filter((c) => c.scope === 'beide' || c.scope === area || (shared && c.scope === 'gemeinsam'));
 };
 
+/** TAG-16: alle Kategorien in fester Reihenfolge; wählbar sind die für dieses Konto bzw. diese Aufteilung (catsFor).
+ *  Die Tasten 1–0 gehören zu den Plätzen 1–10, auch wenn eine Kategorie dort ausgegraut ist. */
+export interface GridCat { cat: Category; enabled: boolean; key: string | null }
+export const tagGrid = (st: State, accId: string, shared = false): GridCat[] => {
+  const ok = new Set(catsFor(st, accId, shared).map((c) => c.id));
+  return sortedCategories(st).map((cat, i) => ({ cat, enabled: ok.has(cat.id), key: i < 10 ? String((i + 1) % 10) : null }));
+};
+
 export const liveSubs = (c: Category | undefined) => (c ? c.subs.filter((s) => !s.deleted) : []);
 export const subName = (c: Category | undefined, id: string | null) => (c && id ? c.subs.find((s) => s.id === id)?.name ?? '' : '');
 /** Unterkategorie nur, wenn es sie noch gibt (Vorschläge können auf gelöschte zeigen, KAT-05) */

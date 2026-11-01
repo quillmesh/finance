@@ -1,7 +1,7 @@
 // AUS-07: Transaktionen aus dem Diagramm; TAG-12–TAG-15: untaggen, Papierkorb, Wischen, gelöschte beim erneuten Import.
 // Alle Daten erfunden, relativ zu heute.
 import { test, expect, COMPUTER, HANDY } from './fixtures.mjs';
-import { datei, gehe, importiere, keinQuerScrollen, monatWert, tab, tagge, visaCSV } from './hilfen.mjs';
+import { datei, gehe, importiere, keinQuerScrollen, monatWert, tab, tagge, visaCSV, kategorienOeffnen } from './hilfen.mjs';
 
 const KARTE = visaCSV([[3, 24.5, 'Pizzeria Sole', 'Musterdorf'], [5, 31, 'Café Lago', 'Musterdorf'], [8, 12, 'Kiosk Muster', 'Beispielwil']]);
 const zeilen = (page) => page.locator('#txlist .txrow');
@@ -125,7 +125,7 @@ test.describe('Kategorien', () => {
   test.use(COMPUTER);
   test('KAT-06: Unterkategorie löschen → neu taggen oder ohne Unterkategorie lassen', async ({ page }) => {
     await vorbereiten(page); // Pizzeria → Freizeit › Restaurant, Café → Freizeit › Kultur
-    await tab(page, 'settings');
+    await kategorienOeffnen(page);
     const sub = (name) => page.locator('.catedit[data-cat=k-freizeit] .subtag', { has: page.locator(`input[value="${name}"]`) });
     await sub('Restaurant').locator('[data-act=delSub]').click();
     await expect(page.locator('#dlg[open]')).toContainText('1 Buchung hat diese Unterkategorie');
@@ -135,7 +135,7 @@ test.describe('Kategorien', () => {
     await page.click('#subRetag');
     await expect(page.locator('#toast')).toContainText('1 Buchungen warten unter «Taggen»');
     await expect(page.locator('#txcard .mer')).toHaveText('Pizzeria Sole');
-    await tab(page, 'settings');
+    await kategorienOeffnen(page);
     await expect(sub('Restaurant')).toHaveCount(0);
     await sub('Kultur').locator('[data-act=delSub]').click();
     await page.click('#subKeep');

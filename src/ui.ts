@@ -9,7 +9,7 @@ import { parseUpload, toCSV } from './parse';
 import { formatCardNo, normalizeCardNo } from './parse/cardpdf';
 import {
   MONTHS, VIEW_LABEL, aggregate, liveSubId, sliceTx, trashList, deletedInFile, DAY_MS, formatLabel, importHistory, importWarnings, type ImportInfo, type ImportWarning, areaOf, byAccount, cashPool, catLabel, catsFor, isShared, liveSubs, monthly, myPart, openTx, periodLabel, periods,
-  reportRows, ruleKey, shareLabel, sortedCategories, srcLabel, subName, summary, txRows, viewTx, type Slice, type View,
+  reportRows, ruleKey, shareLabel, sortedCategories, srcLabel, tagGrid, subName, summary, txRows, viewTx, type Slice, type View,
 } from './logic';
 import { sampleFiles } from './seed';
 import type { Area, Category, Kind, Rule, Scope, Tx } from './types';
@@ -40,6 +40,8 @@ let impAcc = 'privat';
 /** Import-Historie im Import-Tab aufgeklappt (IMP-13) */
 let impHist = false;
 let manAcc = 'privat';
+/** KAT-07: Kategorien in den Einstellungen aufgeklappt */
+let katOpen = false;
 
 // ---------- Hilfen ----------
 let toastT = 0;
@@ -354,20 +356,25 @@ function prepareCard(t: Tx) {
   Object.assign(tg, { forId: t.id, cat: null, share: canShare(t) ? rule?.share ?? null : null, shareTouched: false, indOpen: false, noteOpen: false, newSubOpen: false, skipAlways: false });
 }
 
+/** Aufteilung: Schalter und darunter eine Zeile fester Höhe, damit die Kategorien beim Umschalten nicht rutschen (TAG-16).
+ *  Ohne Aufteilung (gemeinsames Konto) bleibt der Platz leer, damit die Kategorien überall auf derselben Höhe stehen. */
 function shareRow(t: Tx): string {
-  if (!canShare(t)) return '';
-  const s = tg.share;
+  const real = canShare(t);
+  const s = real ? tg.share : null;
   const preset = s === 5000 || s === 6667;
   const ind = s != null && !preset;
   const on = (x: boolean) => (x ? 'on' : '');
-  return `<div class="sharebox" id="shareBox">
+  const hint = ind || tg.indOpen
+    ? `<label class="indrow">Mein Anteil <input id="shareInd" type="number" inputmode="decimal" min="1" max="99" step="0.5" value="${ind ? s! / 100 : ''}" placeholder="%"> %${s != null ? `<span class="sharehint">· Persönlich CHF ${fmt(myPart({ amount: t.amount, share: s }))}</span>` : ''}</label>`
+    : s != null ? `<p class="sharehint">Geteilt: Persönlich zählt CHF ${fmt(myPart({ amount: t.amount, share: s }))}, Gemeinsam CHF ${fmt(t.amount)}.</p>` : '';
+  // ohne Aufteilung: gleiche Elemente unsichtbar und nicht bedienbar, damit die Höhe sicher gleich bleibt
+  return `<div class="sharebox${real ? '' : ' ghost'}"${real ? ' id="shareBox"' : ' aria-hidden="true" inert'}>
     <div class="seg full share" role="group" aria-label="Aufteilung">
       <button type="button" data-act="share" data-v="me" class="${on(s == null)}">Nur ich</button>
       <button type="button" data-act="share" data-v="5000" class="${on(s === 5000 && !tg.indOpen)}">50 %</button>
       <button type="button" data-act="share" data-v="6667" class="${on(s === 6667 && !tg.indOpen)}">⅔ ich</button>
       <button type="button" data-act="shareInd" class="ind ${on(ind || tg.indOpen)}">${ind ? shareLabel(s) : 'Individuell'}</button></div>
-    ${ind || tg.indOpen ? `<label class="indrow">Mein Anteil <input id="shareInd" type="number" inputmode="decimal" min="1" max="99" step="0.5" value="${ind ? s! / 100 : ''}" placeholder="%"> %${s != null ? `<span class="sharehint">· Persönlich CHF ${fmt(myPart({ amount: t.amount, share: s }))}</span>` : ''}</label>`
-      : s != null ? `<p class="sharehint">Geteilt: Persönlich zählt CHF ${fmt(myPart({ amount: t.amount, share: s }))}, Gemeinsam CHF ${fmt(t.amount)}.</p>` : ''}
+    <div class="shareline">${hint}</div>
   </div>`;
 }
 
@@ -397,8 +404,9 @@ function renderTag(el: HTMLElement) {
   if (tg.cat && !cats.some((c) => c.id === tg.cat)) tg.cat = null;
   let step: string;
   if (!tg.cat) {
-    step = `${ruleCat ? `<button type="button" class="primary suggest" data-act="accept">Vorschlag: ${esc(ruleCat.name)}${liveSubId(ruleCat, rule!.sub) ? ' › ' + esc(subName(ruleCat, rule!.sub)) : ''}${canShare(t) && rule!.share ? ` · ${shareLabel(rule!.share)}` : ''} <span class="k">↵</span></button>` : ''}
-      <div class="catgrid" id="catgrid">${cats.map((c, i) => `<button type="button" class="catbtn${rule?.cat === c.id ? ' sug' : ''}" data-act="pickCat" data-id="${c.id}"><span class="dot" data-bg="${c.color}"></span><span class="cn">${esc(c.name)}${c.kind !== 'expense' ? `<span class="kind">${KIND_LABEL[c.kind]}</span>` : ''}</span>${i < 10 ? `<span class="k">${(i + 1) % 10}</span>` : ''}</button>`).join('')}</div>`;
+    // Vorschlag: fester Platz, leer ohne Vorschlag (TAG-16)
+    step = `<div class="suggestslot">${ruleCat ? `<button type="button" class="primary suggest" data-act="accept">Vorschlag: ${esc(ruleCat.name)}${liveSubId(ruleCat, rule!.sub) ? ' › ' + esc(subName(ruleCat, rule!.sub)) : ''}${canShare(t) && rule!.share ? ` · ${shareLabel(rule!.share)}` : ''} <span class="k">↵</span></button>` : ''}</div>
+      <div class="catgrid" id="catgrid">${tagGrid(st(), t.acc, shared).map(({ cat: c, enabled, key }) => `<button type="button" class="catbtn${enabled ? (rule?.cat === c.id ? ' sug' : '') : ' off'}" data-act="pickCat" data-id="${c.id}"${enabled ? '' : ` disabled title="Gilt nicht für dieses Konto${canShare(t) && !shared ? ' (nur geteilt)' : ''}"`}><span class="dot" data-bg="${c.color}"></span><span class="cn">${esc(c.name)}${c.kind !== 'expense' ? `<span class="kind">${KIND_LABEL[c.kind]}</span>` : ''}</span>${key ? `<span class="k">${key}</span>` : ''}</button>`).join('')}</div>`;
   } else {
     const c = cat(tg.cat)!;
     step = `<div class="row nowrap stephead"><button type="button" class="ghost" data-act="backCat">← Zurück</button><span class="dot" data-bg="${c.color}"></span><strong>${esc(c.name)}</strong></div>
@@ -611,7 +619,7 @@ function renderOverview(el: HTMLElement) {
   el.innerHTML = `
   <div class="card">
     ${head}
-    <div class="row">
+    <div class="row ovctl">
       <div class="seg"><button type="button" class="${ov.mode === 'month' ? 'on' : ''}" data-act="ovMode" data-mode="month">Monat</button><button type="button" class="${ov.mode === 'year' ? 'on' : ''}" data-act="ovMode" data-mode="year">Jahr</button></div>
       <select id="ovPeriod" class="auto">${ps.map((p) => `<option value="${p}" ${p === ov.period ? 'selected' : ''}>${periodLabel(p)}</option>`).join('')}</select>
     </div>
@@ -802,21 +810,22 @@ function renderSettings(el: HTMLElement) {
     <div class="seg" id="themeSeg">${([['system', 'Wie System'], ['light', 'Hell'], ['dark', 'Dunkel']] as [Theme, string][]).map(([v, l]) => `<button type="button" data-act="theme" data-value="${v}" class="${theme === v ? 'on' : ''}" aria-pressed="${theme === v}">${l}</button>`).join('')}</div>
     <p class="muted small">Farben: Solarized.</p></div>
   ${renderSyncCard()}
-  <div class="card"><h2>Kategorien</h2>
-    <p class="muted small">Der Bereich bestimmt, bei welchen Konten eine Kategorie zur Wahl steht. «Beide» lässt sich über alle Konten auswerten, z. B. Auto gesamt. Die Reihenfolge bestimmt die Tasten 1–0 beim Taggen.</p>
-    ${cats.map((c, i) => `<div class="catedit" data-cat="${c.id}">
-      <div class="row nowrap"><input type="color" value="${c.color}" data-set="color" data-cat="${c.id}" aria-label="Farbe">
-      <input value="${esc(c.name)}" data-set="name" data-cat="${c.id}" aria-label="Name">
-      <button type="button" class="ghost iconbtn" data-act="moveCat" data-id="${c.id}" ${i ? '' : 'disabled'} title="Nach oben">↑</button>
-      <button type="button" class="ghost iconbtn danger" data-act="delCat" data-id="${c.id}" title="Löschen">✕</button></div>
-      <div class="row">
-        <select data-set="scope" data-cat="${c.id}" aria-label="Bereich">${(['privat', 'gemeinsam', 'beide'] as Scope[]).map((s) => `<option value="${s}" ${c.scope === s ? 'selected' : ''}>${AREA_LABEL[s]}</option>`).join('')}</select>
-        <select data-set="kind" data-cat="${c.id}" aria-label="Art">${(Object.keys(KIND_LABEL) as Kind[]).map((k) => `<option value="${k}" ${c.kind === k ? 'selected' : ''}>${KIND_LABEL[k]}</option>`).join('')}</select>
-        <select data-set="defaultShare" data-cat="${c.id}" aria-label="Standard bei geteilt">${[['', 'Standard: Nur ich'], ['5000', 'Standard: geteilt 50 %'], ['6667', 'Standard: geteilt ⅔ ich']].map(([v, l]) => `<option value="${v}" ${String(c.defaultShare ?? '') === v ? 'selected' : ''}>${l}</option>`).join('')}</select>
-        <span class="muted small">${used(c.id)} Buchungen</span></div>
-      <div class="subs">${liveSubs(c).map((s) => `<span class="subtag"><input value="${esc(s.name)}" data-set="sub" data-cat="${c.id}" data-sub="${s.id}" aria-label="Unterkategorie"><button type="button" data-act="delSub" data-cat="${c.id}" data-id="${s.id}" title="Entfernen">✕</button></span>`).join('')}
-      <button type="button" class="ghost small" data-act="addSub" data-cat="${c.id}">+ Unterkategorie</button></div></div>`).join('')}
-    <button type="button" data-act="addCat">+ Kategorie</button></div>
+  <div class="card" id="catCard"><h2>Kategorien</h2>
+    ${!katOpen ? `<div class="row"><span class="muted grow">${cats.length} Kategorien · ${cats.reduce((n, c) => n + liveSubs(c).length, 0)} Unterkategorien</span><button type="button" data-act="katOpen">Kategorien bearbeiten</button></div>`
+    : `<p class="muted small">Der Bereich bestimmt, bei welchen Konten eine Kategorie zur Wahl steht. «Beide» lässt sich über alle Konten auswerten, z. B. Auto gesamt. Die Reihenfolge bestimmt die Tasten 1–0 beim Taggen.</p>
+    <div class="catlist">${cats.map((c, i) => `<div class="catedit" data-cat="${c.id}">
+      <div class="cehead"><input type="color" value="${c.color}" data-set="color" data-cat="${c.id}" aria-label="Farbe">
+        <input value="${esc(c.name)}" data-set="name" data-cat="${c.id}" aria-label="Name">
+        <button type="button" class="iconbtn" data-act="moveCat" data-id="${c.id}" ${i ? '' : 'disabled'} title="Nach oben" aria-label="Nach oben">↑</button>
+        <button type="button" class="iconbtn danger" data-act="delCat" data-id="${c.id}" title="Löschen" aria-label="Löschen">✕</button></div>
+      <div class="cefields">
+        <label class="field f-scope"><span>Bereich</span><select data-set="scope" data-cat="${c.id}" aria-label="Bereich">${(['privat', 'gemeinsam', 'beide'] as Scope[]).map((s) => `<option value="${s}" ${c.scope === s ? 'selected' : ''}>${AREA_LABEL[s]}</option>`).join('')}</select></label>
+        <label class="field f-kind"><span>Art</span><select data-set="kind" data-cat="${c.id}" aria-label="Art">${(Object.keys(KIND_LABEL) as Kind[]).map((k) => `<option value="${k}" ${c.kind === k ? 'selected' : ''}>${KIND_LABEL[k]}</option>`).join('')}</select></label>
+        <label class="field f-share"><span>Standard bei geteilt</span><select data-set="defaultShare" data-cat="${c.id}" aria-label="Standard bei geteilt">${[['', 'Nur ich'], ['5000', 'Geteilt 50 %'], ['6667', 'Geteilt ⅔ ich']].map(([v, l]) => `<option value="${v}" ${String(c.defaultShare ?? '') === v ? 'selected' : ''}>${l}</option>`).join('')}</select></label></div>
+      <div class="field"><span class="flabel">Unterkategorien <span class="muted">· ${used(c.id)} ${used(c.id) === 1 ? 'Buchung' : 'Buchungen'}</span></span>
+        <div class="subs">${liveSubs(c).map((s) => `<span class="subtag"><input value="${esc(s.name)}" size="${Math.max(4, [...s.name].length)}" data-set="sub" data-cat="${c.id}" data-sub="${s.id}" aria-label="Unterkategorie"><button type="button" data-act="delSub" data-cat="${c.id}" data-id="${s.id}" title="Entfernen" aria-label="Entfernen">✕</button></span>`).join('')}
+        <button type="button" class="subadd" data-act="addSub" data-cat="${c.id}">+ Unterkategorie</button></div></div></div>`).join('')}</div>
+    <div class="row"><button type="button" data-act="addCat">+ Kategorie</button><span class="spacer"></span><button type="button" class="primary" data-act="katClose">Fertig</button></div>`}</div>
   <div class="card"><h2>Konten</h2>
     ${[...st().accounts.values()].map((a) => `<div class="grid2"><label class="field"><span>Name (${AREA_LABEL[a.area]})</span><input value="${esc(a.name)}" data-acc="${a.id}" data-k="name"></label>
     <label class="field"><span>Bezeichnung für manuelle Einträge</span><input value="${esc(a.manualLabel)}" data-acc="${a.id}" data-k="manualLabel"></label></div>
@@ -976,6 +985,8 @@ const ACT: Record<string, Handler> = {
   lfBack: () => { lfSlice = null; show('overview'); },
   addManual: () => addManual(),
   theme: (b) => setTheme(b.dataset.value as Theme),
+  katOpen: () => { katOpen = true; render(); },
+  katClose: () => { katOpen = false; render(); },
   addCat: () => { safe(() => S.createCategory({ name: 'Neue Kategorie', scope: 'beide' })); },
   delCat: (b) => { const c = cat(b.dataset.id!); if (c && confirm(`Kategorie «${c.name}» löschen?`)) safe(() => S.deleteCategory(c.id)); },
   moveCat: (b) => { safe(() => S.moveCategory(b.dataset.id!, -1)); },
@@ -1081,7 +1092,7 @@ function onKey(e: KeyboardEvent) {
   if (k === '+' && tg.cat) { tg.newSubOpen = true; render(); e.preventDefault(); return; }
   if (/^[0-9]$/.test(k)) {
     const n = +k;
-    if (!tg.cat) { const c = catsFor(st(), t.acc, canShare(t) && tg.share != null)[(n + 9) % 10]; if (c) { const b = document.createElement('button'); b.dataset.id = c.id; void ACT.pickCat(b); } }
+    if (!tg.cat) { const g = tagGrid(st(), t.acc, canShare(t) && tg.share != null).find((x) => x.key === k); if (g?.enabled) { const c = g.cat; const b = document.createElement('button'); b.dataset.id = c.id; void ACT.pickCat(b); } }
     else { const subs = liveSubs(cat(tg.cat)); if (n === 0) applyTag(tg.cat, null); else if (subs[n - 1]) applyTag(tg.cat, subs[n - 1].id); render(); }
     e.preventDefault();
   } else if (k === 'enter' && !tg.cat) { void ACT.accept(document.body); e.preventDefault(); }

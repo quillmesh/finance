@@ -87,3 +87,60 @@ export function simuliertesGitHub() {
     anschliessen: (page) => page.context().route('https://api.github.com/**', handler),
   };
 }
+
+/** KAT-07: Kategorien in den Einstellungen aufklappen */
+export async function kategorienOeffnen(page) {
+  await tab(page, 'settings');
+  const b = page.locator('[data-act=katOpen]');
+  if (await b.count()) await b.click();
+  await page.locator('#catCard .catedit').first().waitFor();
+}
+
+/**
+ * GUI-01: Layout-Probleme im sichtbaren Tab bzw. im offenen Dialog.
+ * - Bedienelemente überlappen sich nicht und halten mindestens MIN_ABSTAND px Abstand
+ *   (ausser Teile eines zusammengehörigen Elements: Segment-Schalter, Unterkategorie-Chip, Wisch-Aktionen)
+ * - Auswahlfelder und Knöpfe zeigen ihren Text ganz
+ * - Bedienelemente in einer Zeile eines Formulars sind gleich hoch
+ * - kein seitliches Scrollen
+ */
+export const layoutProbleme = (page) => page.evaluate(() => {
+  const MIN_ABSTAND = 4;
+  const dlg = document.querySelector('#dlg[open]');
+  const root = dlg ?? document.querySelector('main section:not([hidden])');
+  const out = [];
+  const sichtbar = (e) => { const r = e.getBoundingClientRect(); const cs = getComputedStyle(e); return r.width > 0 && r.height > 0 && cs.visibility !== 'hidden' && !e.closest('[hidden]'); };
+  const els = [...root.querySelectorAll('button, input:not([type=hidden]), select, textarea, .chip, .area')].filter(sichtbar)
+    .filter((e) => !e.closest('.swipeact'));
+  const name = (e) => `${e.tagName.toLowerCase()}${e.id ? '#' + e.id : ''}[${(e.getAttribute('aria-label') || e.textContent || e.value || '').trim().slice(0, 24)}]`;
+  const gruppe = (e) => e.closest('.seg, .subtag');
+  for (let i = 0; i < els.length; i++) for (let j = i + 1; j < els.length; j++) {
+    const a = els[i], b = els[j];
+    if (a.contains(b) || b.contains(a)) continue;
+    const g = gruppe(a); if (g && g === gruppe(b)) continue;
+    const A = a.getBoundingClientRect(), B = b.getBoundingClientRect();
+    const ox = Math.min(A.right, B.right) - Math.max(A.left, B.left);
+    const oy = Math.min(A.bottom, B.bottom) - Math.max(A.top, B.top);
+    if (ox > 0.5 && oy > 0.5) out.push(`überlappt: ${name(a)} / ${name(b)}`);
+    else if ((ox > 2 && oy > -MIN_ABSTAND + 0.5) || (oy > 2 && ox > -MIN_ABSTAND + 0.5)) out.push(`zu wenig Abstand: ${name(a)} / ${name(b)}`);
+  }
+  const ctx = document.createElement('canvas').getContext('2d');
+  for (const e of els) {
+    const cs = getComputedStyle(e);
+    if (e.tagName === 'SELECT') {
+      ctx.font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+      const text = e.options[e.selectedIndex]?.text ?? '';
+      const frei = e.clientWidth - parseFloat(cs.paddingLeft) - Math.max(parseFloat(cs.paddingRight), 24);
+      if (ctx.measureText(text).width > frei + 1) out.push(`Text abgeschnitten: ${name(e)}`);
+    } else if (e.tagName === 'BUTTON' && cs.overflow !== 'visible' && e.scrollWidth > e.clientWidth + 1) out.push(`Text abgeschnitten: ${name(e)}`);
+  }
+  // gleiche Höhe in einer Zeile: Felder und Knöpfe in Formularen und Kategorien
+  const felder = els.filter((e) => /^(INPUT|SELECT|BUTTON)$/.test(e.tagName) && e.type !== 'checkbox' && e.type !== 'radio' && !gruppe(e) && e.closest('.catedit, form, .formrow'));
+  for (let i = 0; i < felder.length; i++) for (let j = i + 1; j < felder.length; j++) {
+    const A = felder[i].getBoundingClientRect(), B = felder[j].getBoundingClientRect();
+    if (Math.abs(A.top + A.height / 2 - (B.top + B.height / 2)) < 6 && Math.abs(A.height - B.height) > 1 && !felder[i].classList.contains('link') && !felder[j].classList.contains('link'))
+      out.push(`ungleich hoch: ${name(felder[i])} ${Math.round(A.height)} / ${name(felder[j])} ${Math.round(B.height)}`);
+  }
+  if (document.documentElement.scrollWidth > window.innerWidth + 1) out.push(`seitliches Scrollen: ${document.documentElement.scrollWidth} > ${window.innerWidth}`);
+  return [...new Set(out)];
+});

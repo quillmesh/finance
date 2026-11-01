@@ -159,13 +159,7 @@ svg .b-privat { fill: var(--priv); } svg .b-gemeinsam { fill: var(--gem); } svg 
 .empty { text-align: center; padding: 30px 10px; color: var(--muted); }
 
 /* Einstellungen */
-.catedit { border: 1px solid var(--line); border-radius: 10px; padding: 10px; margin-bottom: 10px; }
-.catedit .subs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-.catedit select { width: auto; padding: 6px 8px; font-size: 13px; }
-.subtag { display: inline-flex; align-items: center; gap: 2px; background: var(--sunken); border-radius: 8px; padding: 0 0 0 4px; }
-.subtag input { border: 0; background: none; padding: 5px 4px; width: auto; min-width: 60px; field-sizing: content; }
-.subtag button { border: 0; background: none; padding: 4px 8px; color: var(--muted); }
-.iconbtn { padding: 8px; }
+/* Einstellungen → Kategorien: siehe 0.9.0 unten */
 dialog { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--text); padding: 18px; width: min(460px, calc(100% - 32px)); }
 dialog::backdrop { background: rgba(0, 43, 54, .45); }
 
@@ -258,3 +252,61 @@ button.wide { width: 100%; padding: 12px; }
 .choices button { display: grid; gap: 2px; text-align: left; padding: 10px 14px; }
 .choices button .small { font-weight: 400; opacity: .85; }
 .choices button.ghost { text-align: center; }
+
+/* ---------- 0.9.0: GUI-01 einheitliches Raster, TAG-16 feste Plätze, KAT-07 Kategorien auf Knopfdruck ---------- */
+:root { --ctl: 40px; --gap: 8px; }
+.grow { flex: 1; min-width: 0; }
+.ovctl { margin-top: 10px; }
+
+/* Kategorien bearbeiten: Kopfzeile Farbe · Name · ↑ · ✕, darunter beschriftete Felder in einem festen Raster */
+.catlist { display: grid; gap: 10px; margin-bottom: 12px; }
+.catedit { border: 1px solid var(--line); border-radius: 10px; padding: 12px; display: grid; gap: 12px; }
+.cehead { display: grid; grid-template-columns: var(--ctl) minmax(0, 1fr) var(--ctl) var(--ctl); gap: var(--gap); align-items: center; }
+.cehead > input, .cehead > button { height: var(--ctl); margin: 0; }
+.cehead input[type=color] { width: var(--ctl); padding: 3px; }
+.cehead input:not([type=color]) { padding: 0 10px; font-weight: 600; }
+.iconbtn { width: var(--ctl); height: var(--ctl); padding: 0; display: inline-grid; place-items: center; }
+.cefields { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr) minmax(0, 1.1fr); gap: var(--gap); }
+.catedit .field { margin: 0; min-width: 0; }
+.catedit .field > span, .catedit .flabel { display: block; font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+.catedit select { width: 100%; height: var(--ctl); padding: 0 28px 0 10px; font-size: 14px; text-overflow: ellipsis; }
+.catedit .subs { display: flex; flex-wrap: wrap; gap: 6px; }
+.subtag { display: inline-flex; align-items: center; height: 34px; max-width: 100%; background: var(--sunken); border-radius: 8px; padding: 0 0 0 4px; }
+.subtag input { border: 0; background: none; height: 34px; padding: 0 4px; width: auto; min-width: 0; max-width: 100%; font-size: 14px; }
+.subtag button { border: 0; background: none; height: 34px; width: 30px; padding: 0; color: var(--muted); flex: none; }
+.subadd { height: 34px; padding: 0 10px; border-style: dashed; color: var(--muted); font-size: 13px; }
+@media (max-width: 560px) {
+  .cefields { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .cefields .f-kind { grid-column: 1 / -1; grid-row: 2; }
+  .catedit { padding: 10px; }
+}
+
+/* Taggen: fester Platz für Aufteilung, Hinweis und Vorschlag; alle Kategorie-Knöpfe gleich gross */
+.sharebox { margin-bottom: 0; }
+.sharebox .seg button { height: 36px; padding: 0 10px; }
+.sharebox.ghost { visibility: hidden; }
+.shareline { height: 32px; display: flex; align-items: center; overflow: hidden; }
+.shareline .sharehint, .shareline .indrow { margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.shareline .indrow input { height: 24px; padding: 0 6px; }
+.suggestslot { height: 46px; margin-bottom: 10px; }
+.suggestslot .suggest { height: 100%; margin: 0; padding: 0 12px; }
+.catgrid { grid-auto-rows: 52px; }
+.catbtn { min-height: 0; height: 100%; overflow: hidden; }
+.catbtn .cn { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; }
+.catbtn.off, .catbtn.off:disabled { opacity: 1; color: var(--muted); background: var(--sunken); border-color: transparent; cursor: not-allowed; }
+.catbtn.off .dot { opacity: .35; }
+.catbtn.off .cn { opacity: .6; }
+@media (min-width: 601px) { .catgrid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 600px) {
+  .sharebox .seg button { height: 32px; padding: 0 8px; }
+  .shareline { height: 28px; }
+  .shareline .indrow input { height: 20px; }
+  .suggestslot { height: 38px; margin-bottom: 6px; }
+  .catgrid { grid-auto-rows: 42px; }
+  .catbtn { font-size: 12px; line-height: 1.12; }
+}
+
+/* Formulare und Dialoge: alle Felder gleich hoch, Knopfzeilen mit Abstand */
+label.field :is(input:not([type=checkbox]):not([type=radio]):not([type=color]):not([type=file]), select) { height: var(--ctl); padding-top: 0; padding-bottom: 0; }
+dialog .row + .row, dialog .row + .choices { margin-top: 10px; }
+dialog .row { gap: var(--gap); }

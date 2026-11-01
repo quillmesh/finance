@@ -1,6 +1,6 @@
 // TEI-01–10, TAG-09, TAG-10, BAR-02–05: geteilte Ausgaben, Gutschriften, Notiz, neue Unterkategorie, Bargeld-Topf
 import { test, expect, COMPUTER } from './fixtures.mjs';
-import { bankCSV, datei, gehe, importiere, monatWert, tab, tagge, visaCSV, vormonat } from './hilfen.mjs';
+import { bankCSV, datei, gehe, importiere, monatWert, tab, tagge, visaCSV, vormonat, kategorienOeffnen } from './hilfen.mjs';
 
 test.use(COMPUTER);
 
@@ -23,7 +23,7 @@ test('geteilt: 50 % gelernt, individuell, Taste T; Persönlich zählt den Anteil
   await page.keyboard.press('Enter');
   // TEI-04: geteilt → Wohnen wählbar; Taste T schaltet
   await expect(card.locator('.mer')).toHaveText('Möbelhaus Muster');
-  await expect(page.locator('.catbtn[data-act=pickCat]', { hasText: 'Wohnen' })).toHaveCount(0);
+  await expect(page.locator('.catbtn[data-act=pickCat]', { hasText: 'Wohnen' })).toBeDisabled(); // TAG-16: ausgegraut statt ausgeblendet
   await page.keyboard.press('t');
   await expect(page.locator('#shareBox .on')).toHaveText('50 %');
   await page.click('[data-act=share][data-v="6667"]');
@@ -97,7 +97,7 @@ test('Notiz und neue Unterkategorie beim Taggen', async ({ page }) => {
   await tab(page, 'list');
   await expect(page.locator('.txrow', { hasText: 'Pizzeria Sole' })).toContainText('Essen & Ausgang › Pizza · Geburtstag Lea');
   await expect(page.locator('.txrow', { hasText: 'Pizza Kurier' })).toContainText('Essen & Ausgang › Pizza · mit Team');
-  await tab(page, 'settings');
+  await kategorienOeffnen(page);
   await expect(page.locator('.catedit[data-cat=k-essen] .subtag input[value=Pizza]')).toHaveCount(1);
 });
 

@@ -1,5 +1,12 @@
 # Release-Notes
 
+## 0.9.0
+- Taggen: Alle Kategorien stehen immer am selben Platz, in der Reihenfolge aus den Einstellungen. Kategorien, die für das Konto oder die Aufteilung nicht gelten, sind ausgegraut und lassen sich nicht wählen; z. B. wird «Wohnen» bei einer persönlichen Ausgabe erst mit «50 %» wählbar, ohne dass sich etwas verschiebt.
+- Beim Umschalten zwischen «Nur ich», «50 %», «⅔ ich» und «Individuell» rutscht nichts mehr: Die Zeile für den Hinweis und der Platz für den Vorschlag sind immer gleich hoch. Auch beim gemeinsamen Konto stehen die Kategorien auf derselben Höhe. Ohne Vorschlag bleibt sein Platz leer.
+- Die Tasten 1–0 gehören fest zu den ersten zehn Plätzen.
+- Einstellungen: Die Kategorien zeigen zuerst nur «16 Kategorien · … Unterkategorien». Erst «Kategorien bearbeiten» öffnet alle zum Bearbeiten, «Fertig» schliesst sie wieder.
+- Klareres Layout: Beim Bearbeiten einer Kategorie stehen Farbe, Name, Bereich, Art und Standard in einem festen Raster mit Beschriftung, alle Felder gleich hoch; lange Texte wie «Einzahlung aufs gemeinsame Konto» haben Platz. Auch in der Übersicht und in den Dialogen stossen keine Knöpfe und Felder mehr aneinander – auf Handy, Tablet und Computer.
+
 ## 0.8.0
 - Unterkategorie löschen, die noch Buchungen hat: Die App fragt, ob diese Buchungen neu getaggt werden sollen (sie kommen zurück unter «Taggen», die Notiz bleibt) oder ohne Unterkategorie in der Kategorie bleiben.
 

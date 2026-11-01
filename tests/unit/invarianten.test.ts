@@ -6,7 +6,7 @@ import { describe, expect, setSystemTime, test, afterAll } from 'bun:test';
 import * as S from '../../src/store';
 import * as db from '../../src/db';
 import { rng } from '../../src/sample';
-import { aggregate, cashPool, importHistory, sliceTx, catsFor, isShared, isTransfer, ledger, liveSubs, myPart, ruleKey, summary, viewTx, type View } from '../../src/logic';
+import { aggregate, cashPool, importHistory, sliceTx, catsFor, sortedCategories, tagGrid, isShared, isTransfer, ledger, liveSubs, myPart, ruleKey, summary, viewTx, type View } from '../../src/logic';
 import { validateState } from '../../src/validate';
 import { newTx } from '../../src/parse/common';
 import type { FinEvent, State, Tx } from '../../src/types';
@@ -131,6 +131,29 @@ describe('Invarianten mit Zufallsdaten', () => {
       const hist = importHistory(S.state);
       expect(hist.reduce((x, h) => x + h.total, 0), `Seed ${seed}`).toBe(imported.length);
       expect(hist.every((h) => h.tagged + h.open + h.excluded === h.total), `Seed ${seed}`).toBe(true);
+    }
+  });
+
+  test('TAG-16: Raster beim Taggen bleibt fest, auch nach zufälligem Anlegen, Löschen und Verschieben von Kategorien', async () => {
+    const SCOPES = ['privat', 'gemeinsam', 'beide'] as const;
+    for (const seed of SEEDS) {
+      const r = rng(seed);
+      await fresh();
+      for (let i = 0; i < 25; i++) {
+        const cats = sortedCategories(S.state);
+        const x = r();
+        if (x < 0.35) S.createCategory({ name: `Zufall ${seed}-${i}`, scope: SCOPES[Math.floor(r() * 3)] });
+        else if (x < 0.55 && cats.length > 3) S.deleteCategory(cats[Math.floor(r() * cats.length)].id);
+        else if (cats.length) S.moveCategory(cats[Math.floor(r() * cats.length)].id, r() < 0.5 ? -1 : 1);
+      }
+      const alle = sortedCategories(S.state).map((c) => c.id);
+      for (const acc of ['privat', 'gemeinsam']) for (const shared of [false, true]) {
+        const g = tagGrid(S.state, acc, shared);
+        expect(g.map((x) => x.cat.id), `Seed ${seed} ${acc} ${shared}`).toEqual(alle);
+        expect(g.filter((x) => x.enabled).map((x) => x.cat.id), `Seed ${seed} ${acc} ${shared}`).toEqual(catsFor(S.state, acc, shared).map((c) => c.id));
+        expect(g.map((x) => x.key), `Seed ${seed}`).toEqual(g.map((_, i) => (i < 10 ? String((i + 1) % 10) : null)));
+      }
+      expect(validateState(S.state), `Seed ${seed}`).toEqual([]);
     }
   });
 

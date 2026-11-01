@@ -29,10 +29,10 @@ test('zwei Konten taggen und in drei Sichten auswerten', async ({ page }) => {
   for (let i = 0; i < 7; i++) {
     const mer = await page.locator('#txcard .mer').textContent();
     const area = await page.locator('#txcard .area').textContent();
-    // BER-04: nur passende Kategorien
+    // BER-04: nur passende Kategorien wählbar (TAG-16: die anderen ausgegraut am selben Platz)
     const cats = page.locator('.catbtn[data-act=pickCat]');
-    if (area === 'Persönlich') { await expect(cats.filter({ hasText: 'Wohnen' })).toHaveCount(0); await expect(cats.filter({ hasText: 'Ferien privat' })).toHaveCount(1); }
-    else { await expect(cats.filter({ hasText: 'Ferien privat' })).toHaveCount(0); await expect(cats.filter({ hasText: 'Wohnen' })).toHaveCount(1); }
+    if (area === 'Persönlich') { await expect(cats.filter({ hasText: 'Wohnen' })).toBeDisabled(); await expect(cats.filter({ hasText: 'Ferien privat' })).toBeEnabled(); }
+    else { await expect(cats.filter({ hasText: 'Ferien privat' })).toBeDisabled(); await expect(cats.filter({ hasText: 'Wohnen' })).toBeEnabled(); }
     const [c, s] = TAGS[mer];
     await tagge(page, c, s);
   }
