@@ -8,14 +8,14 @@ Anforderungen und Feature-Liste: Dokument «Finanzapp – Anforderungen» im Cla
 | | Branch | Version | Hinweis |
 | --- | --- | --- | --- |
 | Live | `main` | 0.7.0 | freigegeben 1.11.2026; Sync mit dem privaten Daten-Repo ist eingerichtet; der Nutzer importiert seine echten Daten selbst |
-| Test | `test` | 0.9.0 | enthält 0.8.0 und 0.9.0, wartet auf «freigeben» |
+| Test | `test` | 0.10.0 | enthält 0.8.0, 0.9.0 und 0.10.0, wartet auf «freigeben» |
 
 Eingefrorene Daten: `tests/unit/alte-daten/v0.3.0*`, `v0.7.0*`. Nach der nächsten Freigabe: `bun scripts/alte-daten-einfrieren.ts <version>`
 (das Skript erzeugt alle Ereignistypen; neue Ereignistypen dort ergänzen).
 
 ## Nächste Aufgaben
 
-Keine offenen Aufträge. GUI-01, TAG-16 und KAT-07 sind in 0.9.0 umgesetzt (Entscheide unten), warten auf Prüfung und «freigeben».
+Keine offenen Aufträge. GUI-01, TAG-16, KAT-07 (0.9.0) und TAG-17 (0.10.0) sind umgesetzt (Entscheide unten), warten auf Prüfung und «freigeben».
 
 Nicht weiterverfolgen (Entscheid des Nutzers): Textfeld bereits beim Tippen speichern; Kartenabbuchung auf dem gemeinsamen
 Konto per Stichwort ausschliessen; Sicherheits-Ausbau (eigene Domain, App-Sperre, kurze Token-Laufzeit); Fremdwährungen.
@@ -49,11 +49,17 @@ Konto per Stichwort ausschliessen; Sicherheits-Ausbau (eigene Domain, App-Sperre
   `e2e/hilfen.mjs` (Überlappung, Mindestabstand 4 px, abgeschnittener Text in Auswahl/Knöpfen, gleiche Höhe pro Zeile, kein
   Querscrollen) in `e2e/layout.spec.mjs` für Handy 360/390, Android 412, Tablet hoch/quer, Computer, alle Tabs und Dialoge.
   Überlappungen waren in Chrome auf Tablet-Grösse und auf Android sichtbar.
+- 0.10.0: TAG-17 Reihenfolge beim Taggen ändern. Je ein Knopf ⇅ (`#arrBtn`, unten rechts in der Tag-Karte): im Kategorie-Schritt für
+  Kategorien, im Unterkategorie-Schritt nur für deren Unterkategorien (Entscheid: zwei getrennte Knöpfe). Zwei antippen = Plätze
+  **tauschen** (Entscheid, kein Nachrücken): `store.swapCategories` (zwei `cat.patch` order), `store.swapSubs` (zwei `sub.patch` mit
+  neuem optionalem Feld `Sub.order`). `logic.liveSubs` sortiert nach `logic.subOrder` (= `order`, sonst Position beim Anlegen ×10,
+  daher alte Daten unverändert); `validate` verlangt eine ganze Zahl. Ältere Versionen übernehmen das Feld beim Sync, ignorieren es aber.
+  Beim Ordnen ist alles andere `inert`; Hinweis + «Fertig» stehen am Platz des Vorschlags bzw. der Kopfzeile, damit nichts rutscht.
 
 ## Anforderungs-IDs
 
-Belegt: IMP-01–15, TAG-01–15, KAT-01–06, AUS-01–07, BER-01–08, TEI-01–11, BAR-01–06, EXP-01–02, EIN-01–02, DAT-01–02, NF-01–08,
-UMG-01–05, TST-01–08, LAB-01–03, BUD-01–02, FIX-01–02, MUL-01–02, BEL-01. Neu in 0.9.0: GUI-01, TAG-16, KAT-07 (TAG-01–16, KAT-01–07).
+Belegt: IMP-01–15, TAG-01–17, KAT-01–07, GUI-01, AUS-01–07, BER-01–08, TEI-01–11, BAR-01–06, EXP-01–02, EIN-01–02, DAT-01–02, NF-01–08,
+UMG-01–05, TST-01–08, LAB-01–03, BUD-01–02, FIX-01–02, MUL-01–02, BEL-01. Neu in 0.9.0: GUI-01, TAG-16, KAT-07; in 0.10.0: TAG-17 (TAG-01–17, KAT-01–07).
 Im Anforderungsdokument nachführen (Tab Anforderungen + Zeile in der Feature-Liste mit Status «Offen/Im Test/Live» und Version).
 
 ## Arbeitsumgebung (für Claude)

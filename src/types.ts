@@ -26,7 +26,8 @@ export interface Account {
   cards?: string[];
 }
 
-export interface Sub { id: string; name: string; deleted?: boolean }
+/** order (ab 0.10.0, optional): Platz in der Kategorie; ohne Angabe gilt die Reihenfolge des Anlegens (TAG-17) */
+export interface Sub { id: string; name: string; deleted?: boolean; order?: number }
 
 export interface Category {
   id: string;

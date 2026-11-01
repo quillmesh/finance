@@ -177,3 +177,53 @@ test.describe('KAT-07', () => {
     await expect(page.locator('#catCard')).toContainText('16 Kategorien');
   });
 });
+
+/** Reihenfolge der Knöpfe im Raster (data-id) */
+const reihe = (page, act) => page.evaluate((act) => [...document.querySelectorAll(`#catgrid [data-act=${act}]`)].map((b) => b.dataset.id).filter(Boolean), act);
+
+for (const [geraet, opts] of [['Handy', HANDY], ['Computer', COMPUTER]]) {
+  test.describe(`TAG-17 ${geraet}`, () => {
+    test.use(opts);
+    test('TAG-17: Reihenfolge beim Taggen ändern – je ein Knopf für Kategorien und Unterkategorien, zwei Plätze tauschen', async ({ page }) => {
+      page.touch = !!opts.hasTouch;
+      await gehe(page, 'test/');
+      await tab(page, 'tag');
+      const vorher = await reihe(page, 'pickCat');
+      // Kategorien
+      await expect(page.locator('#arrBtn')).toHaveAttribute('data-v', 'cat');
+      await drueck(page, '#arrBtn');
+      await expect(page.locator('#arrBar')).toBeVisible();
+      await expect(page.locator('#catgrid [data-act=arrPick]')).toHaveCount(16);
+      await expect(page.locator('#catgrid [data-act=arrPick][disabled]')).toHaveCount(0); // auch ausgegraute lassen sich verschieben
+      await expect(page.locator('.actions')).toHaveAttribute('inert', '');
+      await pruefe(page, 'Kategorien ordnen');
+      await drueck(page, '#catgrid [data-id=k-hobby]');
+      await expect(page.locator('#arrBar')).toContainText('«Hobby» tauschen mit');
+      await drueck(page, '#catgrid [data-id=k-einkaufen]');
+      const erwartet = vorher.map((id) => (id === 'k-hobby' ? 'k-einkaufen' : id === 'k-einkaufen' ? 'k-hobby' : id));
+      expect(await reihe(page, 'arrPick')).toEqual(erwartet);
+      await drueck(page, '#arrDone');
+      await expect(page.locator('#arrBar')).toHaveCount(0);
+      expect(await reihe(page, 'pickCat')).toEqual(erwartet);
+      // Unterkategorien: eigener Knopf im zweiten Schritt
+      await drueck(page, '#catgrid [data-act=pickCat][data-id=k-auto]');
+      await expect(page.locator('#arrBtn')).toHaveAttribute('data-v', 'sub');
+      const subs = await reihe(page, 'pickSub');
+      await drueck(page, '#arrBtn');
+      await expect(page.locator('#catgrid [data-act=arrPick]')).toHaveCount(subs.length);
+      await expect(page.locator('#catgrid [data-act=pickSub][data-id=""]')).toBeDisabled();
+      await pruefe(page, 'Unterkategorien ordnen');
+      await drueck(page, `#catgrid [data-id=${subs[0]}]`);
+      await drueck(page, `#catgrid [data-id=${subs[2]}]`);
+      await drueck(page, '#arrDone');
+      const neu = [subs[2], subs[1], subs[0], ...subs.slice(3)];
+      expect(await reihe(page, 'pickSub')).toEqual(neu);
+      // bleibt nach dem Neuladen
+      await page.reload();
+      await tab(page, 'tag');
+      expect(await reihe(page, 'pickCat')).toEqual(erwartet);
+      await drueck(page, '#catgrid [data-act=pickCat][data-id=k-auto]');
+      expect(await reihe(page, 'pickSub')).toEqual(neu);
+    });
+  });
+}

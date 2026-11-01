@@ -134,7 +134,7 @@ describe('Invarianten mit Zufallsdaten', () => {
     }
   });
 
-  test('TAG-16: Raster beim Taggen bleibt fest, auch nach zufälligem Anlegen, Löschen und Verschieben von Kategorien', async () => {
+  test('TAG-16/TAG-17: Raster beim Taggen bleibt fest, auch nach zufälligem Anlegen, Löschen, Verschieben und Tauschen', async () => {
     const SCOPES = ['privat', 'gemeinsam', 'beide'] as const;
     for (const seed of SEEDS) {
       const r = rng(seed);
@@ -144,8 +144,26 @@ describe('Invarianten mit Zufallsdaten', () => {
         const x = r();
         if (x < 0.35) S.createCategory({ name: `Zufall ${seed}-${i}`, scope: SCOPES[Math.floor(r() * 3)] });
         else if (x < 0.55 && cats.length > 3) S.deleteCategory(cats[Math.floor(r() * cats.length)].id);
-        else if (cats.length) S.moveCategory(cats[Math.floor(r() * cats.length)].id, r() < 0.5 ? -1 : 1);
+        else if (x < 0.7 && cats.length) S.moveCategory(cats[Math.floor(r() * cats.length)].id, r() < 0.5 ? -1 : 1);
+        else if (x < 0.8 && cats.length) S.swapCategories(cats[Math.floor(r() * cats.length)].id, cats[Math.floor(r() * cats.length)].id);
+        else if (cats.length) {
+          const c = cats[Math.floor(r() * cats.length)];
+          const y = r();
+          if (y < 0.3) S.addSub(c.id, `U${seed}-${i}`);
+          else if (y < 0.45 && liveSubs(c).length > 1) S.deleteSub(c.id, liveSubs(c)[Math.floor(r() * liveSubs(c).length)].id);
+          else { const l = liveSubs(c); if (l.length) S.swapSubs(c.id, l[Math.floor(r() * l.length)].id, l[Math.floor(r() * l.length)].id); }
+        }
       }
+      // TAG-17: Unterkategorien sind immer genau die nicht gelöschten, jede einmal
+      for (const c of sortedCategories(S.state)) {
+        const l = liveSubs(c).map((s) => s.id);
+        expect(new Set(l).size, `Seed ${seed} ${c.id}`).toBe(l.length);
+        expect([...l].sort(), `Seed ${seed} ${c.id}`).toEqual(c.subs.filter((s) => !s.deleted).map((s) => s.id).sort());
+      }
+      // gleiche Ereignisse neu abgespielt → gleiche Reihenfolge
+      await S.whenSaved();
+      const neu = S.buildState(await db.allEvents());
+      expect(sortedCategories(neu).map((c) => [c.id, liveSubs(c).map((s) => s.id)]), `Seed ${seed}`).toEqual(sortedCategories(S.state).map((c) => [c.id, liveSubs(c).map((s) => s.id)]));
       const alle = sortedCategories(S.state).map((c) => c.id);
       for (const acc of ['privat', 'gemeinsam']) for (const shared of [false, true]) {
         const g = tagGrid(S.state, acc, shared);

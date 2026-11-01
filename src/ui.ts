@@ -31,6 +31,8 @@ const tg = {
   cat: null as string | null, skipped: new Set<string>(), history: [] as Undo[], remember: true, applyAll: false,
   /** Karte, für die die folgenden Werte gelten */
   forId: '', share: null as number | null, shareTouched: false, indOpen: false, noteOpen: false, newSubOpen: false, skipAlways: false,
+  /** TAG-17: Reihenfolge ändern – '' aus, 'cat' Kategorien, 'sub' Unterkategorien; pick = zuerst angetippte */
+  arrange: '' as '' | 'cat' | 'sub', pick: '',
 };
 const ov = { view: 'privat' as View, mode: 'month' as 'month' | 'year', period: '', drill: null as string | null };
 const lf = { acc: '', period: '', status: '', q: '' };
@@ -378,6 +380,12 @@ function shareRow(t: Tx): string {
   </div>`;
 }
 
+/** TAG-17: Hinweis beim Ordnen, am Platz des Vorschlags bzw. der Kopfzeile, damit nichts rutscht */
+function arrangeBar(what: 'Kategorie' | 'Unterkategorie'): string {
+  const p = tg.pick ? (tg.arrange === 'cat' ? cat(tg.pick)?.name : subName(cat(tg.cat), tg.pick)) : '';
+  return `<div class="arrbar" id="arrBar"><span class="arrhint">${p ? `<strong>«${esc(p)}»</strong> tauschen mit …` : `Zwei ${what === 'Kategorie' ? 'Kategorien' : 'Unterkategorien'} antippen: sie tauschen die Plätze`}</span><button type="button" class="primary" data-act="arrDone" id="arrDone">Fertig</button></div>`;
+}
+
 function renderTag(el: HTMLElement) {
   const all = openTx(st());
   const queue = all.filter((t) => !tg.skipped.has(t.id));
@@ -393,6 +401,9 @@ function renderTag(el: HTMLElement) {
   }
   const t = queue[0];
   prepareCard(t);
+  /** beim Ordnen ist alles andere gesperrt (TAG-17) */
+  if ((tg.arrange === 'sub' && !tg.cat) || (tg.arrange === 'cat' && tg.cat)) { tg.arrange = ''; tg.pick = ''; }
+  const off = tg.arrange ? ' class="arrdim" inert' : '';
   const a = acc(t.acc);
   const shared = canShare(t) && tg.share != null;
   const cats = catsFor(st(), t.acc, shared);
@@ -404,16 +415,23 @@ function renderTag(el: HTMLElement) {
   if (tg.cat && !cats.some((c) => c.id === tg.cat)) tg.cat = null;
   let step: string;
   if (!tg.cat) {
-    // Vorschlag: fester Platz, leer ohne Vorschlag (TAG-16)
-    step = `<div class="suggestslot">${ruleCat ? `<button type="button" class="primary suggest" data-act="accept">Vorschlag: ${esc(ruleCat.name)}${liveSubId(ruleCat, rule!.sub) ? ' › ' + esc(subName(ruleCat, rule!.sub)) : ''}${canShare(t) && rule!.share ? ` · ${shareLabel(rule!.share)}` : ''} <span class="k">↵</span></button>` : ''}</div>
-      <div class="catgrid" id="catgrid">${tagGrid(st(), t.acc, shared).map(({ cat: c, enabled, key }) => `<button type="button" class="catbtn${enabled ? (rule?.cat === c.id ? ' sug' : '') : ' off'}" data-act="pickCat" data-id="${c.id}"${enabled ? '' : ` disabled title="Gilt nicht für dieses Konto${canShare(t) && !shared ? ' (nur geteilt)' : ''}"`}><span class="dot" data-bg="${c.color}"></span><span class="cn">${esc(c.name)}${c.kind !== 'expense' ? `<span class="kind">${KIND_LABEL[c.kind]}</span>` : ''}</span>${key ? `<span class="k">${key}</span>` : ''}</button>`).join('')}</div>`;
+    // Vorschlag: fester Platz, leer ohne Vorschlag (TAG-16); beim Ordnen steht dort der Hinweis (TAG-17)
+    const arr = tg.arrange === 'cat';
+    step = `<div class="suggestslot">${arr ? arrangeBar('Kategorie') : ruleCat ? `<button type="button" class="primary suggest" data-act="accept">Vorschlag: ${esc(ruleCat.name)}${liveSubId(ruleCat, rule!.sub) ? ' › ' + esc(subName(ruleCat, rule!.sub)) : ''}${canShare(t) && rule!.share ? ` · ${shareLabel(rule!.share)}` : ''} <span class="k">↵</span></button>` : ''}</div>
+      <div class="catgrid${arr ? ' arranging' : ''}" id="catgrid">${tagGrid(st(), t.acc, shared).map(({ cat: c, enabled, key }) => arr
+        ? `<button type="button" class="catbtn arr${tg.pick === c.id ? ' picked' : ''}" data-act="arrPick" data-id="${c.id}" aria-pressed="${tg.pick === c.id}"><span class="dot" data-bg="${c.color}"></span><span class="cn">${esc(c.name)}</span>${key ? `<span class="k">${key}</span>` : ''}</button>`
+        : `<button type="button" class="catbtn${enabled ? (rule?.cat === c.id ? ' sug' : '') : ' off'}" data-act="pickCat" data-id="${c.id}"${enabled ? '' : ` disabled title="Gilt nicht für dieses Konto${canShare(t) && !shared ? ' (nur geteilt)' : ''}"`}><span class="dot" data-bg="${c.color}"></span><span class="cn">${esc(c.name)}${c.kind !== 'expense' ? `<span class="kind">${KIND_LABEL[c.kind]}</span>` : ''}</span>${key ? `<span class="k">${key}</span>` : ''}</button>`).join('')}</div>`;
   } else {
     const c = cat(tg.cat)!;
-    step = `<div class="row nowrap stephead"><button type="button" class="ghost" data-act="backCat">← Zurück</button><span class="dot" data-bg="${c.color}"></span><strong>${esc(c.name)}</strong></div>
-      <div class="catgrid" id="catgrid">${liveSubs(c).map((s, i) => `<button type="button" class="catbtn${rule?.sub === s.id ? ' sug' : ''}" data-act="pickSub" data-id="${s.id}"><span class="cn">${esc(s.name)}</span>${i < 9 ? `<span class="k">${i + 1}</span>` : ''}</button>`).join('')}
-      <button type="button" class="catbtn" data-act="pickSub" data-id=""><span class="cn muted">Ohne Unterkategorie</span><span class="k">0</span></button>
-      ${tg.newSubOpen ? `<span class="newsub"><input id="newSubIn" placeholder="Neue Unterkategorie" maxlength="40" aria-label="Neue Unterkategorie"><button type="button" class="primary" data-act="newSubSave">OK</button></span>`
-        : '<button type="button" class="catbtn add" data-act="newSub"><span class="cn">+ Neue Unterkategorie</span><span class="k">+</span></button>'}</div>`;
+    const arr = tg.arrange === 'sub';
+    const fixed = arr ? ' disabled' : '';
+    step = `<div class="row nowrap stephead">${arr ? arrangeBar('Unterkategorie') : `<button type="button" class="ghost" data-act="backCat">← Zurück</button><span class="dot" data-bg="${c.color}"></span><strong>${esc(c.name)}</strong>`}</div>
+      <div class="catgrid${arr ? ' arranging' : ''}" id="catgrid">${liveSubs(c).map((s, i) => arr
+        ? `<button type="button" class="catbtn arr${tg.pick === s.id ? ' picked' : ''}" data-act="arrPick" data-id="${s.id}" aria-pressed="${tg.pick === s.id}"><span class="cn">${esc(s.name)}</span>${i < 9 ? `<span class="k">${i + 1}</span>` : ''}</button>`
+        : `<button type="button" class="catbtn${rule?.sub === s.id ? ' sug' : ''}" data-act="pickSub" data-id="${s.id}"><span class="cn">${esc(s.name)}</span>${i < 9 ? `<span class="k">${i + 1}</span>` : ''}</button>`).join('')}
+      <button type="button" class="catbtn${arr ? ' fixed' : ''}" data-act="pickSub" data-id=""${fixed}><span class="cn muted">Ohne Unterkategorie</span><span class="k">0</span></button>
+      ${tg.newSubOpen && !arr ? `<span class="newsub"><input id="newSubIn" placeholder="Neue Unterkategorie" maxlength="40" aria-label="Neue Unterkategorie"><button type="button" class="primary" data-act="newSubSave">OK</button></span>`
+        : `<button type="button" class="catbtn add${arr ? ' fixed' : ''}" data-act="newSub"${fixed}><span class="cn">+ Neue Unterkategorie</span><span class="k">+</span></button>`}</div>`;
   }
   const fx = t.origCur && t.origCur !== t.cur;
   const chips = [t.details && t.details !== t.merchant ? esc(t.details) : '', fx ? `Fremdwährung ${esc(t.origCur)}` : ''].filter(Boolean);
@@ -425,21 +443,22 @@ function renderTag(el: HTMLElement) {
       <div class="amt${credit ? ' credit' : ''}">${credit ? '+ ' : ''}${esc(t.cur)} ${fmt(Math.abs(t.amount))}</div>
       <div class="mer">${esc(t.merchant)}</div>
       <div class="meta">${fmtDate(t.date)}${t.place ? ' · ' + esc(t.place) : ''}${chips.length ? ' · ' + chips.join(' · ') : ''}</div>
-      <div class="noterow">${tg.noteOpen ? `<input id="noteIn" class="notein" value="${esc(t.note)}" placeholder="Notiz, z. B. Geschenk für Lea" maxlength="200" aria-label="Notiz">`
+      <div class="noterow"${off}>${tg.noteOpen ? `<input id="noteIn" class="notein" value="${esc(t.note)}" placeholder="Notiz, z. B. Geschenk für Lea" maxlength="200" aria-label="Notiz">`
         : `<button type="button" class="notebtn" data-act="noteOpen" id="noteBtn">${t.note ? '✎ ' + esc(t.note) : '+ Notiz'}</button>`}</div>
     </div>
     <div class="card tagbox">
-      ${credit ? `<div class="creditbox"><button type="button" class="primary wide" data-act="skipCredit" id="skipCredit">Nicht erfassen</button>
+      <div${off}>${credit ? `<div class="creditbox"><button type="button" class="primary wide" data-act="skipCredit" id="skipCredit">Nicht erfassen</button>
         <label class="opt"><input type="checkbox" data-opt="skipAlways" ${tg.skipAlways ? 'checked' : ''}> Immer für diesen Absender</label>
         <p class="muted small">Oder einer Kategorie zuordnen, z. B. als Rückerstattung:</p></div>` : ''}
-      ${shareRow(t)}
+      ${shareRow(t)}</div>
       ${step}
-      <div class="opts">
+      <div class="opts"${off}>
         <label class="opt"><input type="checkbox" data-opt="remember" ${tg.remember ? 'checked' : ''}> Händler merken</label>
         ${others ? `<label class="opt"><input type="checkbox" data-opt="applyAll" ${tg.applyAll ? 'checked' : ''}> Auch auf ${others} weitere anwenden</label>` : ''}
       </div>
+      ${tg.arrange ? '' : `<button type="button" class="arrbtn" data-act="arrStart" data-v="${tg.cat ? 'sub' : 'cat'}" id="arrBtn" title="${tg.cat ? 'Reihenfolge der Unterkategorien ändern' : 'Reihenfolge der Kategorien ändern'}" aria-label="${tg.cat ? 'Reihenfolge der Unterkategorien ändern' : 'Reihenfolge der Kategorien ändern'}">⇅</button>`}
     </div>
-    <div class="actions">
+    <div class="actions"${off}>
       <button type="button" data-act="undo" ${tg.history.length ? '' : 'disabled'}>↶ Zurück</button>
       <button type="button" data-act="skip">Überspringen</button>
       <button type="button" class="danger" data-act="exclude">Ignorieren</button>
@@ -939,6 +958,17 @@ const ACT: Record<string, Handler> = {
   skipCredit: () => { skipCredit(); render(); },
   pickSub: (b) => { if (tg.cat) applyTag(tg.cat, b.dataset.id || null); render(); },
   backCat: () => { tg.cat = null; render(); },
+  arrStart: (b) => { tg.arrange = b.dataset.v === 'sub' ? 'sub' : 'cat'; tg.pick = ''; tg.newSubOpen = false; render(); },
+  arrDone: () => { tg.arrange = ''; tg.pick = ''; render(); },
+  arrPick: (b) => {
+    const id = b.dataset.id!;
+    if (!tg.pick || tg.pick === id) tg.pick = tg.pick === id ? '' : id;
+    else {
+      const a = tg.pick; tg.pick = '';
+      safe(() => (tg.arrange === 'cat' ? S.swapCategories(a, id) : tg.cat && S.swapSubs(tg.cat, a, id)));
+    }
+    render();
+  },
   accept: () => {
     const t = currentTx(); const r = t && st().rules.get(ruleKey(t));
     if (t && r && !r.skip && catsFor(st(), t.acc, tg.share != null).some((c) => c.id === r.cat)) applyTag(r.cat, liveSubId(cat(r.cat), r.sub));
@@ -1087,6 +1117,7 @@ function onKey(e: KeyboardEvent) {
   const t = currentTx();
   if (!t) return;
   const k = e.key.toLowerCase();
+  if (tg.arrange) { if (k === 'escape' || k === 'enter') { tg.arrange = ''; tg.pick = ''; render(); e.preventDefault(); } return; } // TAG-17
   if (k === 't' && canShare(t)) { setShare(tg.share == null ? '5000' : 'me'); render(); e.preventDefault(); return; }
   if (k === 'n') { tg.noteOpen = true; render(); e.preventDefault(); return; }
   if (k === '+' && tg.cat) { tg.newSubOpen = true; render(); e.preventDefault(); return; }

@@ -1,5 +1,5 @@
 // Auswertung: reine Funktionen ohne Browser. Alle Beträge in Rappen.
-import type { Area, Category, State, Tx } from './types';
+import type { Area, Category, State, Sub, Tx } from './types';
 import { AREA_LABEL, CASH_CAT, FULL } from './defaults';
 import { fmt, plain, pct } from './money';
 import { formatCardNo, type SumCheck } from './parse/cardpdf';
@@ -32,7 +32,10 @@ export const tagGrid = (st: State, accId: string, shared = false): GridCat[] => 
   return sortedCategories(st).map((cat, i) => ({ cat, enabled: ok.has(cat.id), key: i < 10 ? String((i + 1) % 10) : null }));
 };
 
-export const liveSubs = (c: Category | undefined) => (c ? c.subs.filter((s) => !s.deleted) : []);
+/** Platz einer Unterkategorie: gespeicherte Reihenfolge, sonst Reihenfolge des Anlegens (alte Daten, TAG-17) */
+export const subOrder = (c: Category, s: Sub) => s.order ?? (c.subs.indexOf(s) + 1) * 10;
+export const liveSubs = (c: Category | undefined) => (c ? c.subs.filter((s) => !s.deleted)
+  .map((s, i) => ({ s, o: subOrder(c, s), i })).sort((a, b) => a.o - b.o || a.i - b.i).map((x) => x.s) : []);
 export const subName = (c: Category | undefined, id: string | null) => (c && id ? c.subs.find((s) => s.id === id)?.name ?? '' : '');
 /** Unterkategorie nur, wenn es sie noch gibt (Vorschläge können auf gelöschte zeigen, KAT-05) */
 export const liveSubId = (c: Category | undefined, id: string | null) => (c && id && c.subs.some((s) => s.id === id && !s.deleted) ? id : null);

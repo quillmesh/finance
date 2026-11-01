@@ -76,6 +76,7 @@ export function validateEvent(e: FinEvent, st: State): string | null {
       const c = st.categories.get(d.cat);
       if (!c || !c.subs.some((s) => s.id === d.id)) return 'Unterkategorie existiert nicht';
       if (d.patch && 'name' in d.patch && (!isStr(d.patch.name) || !d.patch.name.trim())) return 'Unterkategorie ohne Namen';
+      if (d.patch && 'order' in d.patch && !Number.isInteger(d.patch.order)) return 'Unterkategorie: ungültige Reihenfolge'; // TAG-17
       // Eindeutige Namen pro Kategorie, sonst lassen sich Unterkategorien nicht mehr unterscheiden (KAT-04)
       if (d.patch && 'name' in d.patch && sameName(c.subs.filter((s) => s.id !== d.id), d.patch.name)) return `Unterkategorie «${d.patch.name.trim()}» gibt es schon`;
       if (d.patch?.deleted === false && sameName(c.subs.filter((s) => s.id !== d.id), c.subs.find((s) => s.id === d.id)!.name)) return 'Eine Unterkategorie mit diesem Namen gibt es schon';

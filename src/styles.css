@@ -310,3 +310,25 @@ button.wide { width: 100%; padding: 12px; }
 label.field :is(input:not([type=checkbox]):not([type=radio]):not([type=color]):not([type=file]), select) { height: var(--ctl); padding-top: 0; padding-bottom: 0; }
 dialog .row + .row, dialog .row + .choices { margin-top: 10px; }
 dialog .row { gap: var(--gap); }
+
+/* ---------- 0.10.0: TAG-17 Reihenfolge beim Taggen ändern (zwei Plätze tauschen) ---------- */
+.tagbox { position: relative; }
+.tagbox .opts { padding-right: 40px; min-height: 30px; }
+.arrbtn { position: absolute; right: 10px; bottom: 10px; width: 30px; height: 30px; padding: 0; border-radius: 8px; font-size: 15px; line-height: 1; color: var(--muted); background: none; display: grid; place-items: center; }
+.arrbtn:hover { color: var(--accent); }
+.stephead { height: 40px; }
+.stephead > button { height: 100%; padding-top: 0; padding-bottom: 0; }
+.arrbar { height: 100%; width: 100%; display: flex; align-items: center; gap: 8px; background: var(--accent-soft); border-radius: 10px; padding: 0 6px 0 12px; font-size: 13px; }
+.arrbar .arrhint { flex: 1; min-width: 0; overflow: hidden; line-height: 1.2; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; }
+.arrbar button { height: 30px; padding: 0 12px; flex: none; }
+.catbtn.arr { border-style: dashed; }
+.catbtn.arr .k { visibility: hidden; }
+.catbtn.picked { border: 2px solid var(--accent); background: var(--accent-soft); }
+.catbtn.fixed, .arrdim { opacity: .35; }
+@media (max-width: 600px) {
+  .tagbox .opts { padding-right: 36px; min-height: 28px; }
+  .arrbtn { right: 8px; bottom: 6px; width: 28px; height: 28px; }
+  .stephead { height: 38px; }
+  .arrbar { font-size: 12px; padding-left: 8px; }
+  .arrbar button { height: 28px; padding: 0 10px; font-size: 13px; }
+}

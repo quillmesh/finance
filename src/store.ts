@@ -13,7 +13,7 @@ import * as db from './db';
 import { ENV, IS_TEST } from './env';
 import { decryptJSON, encryptJSON, type EncryptedFile } from './crypto';
 import { CASH_CAT, DEFAULT_ACCOUNTS, defaultCategories, PALETTE } from './defaults';
-import { ruleKey } from './logic';
+import { ruleKey, subOrder } from './logic';
 import type { Category, EventType, FinEvent, ImportRec, Rule, State, Sub, Tx } from './types';
 import { validateEvent, validateState } from './validate';
 import { newTx } from './parse/common';
@@ -382,6 +382,27 @@ export function moveCategory(id: string, dir: -1 | 1) {
   emitMany([
     { type: 'cat.patch', data: { id: list[i].id, patch: { order: list[j].order } } },
     { type: 'cat.patch', data: { id: list[j].id, patch: { order: list[i].order } } },
+  ]);
+}
+
+/** Zwei Kategorien tauschen die Plätze (TAG-17); alle anderen bleiben, wo sie sind */
+export function swapCategories(a: string, b: string) {
+  const A = state.categories.get(a), B = state.categories.get(b);
+  if (!A || !B || a === b || A.deleted || B.deleted) return;
+  emitMany([
+    { type: 'cat.patch', data: { id: a, patch: { order: B.order } } },
+    { type: 'cat.patch', data: { id: b, patch: { order: A.order } } },
+  ]);
+}
+
+/** Zwei Unterkategorien einer Kategorie tauschen die Plätze (TAG-17); speichert das optionale Feld order */
+export function swapSubs(catId: string, a: string, b: string) {
+  const c = state.categories.get(catId);
+  const A = c?.subs.find((s) => s.id === a && !s.deleted), B = c?.subs.find((s) => s.id === b && !s.deleted);
+  if (!c || !A || !B || a === b) return;
+  emitMany([
+    { type: 'sub.patch', data: { cat: catId, id: a, patch: { order: subOrder(c, B) } } },
+    { type: 'sub.patch', data: { cat: catId, id: b, patch: { order: subOrder(c, A) } } },
   ]);
 }
 

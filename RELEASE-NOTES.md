@@ -1,5 +1,10 @@
 # Release-Notes
 
+## 0.10.0
+- Taggen: Die Reihenfolge der Kategorien lässt sich direkt beim Taggen ändern. Der kleine Knopf ⇅ unten rechts startet das Ordnen; zwei Kategorien antippen, sie tauschen die Plätze. «Fertig» beendet es. Auch ausgegraute Kategorien lassen sich so verschieben; die Tasten 1–0 folgen dem neuen Platz.
+- Für die Unterkategorien gibt es einen eigenen Knopf ⇅ im zweiten Schritt (nach der Wahl der Kategorie). Er ordnet nur die Unterkategorien dieser Kategorie; «Ohne Unterkategorie» und «+ Neue Unterkategorie» bleiben am Schluss.
+- Die Reihenfolge gilt überall (auch in den Einstellungen) und wird auf die anderen Geräte synchronisiert.
+
 ## 0.9.0
 - Taggen: Alle Kategorien stehen immer am selben Platz, in der Reihenfolge aus den Einstellungen. Kategorien, die für das Konto oder die Aufteilung nicht gelten, sind ausgegraut und lassen sich nicht wählen; z. B. wird «Wohnen» bei einer persönlichen Ausgabe erst mit «50 %» wählbar, ohne dass sich etwas verschiebt.
 - Beim Umschalten zwischen «Nur ich», «50 %», «⅔ ich» und «Individuell» rutscht nichts mehr: Die Zeile für den Hinweis und der Platz für den Vorschlag sind immer gleich hoch. Auch beim gemeinsamen Konto stehen die Kategorien auf derselben Höhe. Ohne Vorschlag bleibt sein Platz leer.
