@@ -297,6 +297,34 @@ function swipeRows(list: HTMLElement | null) {
   }, { passive: true });
 }
 
+/** Unterkategorie löschen: betroffene Buchungen ohne Unterkategorie lassen oder neu taggen (KAT-06) */
+async function deleteSubAsk(catId: string, subId: string) {
+  const c = cat(catId);
+  const n = [...st().tx.values()].filter((t) => t.cat === catId && t.sub === subId && !t.deleted).length;
+  if (!c) return;
+  if (!n) { safe(() => S.deleteSub(catId, subId)); return; }
+  const d = $<HTMLDialogElement>('#dlg');
+  await closeDialog(d);
+  d.innerHTML = `<form method="dialog" id="subAsk"><h2>Unterkategorie «${esc(subName(c, subId))}» löschen?</h2>
+    <p>${n === 1 ? '1 Buchung hat' : `${n} Buchungen haben`} diese Unterkategorie.</p>
+    <div class="choices">
+      <button type="button" class="primary" data-act="subChoice" data-v="retag" id="subRetag"><strong>Neu taggen</strong><span class="small">Die Buchungen kommen zurück unter «Taggen», die Notiz bleibt.</span></button>
+      <button type="button" data-act="subChoice" data-v="keep" id="subKeep"><strong>Ohne Unterkategorie lassen</strong><span class="small">Sie bleiben in «${esc(c.name)}».</span></button>
+      <button type="button" class="ghost" data-act="subChoice" data-v="" id="subCancel">Abbrechen</button>
+    </div></form>`;
+  const v = await new Promise<string>((resolve) => {
+    subAnswer = resolve;
+    d.addEventListener('close', () => { if (subAnswer === resolve) { subAnswer = null; resolve(''); } }, { once: true });
+    d.showModal();
+    $<HTMLButtonElement>('#subCancel').focus();
+  });
+  if (!v) return;
+  if (!safe(() => S.deleteSub(catId, subId, v === 'retag'))) return;
+  if (v === 'retag') { tg.history = []; toast(`${n} Buchungen warten unter «Taggen»`); show('tag'); }
+  else toast(`${n} Buchungen ohne Unterkategorie`);
+}
+let subAnswer: ((v: string) => void) | null = null;
+
 async function deleteOpen() {
   const per = [...st().accounts.values()].map((a) => ({ a, n: S.openImportedIds(st(), a.id).length })).filter((x) => x.n);
   const total = per.reduce((x, p) => x + p.n, 0);
@@ -929,6 +957,7 @@ const ACT: Record<string, Handler> = {
   },
   dlgClose: () => $<HTMLDialogElement>('#dlg').close(),
   impYes: () => answerImport(true),
+  subChoice: (b) => { const r = subAnswer; subAnswer = null; $<HTMLDialogElement>('#dlg').close(); r?.(b.dataset.v ?? ''); },
   impHist: () => { impHist = !impHist; render(); },
   impDel: (b) => deleteImport(b.dataset.id!),
   delOpen: () => deleteOpen(),
@@ -951,10 +980,7 @@ const ACT: Record<string, Handler> = {
   delCat: (b) => { const c = cat(b.dataset.id!); if (c && confirm(`Kategorie «${c.name}» löschen?`)) safe(() => S.deleteCategory(c.id)); },
   moveCat: (b) => { safe(() => S.moveCategory(b.dataset.id!, -1)); },
   addSub: (b) => { const name = prompt('Name der Unterkategorie'); if (name?.trim()) safe(() => S.addSub(b.dataset.cat!, name)); },
-  delSub: (b) => {
-    const n = [...st().tx.values()].filter((t) => t.sub === b.dataset.id).length;
-    if (!n || confirm(`${n} Buchungen verlieren diese Unterkategorie (bleiben in der Kategorie). Fortfahren?`)) safe(() => S.deleteSub(b.dataset.cat!, b.dataset.id!));
-  },
+  delSub: (b) => deleteSubAsk(b.dataset.cat!, b.dataset.id!),
   clearRules: () => { if (confirm('Alle gelernten Händler-Vorschläge löschen?')) safe(() => S.clearRules()); },
   backupExport: () => backupExport(),
   backupImport: () => backupImport(),

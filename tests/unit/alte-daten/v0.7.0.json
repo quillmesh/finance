@@ -1,0 +1,5217 @@
+[
+ {
+  "id": "f3d8d9ec-a336-4e54-b475-6ea3a205674e",
+  "ts": 1793559695074,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "import.log",
+  "data": {
+   "imp": {
+    "id": "9bd3755c-9300-423f-9480-60a1f382ed6e",
+    "acc": "privat",
+    "name": "beispiel-karte-privat.csv",
+    "format": "visa"
+   },
+   "ids": [
+    "privat:visa:TRX20260802000001",
+    "privat:visa:TRX20260803000002",
+    "privat:visa:TRX20260808000003",
+    "privat:visa:TRX20260810000004",
+    "privat:visa:TRX20260810000005",
+    "privat:visa:TRX20260815000006",
+    "privat:visa:TRX20260816000007",
+    "privat:visa:TRX20260816000008",
+    "privat:visa:TRX20260817000009",
+    "privat:visa:TRX20260819000010",
+    "privat:visa:TRX20260820000011",
+    "privat:visa:TRX20260821000012",
+    "privat:visa:TRX20260823000013",
+    "privat:visa:TRX20260828000014",
+    "privat:visa:TRX20260830000015",
+    "privat:visa:TRX20260903000016",
+    "privat:visa:TRX20260907000017",
+    "privat:visa:TRX20260908000018",
+    "privat:visa:TRX20260909000019",
+    "privat:visa:TRX20260912000020",
+    "privat:visa:TRX20260912000021",
+    "privat:visa:TRX20260913000022",
+    "privat:visa:TRX20260915000023",
+    "privat:visa:TRX20260918000024",
+    "privat:visa:TRX20260919000025",
+    "privat:visa:TRX20260920000026",
+    "privat:visa:TRX20260920000027",
+    "privat:visa:TRX20260920000028",
+    "privat:visa:TRX20260923000029",
+    "privat:visa:TRX20260925000030",
+    "privat:visa:TRX20260927000031",
+    "privat:visa:TRX20260928000032",
+    "privat:visa:TRX20260930000033",
+    "privat:visa:TRX20261001000034",
+    "privat:visa:TRX20261003000035",
+    "privat:visa:TRX20261003000036",
+    "privat:visa:TRX20261003000037",
+    "privat:visa:TRX20261004000038",
+    "privat:visa:TRX20261005000039",
+    "privat:visa:TRX20261006000040",
+    "privat:visa:TRX20261009000041",
+    "privat:visa:TRX20261009000042",
+    "privat:visa:TRX20261011000043",
+    "privat:visa:TRX20261017000044",
+    "privat:visa:TRX20261018000045",
+    "privat:visa:TRX20261021000046",
+    "privat:visa:TRX20261022000047",
+    "privat:visa:TRX20261023000048",
+    "privat:visa:TRX20261023000049"
+   ]
+  },
+  "v": 1
+ },
+ {
+  "id": "2f9701a1-a738-4337-83ec-f85c1f00a703",
+  "ts": 1793559695078,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Sportshop Muster",
+    "details": "Sportshop Muster Musterhausen",
+    "place": "Musterhausen, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260802000001",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-08-02",
+    "amount": 11060
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "32ecd8cd-0e71-4307-ad7e-053af93bed88",
+  "ts": 1793559695079,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Zahlung an Kreditkarte",
+    "details": "Ihre Zahlung - Danke",
+    "place": "",
+    "status": "excluded",
+    "cat": null,
+    "sub": null,
+    "note": "Kartenzahlung (Transfer)",
+    "id": "privat:visa:TRX20260803000002",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-08-03",
+    "amount": -84934
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "1a42bba7-3138-49ee-8676-19a456439248",
+  "ts": 1793559695081,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Bar Zentral",
+    "details": "Bar Zentral Seestadt",
+    "place": "Seestadt, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260808000003",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-08-08",
+    "amount": 3265
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "de211b13-05bd-4603-80af-baf7ff476733",
+  "ts": 1793559695082,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Elektro Muster",
+    "details": "Elektro Muster Zürich",
+    "place": "Zürich, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260810000004",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-08-10",
+    "amount": 23855
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "757714c1-0731-4cae-9cb3-160bcac94b7f",
+  "ts": 1793559695083,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Elektro Muster",
+    "details": "Elektro Muster Zürich",
+    "place": "Zürich, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260810000005",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-08-10",
+    "amount": 4080
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "bd4c116c-966a-49fe-9a57-690f8f8ab233",
+  "ts": 1793559695084,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Bäckerei Musterbeck",
+    "details": "Bäckerei Musterbeck Musterdorf",
+    "place": "Musterdorf, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260815000006",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-08-15",
+    "amount": 900
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "f53bf63d-9259-48f1-8f04-b8a12440d809",
+  "ts": 1793559695085,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Bar Zentral",
+    "details": "Bar Zentral Seestadt",
+    "place": "Seestadt, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260816000007",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-08-16",
+    "amount": 3860
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "4927cf53-fb9e-4c6d-a965-242fe77c6774",
+  "ts": 1793559695086,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Bäckerei Musterbeck",
+    "details": "Bäckerei Musterbeck Musterdorf",
+    "place": "Musterdorf, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260816000008",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-08-16",
+    "amount": 550
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "4b84ce5d-1478-4e25-948c-8fbb16d980ee",
+  "ts": 1793559695087,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Streamingdienst Muster",
+    "details": "Streamingdienst Muster",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260817000009",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-08-17",
+    "amount": 1395
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "7d382836-55f5-4e64-bb80-d0d94a93ab38",
+  "ts": 1793559695088,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Sportshop Muster",
+    "details": "Sportshop Muster Musterhausen",
+    "place": "Musterhausen, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260819000010",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-08-19",
+    "amount": 8390
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "682741d9-213a-4b8a-b80c-c8949dd3202e",
+  "ts": 1793559695089,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Elektro Muster",
+    "details": "Elektro Muster Zürich",
+    "place": "Zürich, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260820000011",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-08-20",
+    "amount": 7160
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "fa0d1ed6-6c99-4a29-8582-0227eceee66b",
+  "ts": 1793559695090,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Kantine Campus",
+    "details": "Kantine Campus Beispielstadt",
+    "place": "Beispielstadt, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260821000012",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-08-21",
+    "amount": 1585
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "a3abe9f8-dd8e-4ada-9aed-ac828b5d7aa6",
+  "ts": 1793559695091,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Sportshop Muster",
+    "details": "Sportshop Muster Musterhausen",
+    "place": "Musterhausen, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260823000013",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-08-23",
+    "amount": 9150
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "10bdd2bf-358f-4c84-aa34-23b7390357e7",
+  "ts": 1793559695092,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Bar Zentral",
+    "details": "Bar Zentral Seestadt",
+    "place": "Seestadt, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260828000014",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-08-28",
+    "amount": 2635
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "e42d48ba-5ec6-45a7-992e-4d5c18c3e3c1",
+  "ts": 1793559695093,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Bahn Ticket",
+    "details": "Bahn Ticket Bern",
+    "place": "Bern, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260830000015",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-08-30",
+    "amount": 655
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "b213d5aa-25cd-40f4-b0b4-807868e5df59",
+  "ts": 1793559695094,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Zahlung an Kreditkarte",
+    "details": "Ihre Zahlung - Danke",
+    "place": "",
+    "status": "excluded",
+    "cat": null,
+    "sub": null,
+    "note": "Kartenzahlung (Transfer)",
+    "id": "privat:visa:TRX20260903000016",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-09-03",
+    "amount": -135633
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "ef2f763d-dd6d-4bf4-89fb-d8b65e4dcc2f",
+  "ts": 1793559695095,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Kantine Campus",
+    "details": "Kantine Campus Beispielstadt",
+    "place": "Beispielstadt, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260907000017",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-09-07",
+    "amount": 1275
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "19a0d376-c046-4152-a892-267bd9c1e53d",
+  "ts": 1793559695096,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Sportshop Muster",
+    "details": "Sportshop Muster Musterhausen",
+    "place": "Musterhausen, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260908000018",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-09-08",
+    "amount": 4660
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "5d7cdbef-9c69-4021-85f6-ceda68855bb4",
+  "ts": 1793559695097,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Sportshop Muster",
+    "details": "Sportshop Muster Musterhausen",
+    "place": "Musterhausen, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260909000019",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-09-09",
+    "amount": 5590
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "417657f1-ff5a-4c8e-9503-853bf5800a6f",
+  "ts": 1793559695098,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Quartierladen Sonne",
+    "details": "Quartierladen Sonne Beispielstadt",
+    "place": "Beispielstadt, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260912000020",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-09-12",
+    "amount": 2455
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "88f930fa-0de9-46a3-91d2-a9e6ff1fe49b",
+  "ts": 1793559695099,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "EUR",
+    "merchant": "Hotel Mar Azul",
+    "details": "Hotel Mar Azul Porto",
+    "place": "Porto, PRT",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260912000021",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-09-12",
+    "amount": 41000
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "32b3d94f-957e-43ba-be60-22561a386f14",
+  "ts": 1793559695100,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Bar Zentral",
+    "details": "Bar Zentral Seestadt",
+    "place": "Seestadt, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260913000022",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-09-13",
+    "amount": 940
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "d74a7139-1867-4154-94f8-e39910df5e0c",
+  "ts": 1793559695101,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Café Lago",
+    "details": "Café Lago Musterhausen",
+    "place": "Musterhausen, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260915000023",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-09-15",
+    "amount": 625
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "27787c21-8e80-4228-874a-c519617a3f3b",
+  "ts": 1793559695102,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Flugschule Alpenwind",
+    "details": "Flugschule Alpenwind Bergdorf",
+    "place": "Bergdorf, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260918000024",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-09-18",
+    "amount": 11600
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "8184dcb9-fd45-4c47-8e76-85a1d20662a0",
+  "ts": 1793559695103,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Sportshop Muster",
+    "details": "Sportshop Muster Musterhausen",
+    "place": "Musterhausen, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260919000025",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-09-19",
+    "amount": 5180
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "e80fbe49-1c98-4d58-8071-bb09a91d3cab",
+  "ts": 1793559695104,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Streamingdienst Muster",
+    "details": "Streamingdienst Muster",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260920000026",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-09-20",
+    "amount": 1395
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "3f760151-79af-48d6-97b4-bab5aabf48e0",
+  "ts": 1793559695105,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Flugschule Alpenwind",
+    "details": "Flugschule Alpenwind Bergdorf",
+    "place": "Bergdorf, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260920000027",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-09-20",
+    "amount": 21725
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "e713bdc7-c8a0-4560-8125-bd972f8087a9",
+  "ts": 1793559695106,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Kantine Campus",
+    "details": "Kantine Campus Beispielstadt",
+    "place": "Beispielstadt, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260920000028",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-09-20",
+    "amount": 1540
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "2f858029-fc04-4796-a56a-19de9f5c485f",
+  "ts": 1793559695107,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Frischmarkt",
+    "details": "Frischmarkt Musterdorf",
+    "place": "Musterdorf, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260923000029",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-09-23",
+    "amount": 4065
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "9b82175a-783f-44da-b9ba-9a236ad58bd0",
+  "ts": 1793559695108,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Streamingdienst Muster",
+    "details": "Streamingdienst Muster",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260925000030",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-09-25",
+    "amount": 1395
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "cee21ed1-8a0c-4244-a5b4-b0d5bc24350b",
+  "ts": 1793559695109,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Quartierladen Sonne",
+    "details": "Quartierladen Sonne Beispielstadt",
+    "place": "Beispielstadt, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260927000031",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-09-27",
+    "amount": 2280
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "cabce932-e836-4071-9102-aaabe613bcb2",
+  "ts": 1793559695110,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Streamingdienst Muster",
+    "details": "Streamingdienst Muster",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260928000032",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-09-28",
+    "amount": 1395
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "5d54cbc3-a1f4-4d94-bbfa-ee2f513276a7",
+  "ts": 1793559695111,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Café Lago",
+    "details": "Café Lago Musterhausen",
+    "place": "Musterhausen, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20260930000033",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-09-30",
+    "amount": 960
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "d689a6ac-4200-4ef3-a5d3-92bba3a6416a",
+  "ts": 1793559695112,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Café Lago",
+    "details": "Café Lago Musterhausen",
+    "place": "Musterhausen, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20261001000034",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-10-01",
+    "amount": 790
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "a099d73a-9b2b-44aa-bfbf-eb0693620076",
+  "ts": 1793559695113,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Frischmarkt",
+    "details": "Frischmarkt Musterdorf",
+    "place": "Musterdorf, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20261003000035",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-10-03",
+    "amount": 5960
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "9177ed7d-fbb0-4628-a38d-cc3e38cccff4",
+  "ts": 1793559695114,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Streamingdienst Muster",
+    "details": "Streamingdienst Muster",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20261003000036",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-10-03",
+    "amount": 1395
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "f184921c-45a2-4051-af0c-4d2a50e244b2",
+  "ts": 1793559695115,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Zahlung an Kreditkarte",
+    "details": "Ihre Zahlung - Danke",
+    "place": "",
+    "status": "excluded",
+    "cat": null,
+    "sub": null,
+    "note": "Kartenzahlung (Transfer)",
+    "id": "privat:visa:TRX20261003000037",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-10-03",
+    "amount": -89460
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "b813dbb4-e586-459e-84f3-f6f88da4e07f",
+  "ts": 1793559695116,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Sportshop Muster",
+    "details": "Sportshop Muster Musterhausen",
+    "place": "Musterhausen, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20261004000038",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-10-04",
+    "amount": 8505
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "e25a54ee-fc15-4492-9a86-4ef6c5e08f03",
+  "ts": 1793559695117,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Streamingdienst Muster",
+    "details": "Streamingdienst Muster",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20261005000039",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-10-05",
+    "amount": 1395
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "2d98e88e-1b85-40dc-a04d-d93bfb3a82e4",
+  "ts": 1793559695118,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Streamingdienst Muster",
+    "details": "Streamingdienst Muster",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20261006000040",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-10-06",
+    "amount": 1395
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "c7f36b56-2d8f-4633-8352-8650a999fb11",
+  "ts": 1793559695119,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Bahn Ticket",
+    "details": "Bahn Ticket Bern",
+    "place": "Bern, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20261009000041",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-10-09",
+    "amount": 2360
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "a9208342-bf8f-4293-992c-b98ecf59386e",
+  "ts": 1793559695120,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Elektro Muster",
+    "details": "Elektro Muster Zürich",
+    "place": "Zürich, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20261009000042",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-10-09",
+    "amount": 20995
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "af849e0d-4d7d-4920-96fd-f0c5d75734a4",
+  "ts": 1793559695121,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Flugschule Alpenwind",
+    "details": "Flugschule Alpenwind Bergdorf",
+    "place": "Bergdorf, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20261011000043",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-10-11",
+    "amount": 18570
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "1cc25a3a-eb02-4ce6-a0cf-476a5298b4b4",
+  "ts": 1793559695122,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Bahn Ticket",
+    "details": "Bahn Ticket Bern",
+    "place": "Bern, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20261017000044",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-10-17",
+    "amount": 1565
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "07f7734c-b998-44df-9388-5211f35199b3",
+  "ts": 1793559695123,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Flugschule Alpenwind",
+    "details": "Flugschule Alpenwind Bergdorf",
+    "place": "Bergdorf, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20261018000045",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-10-18",
+    "amount": 17670
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "1d29c157-8d7e-46d3-a2ac-39823f7657c6",
+  "ts": 1793559695124,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Quartierladen Sonne",
+    "details": "Quartierladen Sonne Beispielstadt",
+    "place": "Beispielstadt, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20261021000046",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-10-21",
+    "amount": 5955
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "b1e92164-fe42-47b1-9434-399fba3431d3",
+  "ts": 1793559695125,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Sportshop Muster",
+    "details": "Sportshop Muster Musterhausen",
+    "place": "Musterhausen, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20261022000047",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-10-22",
+    "amount": 10795
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "04f6eaa4-3a7a-448e-a11b-07343a5dcc7d",
+  "ts": 1793559695126,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Flugschule Alpenwind",
+    "details": "Flugschule Alpenwind Bergdorf",
+    "place": "Bergdorf, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20261023000048",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-10-23",
+    "amount": 11040
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "927174dc-d666-46ff-a6fd-f5aab38f20a7",
+  "ts": 1793559695127,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "CHF",
+    "merchant": "Bar Zentral",
+    "details": "Bar Zentral Seestadt",
+    "place": "Seestadt, CHE",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:TRX20261023000049",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-10-23",
+    "amount": 1990
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "9733ea99-c44c-4e5d-bd1f-85f14abe2858",
+  "ts": 1793559695128,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "import.log",
+  "data": {
+   "imp": {
+    "id": "0a2603be-34f7-41c8-a47b-917aaf7e9bb3",
+    "acc": "privat",
+    "name": "beispiel-bank-privat.csv",
+    "format": "bank"
+   },
+   "ids": [
+    "privat:bank:sqo7yksxu0",
+    "privat:bank:1500024393",
+    "privat:bank:1500008203",
+    "privat:bank:1sdknt8hjby",
+    "privat:bank:1500032562",
+    "privat:bank:22a5tzrk95i",
+    "privat:bank:1xrb14zxjud",
+    "privat:bank:aq9qrk9pbp",
+    "privat:bank:zm3l2vgpv0",
+    "privat:bank:1500048059",
+    "privat:bank:s6uqu1kye0",
+    "privat:bank:1500040196",
+    "privat:bank:1500016374",
+    "privat:bank:1500095731",
+    "privat:bank:1500071694",
+    "privat:bank:1500056391",
+    "privat:bank:1500079656",
+    "privat:bank:2wnu3i4ejd",
+    "privat:bank:27p248rjo5b",
+    "privat:bank:s343gqrwmt",
+    "privat:bank:1q4amzmfhmn",
+    "privat:bank:1500087577",
+    "privat:bank:4x31rn5ck9",
+    "privat:bank:mut5bx6vnd",
+    "privat:bank:1500063975",
+    "privat:bank:80c532i7oq",
+    "privat:bank:1500127544",
+    "privat:bank:1u0z7ijtgvp",
+    "privat:bank:1500143347",
+    "privat:bank:2c6fpebil6g",
+    "privat:bank:1p31vtihk7k",
+    "privat:bank:1uz60d71yjz",
+    "privat:bank:2kwmywwxxu",
+    "privat:bank:3s8e7sy0kh",
+    "privat:bank:1ob2xaklchl",
+    "privat:bank:1500134726",
+    "privat:bank:1500111722"
+   ]
+  },
+  "v": 1
+ },
+ {
+  "id": "f0b6b348-0a3f-435a-b3d8-f2cad22f329c",
+  "ts": 1793559695129,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Gemuesekorb.ch",
+    "details": "TWINT",
+    "place": "Musterdorf",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:sqo7yksxu0",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-08-30",
+    "amount": 2490
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "43e9d309-927b-462d-a14c-f7824567afd4",
+  "ts": 1793559695130,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Kartenherausgeber Muster AG",
+    "details": "Belastung: Lastschriftverfahren · BELASTUNG GEMAESS RECHNUNG KARTENKONTO 0000",
+    "place": "",
+    "status": "excluded",
+    "cat": null,
+    "sub": null,
+    "note": "Kreditkartenzahlung (Transfer)",
+    "id": "privat:bank:1500024393",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-08-29",
+    "amount": 127447
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "a6686e1e-161d-40a3-9848-ed2eede54957",
+  "ts": 1793559695131,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Muster Arbeitgeber AG",
+    "details": "Zahlungseingang · WAGE/SALARY 202608",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:1500008203",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-08-25",
+    "amount": -650000
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "cc1f0358-d707-44ff-84ca-3847818c8a0a",
+  "ts": 1793559695132,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Gemuesekorb.ch",
+    "details": "TWINT",
+    "place": "Musterdorf",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:1sdknt8hjby",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-08-23",
+    "amount": 2490
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "dd21e3ee-c8bc-4306-82a3-741f9e0d858e",
+  "ts": 1793559695133,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Mobilfunk Muster AG",
+    "details": "Belastung e-banking · Abo Monat",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:1500032562",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-08-19",
+    "amount": 3490
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "b15c6eeb-341a-4c65-8df4-8f9ea7b9bdcb",
+  "ts": 1793559695134,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Gemuesekorb.ch",
+    "details": "TWINT",
+    "place": "Musterdorf",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:22a5tzrk95i",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-08-18",
+    "amount": 2490
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "b258466c-d18a-433f-aae9-d2a7f2cf9cf7",
+  "ts": 1793559695135,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Lukas Beispiel",
+    "details": "TWINT erhalten · Drinks",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:1xrb14zxjud",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-08-17",
+    "amount": -1800
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "d7d69b4d-9a7e-408f-afe7-26c11d74e76f",
+  "ts": 1793559695136,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Bargeldbezug Bancomat Musterdorf",
+    "details": "",
+    "place": "",
+    "status": "tagged",
+    "cat": "k-bargeld",
+    "sub": "k-bargeld-1",
+    "note": "Bargeldbezug",
+    "id": "privat:bank:aq9qrk9pbp",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-08-15",
+    "amount": 20000
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "7f125662-6e8b-45d9-9f0d-f66675d553da",
+  "ts": 1793559695137,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Gemuesekorb.ch",
+    "details": "TWINT",
+    "place": "Musterdorf",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:zm3l2vgpv0",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-08-14",
+    "amount": 2490
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "dec8a399-8c8e-4865-a5fd-b71140cbd87f",
+  "ts": 1793559695138,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Steueramt Musterdorf",
+    "details": "Belastung e-banking · Steuern Raten",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:1500048059",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-08-13",
+    "amount": 85000
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "2e0b6041-a8f1-40ec-9b6b-407c4cee2893",
+  "ts": 1793559695139,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Tickets Muster AG",
+    "details": "TWINT",
+    "place": "Bern",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:s6uqu1kye0",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-08-07",
+    "amount": 5180
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "439e0c62-5bd9-4764-b3db-f71caf877eba",
+  "ts": 1793559695140,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Muster Krankenkasse AG",
+    "details": "Belastung e-banking",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:1500040196",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-08-05",
+    "amount": 38450
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "3abf8d34-3886-4d7c-9751-265f304e8200",
+  "ts": 1793559695141,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Gemeinschaftskonto Muster Beispiel",
+    "details": "Belastung Dauerauftrag · Haushalt",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:1500016374",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-08-01",
+    "amount": 150000
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "3898948c-451e-4c5d-ad77-a527fdc91862",
+  "ts": 1793559695142,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Vorsorgestiftung Beispiel",
+    "details": "Belastung e-banking",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:1500095731",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-09-30",
+    "amount": 70000
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "4860036b-aef0-437e-b2e8-311db8b37b2e",
+  "ts": 1793559695143,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Kartenherausgeber Muster AG",
+    "details": "Belastung: Lastschriftverfahren · BELASTUNG GEMAESS RECHNUNG KARTENKONTO 0000",
+    "place": "",
+    "status": "excluded",
+    "cat": null,
+    "sub": null,
+    "note": "Kreditkartenzahlung (Transfer)",
+    "id": "privat:bank:1500071694",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-09-29",
+    "amount": 98443
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "9637b787-969e-4056-9a9c-87edcaa774ad",
+  "ts": 1793559695144,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Muster Arbeitgeber AG",
+    "details": "Zahlungseingang · WAGE/SALARY 202609",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:1500056391",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-09-25",
+    "amount": -650000
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "fdcb02b9-c0d1-4cde-b0b4-640b374ee53a",
+  "ts": 1793559695145,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Mobilfunk Muster AG",
+    "details": "Belastung e-banking · Abo Monat",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:1500079656",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-09-19",
+    "amount": 3490
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "883d4b72-8a65-47de-8265-0e7cbbbe850f",
+  "ts": 1793559695146,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Lukas Beispiel",
+    "details": "TWINT erhalten · Drinks",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:2wnu3i4ejd",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-09-19",
+    "amount": -1800
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "b4e80f1f-d3c7-4fa3-8b58-326c1a623f5f",
+  "ts": 1793559695147,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Tickets Muster AG",
+    "details": "TWINT",
+    "place": "Bern",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:27p248rjo5b",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-09-18",
+    "amount": 5400
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "2a90017d-3733-4f84-bc1b-0377dd83c69c",
+  "ts": 1793559695148,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Parkplatz App",
+    "details": "TWINT",
+    "place": "Beispielstadt",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:s343gqrwmt",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-09-18",
+    "amount": 745
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "3fa2b17f-ea9a-4693-897a-1230c1b68f4f",
+  "ts": 1793559695149,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Bargeldbezug Bancomat Musterdorf",
+    "details": "",
+    "place": "",
+    "status": "tagged",
+    "cat": "k-bargeld",
+    "sub": "k-bargeld-1",
+    "note": "Bargeldbezug",
+    "id": "privat:bank:1q4amzmfhmn",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-09-15",
+    "amount": 20000
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "1be24c11-897a-4fc0-a264-3d298ef1f6f2",
+  "ts": 1793559695150,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Muster Krankenkasse AG",
+    "details": "Belastung e-banking",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:1500087577",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-09-05",
+    "amount": 38450
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "9b569e33-171e-429d-8ce0-5aae8f168a1a",
+  "ts": 1793559695151,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Tickets Muster AG",
+    "details": "TWINT",
+    "place": "Bern",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:4x31rn5ck9",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-09-04",
+    "amount": 4995
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "151a51e7-4261-4b4c-84e5-1ede2b4ff194",
+  "ts": 1793559695152,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Gemuesekorb.ch",
+    "details": "TWINT",
+    "place": "Musterdorf",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:mut5bx6vnd",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-09-02",
+    "amount": 2490
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "ea46d176-d33d-42ee-8c8b-f9e2f36a1be8",
+  "ts": 1793559695153,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Gemeinschaftskonto Muster Beispiel",
+    "details": "Belastung Dauerauftrag · Haushalt",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:1500063975",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-09-01",
+    "amount": 150000
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "6f5ef915-8c89-4a37-9ade-b5b0711a4ed2",
+  "ts": 1793559695154,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Tickets Muster AG",
+    "details": "TWINT",
+    "place": "Bern",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:80c532i7oq",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-09-01",
+    "amount": 1665
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "15b9d575-58f7-435a-891f-c1fcd8dec74e",
+  "ts": 1793559695155,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Mobilfunk Muster AG",
+    "details": "Belastung e-banking · Abo Monat",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:1500127544",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-10-19",
+    "amount": 3490
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "75045ae4-1783-4850-abf6-ef92a0680f4b",
+  "ts": 1793559695156,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Bargeldbezug Bancomat Musterdorf",
+    "details": "",
+    "place": "",
+    "status": "tagged",
+    "cat": "k-bargeld",
+    "sub": "k-bargeld-1",
+    "note": "Bargeldbezug",
+    "id": "privat:bank:1u0z7ijtgvp",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-10-15",
+    "amount": 20000
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "3544bf8d-47d0-410f-9abd-f8fb31deb9d9",
+  "ts": 1793559695157,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Steueramt Musterdorf",
+    "details": "Belastung e-banking · Steuern Raten",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:1500143347",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-10-13",
+    "amount": 85000
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "aa4fbb2d-b8f6-4cd8-8874-a395ca350316",
+  "ts": 1793559695158,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Quartierladen Sonne",
+    "details": "TWINT",
+    "place": "Beispielstadt",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:2c6fpebil6g",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-10-13",
+    "amount": 2115
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "483ca07d-4642-44f3-9ded-c5b0ff24fcd9",
+  "ts": 1793559695159,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Parkplatz App",
+    "details": "TWINT",
+    "place": "Beispielstadt",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:1p31vtihk7k",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-10-12",
+    "amount": 510
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "c21a0adb-6880-4a37-b508-9d3e6f764e97",
+  "ts": 1793559695160,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Gemuesekorb.ch",
+    "details": "TWINT",
+    "place": "Musterdorf",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:1uz60d71yjz",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-10-09",
+    "amount": 2490
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "afe36ef9-b501-4946-afe1-b1ff5db5d096",
+  "ts": 1793559695161,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Quartierladen Sonne",
+    "details": "TWINT",
+    "place": "Beispielstadt",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:2kwmywwxxu",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-10-09",
+    "amount": 1095
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "46893fca-13bb-494a-905d-4f741580bf37",
+  "ts": 1793559695162,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Lukas Beispiel",
+    "details": "TWINT erhalten · Drinks",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:3s8e7sy0kh",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-10-09",
+    "amount": -1800
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "0bd5854d-d93a-4f9e-829a-6436b6685fd0",
+  "ts": 1793559695163,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Quartierladen Sonne",
+    "details": "TWINT",
+    "place": "Beispielstadt",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:1ob2xaklchl",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-10-07",
+    "amount": 635
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "deafc692-1bb4-427b-bb2e-0f8774906693",
+  "ts": 1793559695164,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Muster Krankenkasse AG",
+    "details": "Belastung e-banking",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:1500134726",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-10-05",
+    "amount": 38450
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "2df3da29-fdc1-41f5-be33-be9faa1f9ad6",
+  "ts": 1793559695165,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Gemeinschaftskonto Muster Beispiel",
+    "details": "Belastung Dauerauftrag · Haushalt",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:bank:1500111722",
+    "acc": "privat",
+    "src": "bank",
+    "date": "2026-10-01",
+    "amount": 150000
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "1bbc0e5b-63c2-40a4-9fd8-8f2a31c26a2b",
+  "ts": 1793559695166,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "import.log",
+  "data": {
+   "imp": {
+    "id": "fa47f664-6395-4040-a89d-bc02fb4c5d56",
+    "acc": "gemeinsam",
+    "name": "beispiel-bank-gemeinsam.csv",
+    "format": "bank"
+   },
+   "ids": [
+    "gemeinsam:bank:2e7o6kd45ru",
+    "gemeinsam:bank:1ltc13oym08",
+    "gemeinsam:bank:1500032669",
+    "gemeinsam:bank:qty1ur91al",
+    "gemeinsam:bank:20l81ocgyv9",
+    "gemeinsam:bank:2elodoia4f",
+    "gemeinsam:bank:2cle0n703oq",
+    "gemeinsam:bank:stl4l1lexd",
+    "gemeinsam:bank:1500008060",
+    "gemeinsam:bank:1500016176",
+    "gemeinsam:bank:1500024443",
+    "gemeinsam:bank:21ucv1enl5i",
+    "gemeinsam:bank:14718xdwo9x",
+    "gemeinsam:bank:2erzguvbsz4",
+    "gemeinsam:bank:1500071700",
+    "gemeinsam:bank:20zp1rwczfm",
+    "gemeinsam:bank:1500064129",
+    "gemeinsam:bank:2dgkm9h0ucf",
+    "gemeinsam:bank:1i2q10ijtqa",
+    "gemeinsam:bank:9qrqhrmusp",
+    "gemeinsam:bank:1500040155",
+    "gemeinsam:bank:1500048377",
+    "gemeinsam:bank:1500055905",
+    "gemeinsam:bank:2jc2xy4lxe",
+    "gemeinsam:bank:gnr7v7rcez",
+    "gemeinsam:bank:1500103927",
+    "gemeinsam:bank:14jpcbazmvs",
+    "gemeinsam:bank:urtborvk9q",
+    "gemeinsam:bank:nrzgu8lhbp",
+    "gemeinsam:bank:1500111031",
+    "gemeinsam:bank:23zg2xxn3vt",
+    "gemeinsam:bank:1500079331",
+    "gemeinsam:bank:1500087740",
+    "gemeinsam:bank:1500095334",
+    "gemeinsam:bank:1bh85vr4xad"
+   ]
+  },
+  "v": 1
+ },
+ {
+  "id": "d59304fe-6da2-42fd-8c15-0bd8305bb0e5",
+  "ts": 1793559695167,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Frischmarkt",
+    "details": "TWINT",
+    "place": "Musterdorf",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:2e7o6kd45ru",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-08-25",
+    "amount": 7960
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "46f7423f-991b-4e58-9f8c-0416778a81d3",
+  "ts": 1793559695168,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Tankstelle Blitz",
+    "details": "TWINT",
+    "place": "Musterdorf",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:1ltc13oym08",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-08-25",
+    "amount": 7760
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "c6f48904-a20f-4ff0-b1c5-a4bdf756082f",
+  "ts": 1793559695169,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "EW Musterdorf",
+    "details": "Belastung e-banking · Strom",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:1500032669",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-08-14",
+    "amount": 12527
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "8d899939-8228-45eb-aef1-c94f8f314974",
+  "ts": 1793559695170,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Grossmarkt Nord",
+    "details": "TWINT",
+    "place": "Beispielstadt",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:qty1ur91al",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-08-14",
+    "amount": 11560
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "31af00b1-ded8-450a-b416-fe10d769d7cf",
+  "ts": 1793559695171,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Grossmarkt Nord",
+    "details": "TWINT",
+    "place": "Beispielstadt",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:20l81ocgyv9",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-08-13",
+    "amount": 6505
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "4be68611-0fd0-4b2f-ac4a-d89ad5508cdf",
+  "ts": 1793559695172,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Tankstelle Blitz",
+    "details": "TWINT",
+    "place": "Musterdorf",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:2elodoia4f",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-08-13",
+    "amount": 9005
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "0bbe662f-0a36-449a-ba85-f569d50acc71",
+  "ts": 1793559695173,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Frischmarkt",
+    "details": "TWINT",
+    "place": "Musterdorf",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:2cle0n703oq",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-08-12",
+    "amount": 15965
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "ce7242d2-aa32-41ff-acac-aa11a301a4a9",
+  "ts": 1793559695174,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Grossmarkt Nord",
+    "details": "TWINT",
+    "place": "Beispielstadt",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:stl4l1lexd",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-08-04",
+    "amount": 6580
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "47d149e5-5973-4ce5-8c68-c0be4aafce44",
+  "ts": 1793559695175,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Max Muster",
+    "details": "Zahlungseingang · HAUSHALT",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:1500008060",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-08-01",
+    "amount": -150000
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "0552a0b0-5c57-4409-9c2c-466fd561023f",
+  "ts": 1793559695176,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Anna Beispiel",
+    "details": "Zahlungseingang · HAUSHALT",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:1500016176",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-08-01",
+    "amount": -150000
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "99471e6f-71aa-42e5-bc13-7e783735fa41",
+  "ts": 1793559695177,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Muster Immobilien AG",
+    "details": "Belastung e-banking · Miete",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:1500024443",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-08-01",
+    "amount": 190000
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "756cd8ed-1bec-4d40-aa07-cf162eb21e49",
+  "ts": 1793559695178,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Frischmarkt",
+    "details": "TWINT",
+    "place": "Musterdorf",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:21ucv1enl5i",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-09-27",
+    "amount": 7920
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "5ed641ea-876e-462d-b4c4-d936b60bbe77",
+  "ts": 1793559695179,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Frischmarkt",
+    "details": "TWINT",
+    "place": "Musterdorf",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:14718xdwo9x",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-09-24",
+    "amount": 6835
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "e8791572-51c2-4b45-859a-18c0ca70ab92",
+  "ts": 1793559695180,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Frischmarkt",
+    "details": "TWINT",
+    "place": "Musterdorf",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:2erzguvbsz4",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-09-20",
+    "amount": 12950
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "3eaf7bf4-8f26-41a6-a919-c689be800bed",
+  "ts": 1793559695181,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Garage Muster AG",
+    "details": "Belastung e-banking · Service",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:1500071700",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-09-19",
+    "amount": 48000
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "fcdc2a07-d3fc-4e39-b62a-9985b2114c38",
+  "ts": 1793559695182,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Tankstelle Blitz",
+    "details": "TWINT",
+    "place": "Musterdorf",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:20zp1rwczfm",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-09-17",
+    "amount": 7620
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "e0da1d42-f5ba-479c-8d54-46c645dccc99",
+  "ts": 1793559695183,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "EW Musterdorf",
+    "details": "Belastung e-banking · Strom",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:1500064129",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-09-14",
+    "amount": 12562
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "d9eaa4d8-03f0-42c6-8fa1-800e8675a325",
+  "ts": 1793559695184,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Grossmarkt Nord",
+    "details": "TWINT",
+    "place": "Beispielstadt",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:2dgkm9h0ucf",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-09-14",
+    "amount": 8480
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "c8ddca65-c3eb-40d3-8496-5971cd848c73",
+  "ts": 1793559695185,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Moebelhaus Muster",
+    "details": "TWINT",
+    "place": "Beispielstadt",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:1i2q10ijtqa",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-09-12",
+    "amount": 5285
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "f33c7746-bb4a-4f5d-97f1-ca7f57e68024",
+  "ts": 1793559695186,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Frischmarkt",
+    "details": "TWINT",
+    "place": "Musterdorf",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:9qrqhrmusp",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-09-02",
+    "amount": 11455
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "5fbf5d56-5a80-4c41-a4a0-b2632ae4db1c",
+  "ts": 1793559695187,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Max Muster",
+    "details": "Zahlungseingang · HAUSHALT",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:1500040155",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-09-01",
+    "amount": -150000
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "df500030-b7e6-4726-8adb-087f91e46f8b",
+  "ts": 1793559695188,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Anna Beispiel",
+    "details": "Zahlungseingang · HAUSHALT",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:1500048377",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-09-01",
+    "amount": -150000
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "cd935780-fdd0-427e-b279-d323b7aa32da",
+  "ts": 1793559695189,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Muster Immobilien AG",
+    "details": "Belastung e-banking · Miete",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:1500055905",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-09-01",
+    "amount": 190000
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "1a54e5b1-cf7e-408d-974f-8ebe928c2485",
+  "ts": 1793559695190,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Moebelhaus Muster",
+    "details": "TWINT",
+    "place": "Beispielstadt",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:2jc2xy4lxe",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-10-22",
+    "amount": 17865
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "9672b15c-5a00-41fe-bf70-131e370fb70d",
+  "ts": 1793559695191,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Tankstelle Blitz",
+    "details": "TWINT",
+    "place": "Musterdorf",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:gnr7v7rcez",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-10-18",
+    "amount": 9255
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "fdd4b3d9-8ac9-435c-8fa8-434970f77960",
+  "ts": 1793559695192,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "EW Musterdorf",
+    "details": "Belastung e-banking · Strom",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:1500103927",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-10-14",
+    "amount": 10195
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "1ba34a59-cf38-4c4f-bb0c-5b81c5077d1a",
+  "ts": 1793559695193,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Tankstelle Blitz",
+    "details": "TWINT",
+    "place": "Musterdorf",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:14jpcbazmvs",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-10-13",
+    "amount": 8685
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "e76055a4-aa36-42fc-a5de-15e97ae03020",
+  "ts": 1793559695194,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Moebelhaus Muster",
+    "details": "TWINT",
+    "place": "Beispielstadt",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:urtborvk9q",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-10-12",
+    "amount": 3500
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "b1bb7fa2-3622-42d2-b64b-489316e97e3f",
+  "ts": 1793559695195,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Grossmarkt Nord",
+    "details": "TWINT",
+    "place": "Beispielstadt",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:nrzgu8lhbp",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-10-11",
+    "amount": 5540
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "de9284b3-256a-4493-abd0-49d2b873c084",
+  "ts": 1793559695196,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Serafe AG",
+    "details": "Belastung e-banking",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:1500111031",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-10-06",
+    "amount": 8375
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "91151d04-fc46-4357-ba71-1b54d34d61af",
+  "ts": 1793559695197,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Frischmarkt",
+    "details": "TWINT",
+    "place": "Musterdorf",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:23zg2xxn3vt",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-10-03",
+    "amount": 15400
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "21b3d3a1-b113-45ee-95f2-fc0a6e9e7658",
+  "ts": 1793559695198,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Max Muster",
+    "details": "Zahlungseingang · HAUSHALT",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:1500079331",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-10-01",
+    "amount": -150000
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "8c5f1aba-5b8e-4e4b-8de0-4d41f774518d",
+  "ts": 1793559695199,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Anna Beispiel",
+    "details": "Zahlungseingang · HAUSHALT",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:1500087740",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-10-01",
+    "amount": -150000
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "e9b442ae-e82b-4eeb-a07c-93a177a308d6",
+  "ts": 1793559695200,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Muster Immobilien AG",
+    "details": "Belastung e-banking · Miete",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:1500095334",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-10-01",
+    "amount": 190000
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "174d28b1-37c2-46d0-8656-82945844ee83",
+  "ts": 1793559695201,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Tankstelle Blitz",
+    "details": "TWINT",
+    "place": "Musterdorf",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "gemeinsam:bank:1bh85vr4xad",
+    "acc": "gemeinsam",
+    "src": "bank",
+    "date": "2026-10-01",
+    "amount": 7535
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "413f677a-c993-4f48-a3ae-7a9c5094eb18",
+  "ts": 1793559695202,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260802000001",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-hobby",
+    "sub": "k-hobby-2"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "71cf8766-873c-470b-9293-5366f519b8d1",
+  "ts": 1793559695203,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260819000010",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-hobby",
+    "sub": "k-hobby-2"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "6dd3a01e-20c1-4f06-9f19-0b4213fb747b",
+  "ts": 1793559695204,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260823000013",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-hobby",
+    "sub": "k-hobby-2"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "944a91fb-a621-4493-a677-a3e4077fa7bf",
+  "ts": 1793559695205,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260908000018",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-hobby",
+    "sub": "k-hobby-2"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "6841ee61-c1d5-4d44-92f9-e2ddd2f9f7bd",
+  "ts": 1793559695206,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260909000019",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-hobby",
+    "sub": "k-hobby-2"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "a758c86e-8593-4425-92e7-3a5baf1865d6",
+  "ts": 1793559695207,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260919000025",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-hobby",
+    "sub": "k-hobby-2"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "3d99f8a9-a88a-4b70-a997-a75531fc4def",
+  "ts": 1793559695208,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "privat|sportshop muster",
+   "rule": {
+    "cat": "k-hobby",
+    "sub": "k-hobby-2"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "e0dacc3e-6534-42c6-ac87-e4f0804db814",
+  "ts": 1793559695209,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260808000003",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-essen",
+    "sub": "k-essen-3"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "e08752c3-48c6-407c-871a-c402a538a1ec",
+  "ts": 1793559695210,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260816000007",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-essen",
+    "sub": "k-essen-3"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "ab512716-3ea3-446f-94a0-67d8e830e77e",
+  "ts": 1793559695211,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260828000014",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-essen",
+    "sub": "k-essen-3"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "77dad13b-cfdb-4000-9359-55af8f5555e8",
+  "ts": 1793559695212,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260913000022",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-essen",
+    "sub": "k-essen-3"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "f770eb99-d40b-4757-a090-7570246939db",
+  "ts": 1793559695213,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "privat|bar zentral",
+   "rule": {
+    "cat": "k-essen",
+    "sub": "k-essen-3"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "c7f2bb9b-6984-4f51-ac1e-6352474dea1d",
+  "ts": 1793559695214,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260810000004",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-persoenlich",
+    "sub": "k-persoenlich-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "2d67e82e-db63-494e-8e5d-1df09c03c243",
+  "ts": 1793559695215,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260810000005",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-persoenlich",
+    "sub": "k-persoenlich-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "be4234c8-0653-4901-8d37-4d495b539b26",
+  "ts": 1793559695216,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260820000011",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-persoenlich",
+    "sub": "k-persoenlich-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "e363f1e3-f858-498d-86e2-95eba12080ac",
+  "ts": 1793559695217,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "privat|elektro muster",
+   "rule": {
+    "cat": "k-persoenlich",
+    "sub": "k-persoenlich-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "55747823-18b7-4df8-b2cc-e317ed733d9a",
+  "ts": 1793559695218,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260815000006",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-essen",
+    "sub": "k-essen-4"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "417f5d50-134d-4b80-9318-8e957c8d26fc",
+  "ts": 1793559695219,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260816000008",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-essen",
+    "sub": "k-essen-4"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "8744c7bb-ca6c-49a0-9fd0-3ba3c85c28ae",
+  "ts": 1793559695220,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "privat|bäckerei musterbeck",
+   "rule": {
+    "cat": "k-essen",
+    "sub": "k-essen-4"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "f5befa5c-4961-4c51-ba0e-b4b5610210cd",
+  "ts": 1793559695221,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260817000009",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-abos",
+    "sub": "k-abos-2"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "0c5a36b2-dedf-4270-9b8d-c4a7b9ea928e",
+  "ts": 1793559695222,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260920000026",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-abos",
+    "sub": "k-abos-2"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "a187120b-6906-41be-8d19-066adb872939",
+  "ts": 1793559695223,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260925000030",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-abos",
+    "sub": "k-abos-2"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "a8e46c98-856f-4b58-bbc5-9ec99d0be4d4",
+  "ts": 1793559695224,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260928000032",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-abos",
+    "sub": "k-abos-2"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "59825527-deb0-4d74-8da9-fc500927ce00",
+  "ts": 1793559695225,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "privat|streamingdienst muster",
+   "rule": {
+    "cat": "k-abos",
+    "sub": "k-abos-2"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "e6ca58a2-2a9e-4f72-96d5-a1eead30991d",
+  "ts": 1793559695226,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260821000012",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-essen",
+    "sub": "k-essen-2"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "010fc416-6918-4c05-af49-b42a8830e0cf",
+  "ts": 1793559695227,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260907000017",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-essen",
+    "sub": "k-essen-2"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "9798351f-97c9-44e4-bd12-a9515c1c6caa",
+  "ts": 1793559695228,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260920000028",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-essen",
+    "sub": "k-essen-2"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "3187deab-86d0-46bf-8ca1-dc39fef20ab7",
+  "ts": 1793559695229,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "privat|kantine campus",
+   "rule": {
+    "cat": "k-essen",
+    "sub": "k-essen-2"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "985f6590-2955-49a6-b680-ead1c09ef112",
+  "ts": 1793559695230,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260830000015",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-freizeit",
+    "sub": "k-freizeit-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "bfb7380c-dc06-4ea6-970a-6d9e336ce6ae",
+  "ts": 1793559695231,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "privat|bahn ticket",
+   "rule": {
+    "cat": "k-freizeit",
+    "sub": "k-freizeit-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "a6cf895c-7763-4f70-b4ee-1d4d6770e621",
+  "ts": 1793559695232,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260912000020",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-einkaufen",
+    "sub": "k-einkaufen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "776cedd9-d58f-472a-bbca-069fcbc6629d",
+  "ts": 1793559695233,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260927000031",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-einkaufen",
+    "sub": "k-einkaufen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "97c068a1-8a17-4d98-988e-e82b2111e44b",
+  "ts": 1793559695234,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "privat|quartierladen sonne",
+   "rule": {
+    "cat": "k-einkaufen",
+    "sub": "k-einkaufen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "c4d31dd1-c673-4c21-81d6-30776d445d59",
+  "ts": 1793559695235,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260912000021",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-ferien",
+    "sub": "k-ferien-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "c40ca74d-038e-447b-800c-943b2665667b",
+  "ts": 1793559695236,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "privat|hotel mar azul",
+   "rule": {
+    "cat": "k-ferien",
+    "sub": "k-ferien-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "35fe2278-ee55-4db7-859c-be2b561ce379",
+  "ts": 1793559695237,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260915000023",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-essen",
+    "sub": "k-essen-4"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "b2828790-b378-400b-8825-49e87c0c3293",
+  "ts": 1793559695238,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260930000033",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-essen",
+    "sub": "k-essen-4"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "31b9d9f0-a6b3-4cba-bc76-66f893d9de48",
+  "ts": 1793559695239,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "privat|café lago",
+   "rule": {
+    "cat": "k-essen",
+    "sub": "k-essen-4"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "dcd87681-bea4-41a3-bdf1-09de37052e51",
+  "ts": 1793559695240,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260918000024",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-hobby",
+    "sub": "k-hobby-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "f769a49a-b4c3-4f14-991e-f4cda1070ac5",
+  "ts": 1793559695241,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260920000027",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-hobby",
+    "sub": "k-hobby-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "a79f695e-2ecd-4704-9161-3dea57206cfa",
+  "ts": 1793559695242,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "privat|flugschule alpenwind",
+   "rule": {
+    "cat": "k-hobby",
+    "sub": "k-hobby-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "981f1ac7-79c4-4c33-b4ee-71322963b704",
+  "ts": 1793559695243,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260923000029",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-einkaufen",
+    "sub": "k-einkaufen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "3f5936e7-28c4-482c-9cea-f0da87d8db3a",
+  "ts": 1793559695244,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "privat|frischmarkt",
+   "rule": {
+    "cat": "k-einkaufen",
+    "sub": "k-einkaufen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "a6e3fe84-9c7d-48c7-bfdd-d0e63909b4be",
+  "ts": 1793559695245,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:bank:sqo7yksxu0",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-einkaufen",
+    "sub": "k-einkaufen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "6403ef56-91f9-40bf-837f-3bea5b81393c",
+  "ts": 1793559695246,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:bank:1sdknt8hjby",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-einkaufen",
+    "sub": "k-einkaufen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "ebaf1aab-7459-42f1-b1d9-b0b01d8608f8",
+  "ts": 1793559695247,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:bank:22a5tzrk95i",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-einkaufen",
+    "sub": "k-einkaufen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "4a1e33a1-1adf-48f5-b0e5-e0429677716d",
+  "ts": 1793559695248,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:bank:zm3l2vgpv0",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-einkaufen",
+    "sub": "k-einkaufen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "c4241098-63ab-47ed-9506-d10e18e970d6",
+  "ts": 1793559695249,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:bank:mut5bx6vnd",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-einkaufen",
+    "sub": "k-einkaufen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "3e5b5413-c898-4deb-9663-1c5e2c313b24",
+  "ts": 1793559695250,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "privat|gemuesekorb ch",
+   "rule": {
+    "cat": "k-einkaufen",
+    "sub": "k-einkaufen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "b288ee5a-176f-4842-bb55-c656b6f6e4f9",
+  "ts": 1793559695251,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:bank:1500008203",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-einnahmen",
+    "sub": "k-einnahmen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "21d02751-3126-4b9b-a659-fdf7369dd6f1",
+  "ts": 1793559695252,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:bank:1500056391",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-einnahmen",
+    "sub": "k-einnahmen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "8d5d3869-b2f6-411c-8b5f-cdc383e22424",
+  "ts": 1793559695253,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "privat|muster arbeitgeber ag",
+   "rule": {
+    "cat": "k-einnahmen",
+    "sub": "k-einnahmen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "6f515b3c-44f4-44fd-91a6-33fb5b4ed333",
+  "ts": 1793559695254,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:bank:1500032562",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-abos",
+    "sub": "k-abos-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "7d5ae7fa-5e9f-4c95-b61f-09a9535d73fa",
+  "ts": 1793559695255,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:bank:1500079656",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-abos",
+    "sub": "k-abos-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "05474b4b-9bcf-4fe4-af72-8ced7d0ff348",
+  "ts": 1793559695256,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "privat|mobilfunk muster ag",
+   "rule": {
+    "cat": "k-abos",
+    "sub": "k-abos-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "f4af92f9-0953-46cd-83d9-afa96321c68c",
+  "ts": 1793559695257,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:bank:1xrb14zxjud",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-essen",
+    "sub": "k-essen-3"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "eef6e3a7-5990-4345-8462-45a3bc298e47",
+  "ts": 1793559695258,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:bank:2wnu3i4ejd",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-essen",
+    "sub": "k-essen-3"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "b5614001-3e5b-4b87-a8b4-f4d4db7deba3",
+  "ts": 1793559695259,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "privat|lukas beispiel",
+   "rule": {
+    "cat": "k-essen",
+    "sub": "k-essen-3"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "1c5693da-ece6-47bd-9b95-fd846477b5ed",
+  "ts": 1793559695260,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:bank:1500048059",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-steuern",
+    "sub": "k-steuern-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "e24c3282-74ad-4fbe-8124-91f689aa924d",
+  "ts": 1793559695261,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "privat|steueramt musterdorf",
+   "rule": {
+    "cat": "k-steuern",
+    "sub": "k-steuern-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "47098805-654e-4fcc-9e90-cf5f06ce71cc",
+  "ts": 1793559695262,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:bank:s6uqu1kye0",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-freizeit",
+    "sub": "k-freizeit-3"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "a0aa1376-be53-49a8-b247-593798c5a676",
+  "ts": 1793559695263,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:bank:27p248rjo5b",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-freizeit",
+    "sub": "k-freizeit-3"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "a2051c35-94e8-48ba-a6c4-d08e41f314b6",
+  "ts": 1793559695264,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:bank:4x31rn5ck9",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-freizeit",
+    "sub": "k-freizeit-3"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "7b89294f-10f4-4a0c-b234-90c18224f839",
+  "ts": 1793559695265,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:bank:80c532i7oq",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-freizeit",
+    "sub": "k-freizeit-3"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "82553159-075c-4ec8-94c2-25643a2bba56",
+  "ts": 1793559695266,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "privat|tickets muster ag",
+   "rule": {
+    "cat": "k-freizeit",
+    "sub": "k-freizeit-3"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "aa966ed3-50d4-46e0-acb3-29ba1d93c6cf",
+  "ts": 1793559695267,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:bank:1500040196",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-steuern",
+    "sub": "k-steuern-3"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "c3a63f1f-150e-4aac-9402-ad4bcbf5f869",
+  "ts": 1793559695268,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:bank:1500087577",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-steuern",
+    "sub": "k-steuern-3"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "e1eb14bb-0745-4060-9048-54ae2383cca3",
+  "ts": 1793559695269,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "privat|muster krankenkasse ag",
+   "rule": {
+    "cat": "k-steuern",
+    "sub": "k-steuern-3"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "812e1b0e-dafd-4190-98cc-3cec76022e29",
+  "ts": 1793559695270,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:bank:1500016374",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-haushalt",
+    "sub": "k-haushalt-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "c1fda972-c425-442f-8634-5fcfdc7105db",
+  "ts": 1793559695271,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:bank:1500063975",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-haushalt",
+    "sub": "k-haushalt-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "f0591acc-ceb7-466e-bcbf-550038ee6e50",
+  "ts": 1793559695272,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "privat|gemeinschaftskonto muster beispiel",
+   "rule": {
+    "cat": "k-haushalt",
+    "sub": "k-haushalt-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "4dfba5d5-d016-499b-bcaa-539650478154",
+  "ts": 1793559695273,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:bank:1500095731",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-sparen",
+    "sub": "k-sparen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "aa8349ba-4ab6-4278-8df4-06782f879d4d",
+  "ts": 1793559695274,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "privat|vorsorgestiftung beispiel",
+   "rule": {
+    "cat": "k-sparen",
+    "sub": "k-sparen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "03273f6f-b8a7-4eb3-a26d-f05767167ad4",
+  "ts": 1793559695275,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:bank:s343gqrwmt",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-auto",
+    "sub": "k-auto-3"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "8a3d2add-2de5-4d6c-95c4-36fec0956917",
+  "ts": 1793559695276,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "privat|parkplatz app",
+   "rule": {
+    "cat": "k-auto",
+    "sub": "k-auto-3"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "2fd91498-4757-4afd-93bd-c917e536e2d8",
+  "ts": 1793559695277,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "gemeinsam:bank:2e7o6kd45ru",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-einkaufen",
+    "sub": "k-einkaufen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "b06dae5a-ba8d-4199-8dfd-dfebd107d4eb",
+  "ts": 1793559695278,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "gemeinsam:bank:2cle0n703oq",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-einkaufen",
+    "sub": "k-einkaufen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "5a91fc4c-4a25-4264-a4cd-c20444ce6a4c",
+  "ts": 1793559695279,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "gemeinsam:bank:21ucv1enl5i",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-einkaufen",
+    "sub": "k-einkaufen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "80be077d-0fe0-4c2f-bcfb-718160b39878",
+  "ts": 1793559695280,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "gemeinsam:bank:14718xdwo9x",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-einkaufen",
+    "sub": "k-einkaufen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "94cb4971-5ae3-4c74-856f-fc4cc5f15db4",
+  "ts": 1793559695281,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "gemeinsam:bank:2erzguvbsz4",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-einkaufen",
+    "sub": "k-einkaufen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "d8497399-2ee3-4e9b-982b-06d2478b64b0",
+  "ts": 1793559695282,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "gemeinsam:bank:9qrqhrmusp",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-einkaufen",
+    "sub": "k-einkaufen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "a915ebd6-0edb-4f11-bc15-39e4fa43d6cd",
+  "ts": 1793559695283,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "gemeinsam|frischmarkt",
+   "rule": {
+    "cat": "k-einkaufen",
+    "sub": "k-einkaufen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "31a865dc-92c1-4e9b-b1f4-97ff86a0f34e",
+  "ts": 1793559695284,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "gemeinsam:bank:1ltc13oym08",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-auto",
+    "sub": "k-auto-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "cd4bf5cc-ff8a-475f-8f32-6c2d5f12edba",
+  "ts": 1793559695285,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "gemeinsam:bank:2elodoia4f",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-auto",
+    "sub": "k-auto-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "58fbf188-f6ae-49d1-87fb-24bb3638b346",
+  "ts": 1793559695286,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "gemeinsam:bank:20zp1rwczfm",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-auto",
+    "sub": "k-auto-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "1de3404a-b6bc-42fe-af4c-bc14a59885a5",
+  "ts": 1793559695287,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "gemeinsam|tankstelle blitz",
+   "rule": {
+    "cat": "k-auto",
+    "sub": "k-auto-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "f672b98f-0639-40e8-8395-f05eb8548a72",
+  "ts": 1793559695288,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "gemeinsam:bank:1500032669",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-wohnen",
+    "sub": "k-wohnen-2"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "29fff489-c333-48ae-a193-9bf5e31e43e8",
+  "ts": 1793559695289,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "gemeinsam:bank:1500064129",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-wohnen",
+    "sub": "k-wohnen-2"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "f1590829-b688-4f3d-9a9b-0eebc037d1d2",
+  "ts": 1793559695290,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "gemeinsam|ew musterdorf",
+   "rule": {
+    "cat": "k-wohnen",
+    "sub": "k-wohnen-2"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "a16925f3-8632-4d6c-9edb-7b12e72da80d",
+  "ts": 1793559695291,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "gemeinsam:bank:qty1ur91al",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-einkaufen",
+    "sub": "k-einkaufen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "a570a5d0-b0ea-4343-8a7a-d1580489674e",
+  "ts": 1793559695292,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "gemeinsam:bank:20l81ocgyv9",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-einkaufen",
+    "sub": "k-einkaufen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "546863b4-490e-4495-906d-71dc7e72b8ae",
+  "ts": 1793559695293,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "gemeinsam:bank:stl4l1lexd",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-einkaufen",
+    "sub": "k-einkaufen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "fddcec2d-c68c-4c3b-bd5b-55eff1fede76",
+  "ts": 1793559695294,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "gemeinsam:bank:2dgkm9h0ucf",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-einkaufen",
+    "sub": "k-einkaufen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "f2597317-141c-43d5-b923-f0a341f5a3c1",
+  "ts": 1793559695295,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "gemeinsam|grossmarkt nord",
+   "rule": {
+    "cat": "k-einkaufen",
+    "sub": "k-einkaufen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "4007a36e-3498-4673-a33b-b9384881282f",
+  "ts": 1793559695296,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "gemeinsam:bank:1500008060",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-einzahlungen",
+    "sub": "k-einzahlungen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "7ac41285-7582-4a88-a2b7-29dcaff19dd6",
+  "ts": 1793559695297,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "gemeinsam:bank:1500040155",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-einzahlungen",
+    "sub": "k-einzahlungen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "707aa3a9-ee98-4ae0-9273-714c479366e7",
+  "ts": 1793559695298,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "gemeinsam|max muster",
+   "rule": {
+    "cat": "k-einzahlungen",
+    "sub": "k-einzahlungen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "23c64d84-2079-443d-ac45-603782362810",
+  "ts": 1793559695299,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "gemeinsam:bank:1500016176",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-einzahlungen",
+    "sub": "k-einzahlungen-2"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "1072bb3c-0add-4625-a193-fc5e37ee3e7f",
+  "ts": 1793559695300,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "gemeinsam:bank:1500048377",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-einzahlungen",
+    "sub": "k-einzahlungen-2"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "232c8b1a-e161-480a-aa97-859bf981d710",
+  "ts": 1793559695301,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "gemeinsam|anna beispiel",
+   "rule": {
+    "cat": "k-einzahlungen",
+    "sub": "k-einzahlungen-2"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "89df0d19-81ac-4a67-a4d1-93eb2f1b36e0",
+  "ts": 1793559695302,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "gemeinsam:bank:1500024443",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-wohnen",
+    "sub": "k-wohnen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "d7f2a9ba-a1b3-464d-b1b4-be8c37d845ff",
+  "ts": 1793559695303,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "gemeinsam:bank:1500055905",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-wohnen",
+    "sub": "k-wohnen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "addb3f05-3dd3-4202-9406-af9d0e2383cb",
+  "ts": 1793559695304,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "gemeinsam|muster immobilien ag",
+   "rule": {
+    "cat": "k-wohnen",
+    "sub": "k-wohnen-1"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "fafa9ccc-f585-4c9b-b429-fc307acab0b5",
+  "ts": 1793559695305,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "gemeinsam:bank:1500071700",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-auto",
+    "sub": "k-auto-2"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "361f1975-a89d-42f7-bca8-77358c53bcd8",
+  "ts": 1793559695306,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "gemeinsam|garage muster ag",
+   "rule": {
+    "cat": "k-auto",
+    "sub": "k-auto-2"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "2ac76e2c-8509-48c9-bdc2-3a758e16cc4d",
+  "ts": 1793559695307,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "gemeinsam:bank:1i2q10ijtqa",
+   "patch": {
+    "status": "tagged",
+    "cat": "k-wohnen",
+    "sub": "k-wohnen-3"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "df29d67e-b69f-4fe2-ba2f-ed3fe6cb1abb",
+  "ts": 1793559695308,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "gemeinsam|moebelhaus muster",
+   "rule": {
+    "cat": "k-wohnen",
+    "sub": "k-wohnen-3"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "7548056e-2559-450c-ae45-c2e86cf2b3bc",
+  "ts": 1793559695309,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Wochenmarkt",
+    "details": "",
+    "place": "",
+    "status": "tagged",
+    "cat": "k-einkaufen",
+    "sub": "k-einkaufen-1",
+    "note": "",
+    "id": "manual:2d44369a-b056-433d-ba83-7e0bc28bc3f9",
+    "acc": "privat",
+    "src": "manual",
+    "date": "2026-09-20",
+    "amount": 2450
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "236d2269-2b07-4d10-9ea7-ec99053dab32",
+  "ts": 1793559695310,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Tankstelle (Anna)",
+    "details": "",
+    "place": "",
+    "status": "tagged",
+    "cat": "k-auto",
+    "sub": "k-auto-1",
+    "note": "",
+    "id": "manual:ebd19565-5d3e-4893-b187-e73b22811fae",
+    "acc": "gemeinsam",
+    "src": "manual",
+    "date": "2026-09-17",
+    "amount": 7800
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "053a9bb0-4452-49e1-89e1-4b031e0ae9c0",
+  "ts": 1793559695311,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20261001000034",
+   "patch": {
+    "status": "excluded",
+    "note": "Manuell ignoriert"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "6c72b092-d3d3-456d-a8d4-e19befc2e628",
+  "ts": 1793559695312,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "cat.patch",
+  "data": {
+   "id": "k-hobby",
+   "patch": {
+    "name": "Hobbys",
+    "color": "#6c71c4"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "a378e640-5bf1-45c7-a07a-3225d625a7d9",
+  "ts": 1793559695313,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "cat.patch",
+  "data": {
+   "id": "k-ferien",
+   "patch": {
+    "order": 20
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "1af72531-5402-4674-b174-2f0e7c23f8f6",
+  "ts": 1793559695314,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "cat.patch",
+  "data": {
+   "id": "k-essen",
+   "patch": {
+    "order": 30
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "f52049e1-ea24-40d2-b3d0-d82ddcac10e1",
+  "ts": 1793559695315,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "cat.create",
+  "data": {
+   "cat": {
+    "scope": "beide",
+    "kind": "expense",
+    "color": "#268bd2",
+    "name": "Kinder",
+    "id": "c-0541396e",
+    "order": 170,
+    "subs": []
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "684b1396-1f3e-4071-a0f4-84e6fc750fba",
+  "ts": 1793559695316,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "sub.create",
+  "data": {
+   "cat": "c-0541396e",
+   "sub": {
+    "id": "c-0541396e-9d331886",
+    "name": "Kleider"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "01729e37-8f01-4666-8c96-4aa179a7e20d",
+  "ts": 1793559695317,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "sub.patch",
+  "data": {
+   "cat": "c-0541396e",
+   "id": "c-0541396e-9d331886",
+   "patch": {
+    "name": "Kleidung"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "562de575-7ab2-4a84-b617-302afb1230b9",
+  "ts": 1793559695318,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260815000006",
+   "patch": {
+    "sub": null
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "7c3981a1-11c9-4efb-b423-6adc14e56475",
+  "ts": 1793559695319,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260816000008",
+   "patch": {
+    "sub": null
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "bf8a947c-b425-4fb6-ab59-74af7b4c0e1b",
+  "ts": 1793559695320,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260915000023",
+   "patch": {
+    "sub": null
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "1df855c7-1bda-4c80-a5dc-f9539da15eec",
+  "ts": 1793559695321,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260930000033",
+   "patch": {
+    "sub": null
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "e24fe6aa-9e00-478d-9c04-be9413f92f3c",
+  "ts": 1793559695322,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "sub.patch",
+  "data": {
+   "cat": "k-essen",
+   "id": "k-essen-4",
+   "patch": {
+    "deleted": true
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "8d34ec83-f080-451f-8b7b-cdf9136d9fbf",
+  "ts": 1793559695323,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "acc.patch",
+  "data": {
+   "id": "gemeinsam",
+   "patch": {
+    "manualLabel": "Anna"
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "ebfc35d4-33cb-46ff-9804-7e19f0f2d3f7",
+  "ts": 1793559695324,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Kiosk",
+    "details": "",
+    "place": "",
+    "status": "tagged",
+    "cat": "k-essen",
+    "sub": null,
+    "note": "",
+    "id": "manual:532aa330-78f2-4711-a2f6-302383d20be3",
+    "acc": "privat",
+    "src": "manual",
+    "date": "2026-10-20",
+    "amount": 990
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "62e41836-adfe-43d9-8363-9a31766e4914",
+  "ts": 1793559695325,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.trash",
+  "data": {
+   "ids": [
+    "manual:532aa330-78f2-4711-a2f6-302383d20be3"
+   ]
+  },
+  "v": 1
+ },
+ {
+  "id": "07330076-0c75-4708-8893-a7671abf5c22",
+  "ts": 1793559695326,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "privat|test",
+   "rule": {
+    "cat": "k-essen",
+    "sub": null
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "43854ea5-4664-4a48-b8aa-8f7aa04fb6e2",
+  "ts": 1793559695327,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "rule.set",
+  "data": {
+   "key": "privat|test",
+   "rule": null
+  },
+  "v": 1
+ },
+ {
+  "id": "a2a3803b-b0a7-48df-89ee-b68366d8916f",
+  "ts": 1793559695328,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "acc.patch",
+  "data": {
+   "id": "privat",
+   "patch": {
+    "cardWords": [
+     "Musterkarten AG"
+    ],
+    "cards": [
+     "541234XXXXXX9876"
+    ]
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "f2ef799e-d1d6-4f97-b37a-36aef9638c46",
+  "ts": 1793559695329,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "import.log",
+  "data": {
+   "imp": {
+    "id": "28a695ec-33d4-470e-a0f3-560b6738733a",
+    "acc": "privat",
+    "name": "falsch.csv",
+    "format": "visa"
+   },
+   "ids": [
+    "privat:visa:FREEZE1",
+    "privat:visa:FREEZE2"
+   ]
+  },
+  "v": 1
+ },
+ {
+  "id": "d61fa750-b24e-4ebd-8886-0c436b3140cc",
+  "ts": 1793559695330,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Falsch importiert",
+    "details": "",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:FREEZE1",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-10-21",
+    "amount": 1234
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "92e8718c-9409-4eaa-9822-d2d174ce0b7a",
+  "ts": 1793559695331,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.create",
+  "data": {
+   "tx": {
+    "cur": "CHF",
+    "origCur": "",
+    "merchant": "Falsch importiert",
+    "details": "",
+    "place": "",
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "note": "",
+    "id": "privat:visa:FREEZE2",
+    "acc": "privat",
+    "src": "visa",
+    "date": "2026-10-22",
+    "amount": 555
+   }
+  },
+  "v": 1
+ },
+ {
+  "id": "b493516d-a582-4ca7-a8fc-efb4029b3772",
+  "ts": 1793559695332,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.remove",
+  "data": {
+   "ids": [
+    "privat:visa:FREEZE1",
+    "privat:visa:FREEZE2"
+   ],
+   "imp": "28a695ec-33d4-470e-a0f3-560b6738733a"
+  },
+  "v": 1
+ },
+ {
+  "id": "fded1da5-20f5-417e-bd99-ae0ddf290e75",
+  "ts": 1793559695333,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.trash",
+  "data": {
+   "ids": [
+    "privat:visa:TRX20260802000001"
+   ]
+  },
+  "v": 1
+ },
+ {
+  "id": "f5625b93-c0a8-4010-96fc-5f239a0cbd33",
+  "ts": 1793559695334,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.restore",
+  "data": {
+   "ids": [
+    "privat:visa:TRX20260802000001"
+   ]
+  },
+  "v": 1
+ },
+ {
+  "id": "4dce61b8-de55-4107-a8e4-2d420a0f5ae0",
+  "ts": 1793559695335,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.trash",
+  "data": {
+   "ids": [
+    "privat:visa:TRX20260808000003"
+   ]
+  },
+  "v": 1
+ },
+ {
+  "id": "4e0b641c-7bcc-45ed-96ca-d65797635940",
+  "ts": 1793559695336,
+  "device": "b20ca66c-c248-4bda-bfca-0442ad874923",
+  "type": "tx.patch",
+  "data": {
+   "id": "privat:visa:TRX20260810000004",
+   "patch": {
+    "status": "open",
+    "cat": null,
+    "sub": null,
+    "share": null
+   }
+  },
+  "v": 1
+ }
+]

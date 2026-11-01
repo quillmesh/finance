@@ -131,3 +131,23 @@ describe('KAT-04/KAT-05: Unterkategorien ohne Konflikte', () => {
     expect(() => S.tagTx(['a'], 'k-einkaufen', 'k-einkaufen-2')).toThrow();
   });
 });
+
+describe('KAT-06: Unterkategorie löschen und betroffene Buchungen neu taggen', () => {
+  test('neu taggen: betroffene Buchungen wieder offen (Notiz bleibt), andere unberührt', () => {
+    S.importTx([tx({ id: 'a', note: 'Notiz' }), tx({ id: 'b' }), tx({ id: 'c' }), tx({ id: 'd' })]);
+    S.tagTx(['a', 'b'], 'k-einkaufen', 'k-einkaufen-2', null, 5000);
+    S.tagTx(['c'], 'k-einkaufen', 'k-einkaufen-1');
+    S.trashTx(['b']);
+    expect(S.deleteSub('k-einkaufen', 'k-einkaufen-2', true)).toBe(1);
+    expect(S.state.tx.get('a')).toMatchObject({ status: 'open', cat: null, sub: null, share: null, note: 'Notiz' });
+    expect(S.state.tx.get('c')).toMatchObject({ status: 'tagged', sub: 'k-einkaufen-1' });
+    expect(openTx(S.state).map((t) => t.id).sort()).toEqual(['a', 'd']);
+    expect(validateState(S.state)).toEqual([]);
+  });
+  test('ohne Unterkategorie lassen: Kategorie bleibt', () => {
+    S.importTx([tx({ id: 'a' })]);
+    S.tagTx(['a'], 'k-einkaufen', 'k-einkaufen-2');
+    expect(S.deleteSub('k-einkaufen', 'k-einkaufen-2')).toBe(1);
+    expect(S.state.tx.get('a')).toMatchObject({ status: 'tagged', cat: 'k-einkaufen', sub: null });
+  });
+});

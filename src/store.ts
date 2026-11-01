@@ -397,13 +397,18 @@ export function addSub(catId: string, name: string): string {
 }
 export function renameSub(catId: string, id: string, name: string) { emit('sub.patch', { cat: catId, id, patch: { name } }); }
 
-/** Unterkategorie entfernen: Buchungen bleiben in der Kategorie, ohne Unterkategorie */
-export function deleteSub(catId: string, id: string) {
-  const affected = [...state.tx.values()].filter((t) => t.sub === id);
+/**
+ * Unterkategorie entfernen. Standard: Buchungen bleiben in der Kategorie, ohne Unterkategorie.
+ * `retag` (KAT-06): betroffene Buchungen werden wieder ungetaggt und erscheinen unter «Taggen»; die Notiz bleibt.
+ * Gibt die Anzahl betroffener Buchungen zurück.
+ */
+export function deleteSub(catId: string, id: string, retag = false): number {
+  const affected = [...state.tx.values()].filter((t) => t.cat === catId && t.sub === id && !t.deleted);
+  const patch = retag ? { status: 'open' as const, cat: null, sub: null, share: null } : { sub: null };
   emitMany([
-    ...affected.map((t) => ({ type: 'tx.patch' as const, data: { id: t.id, patch: { sub: null } } })),
+    ...affected.map((t) => ({ type: 'tx.patch' as const, data: { id: t.id, patch } })),
     { type: 'sub.patch', data: { cat: catId, id, patch: { deleted: true } } },
-  ]);
+  ]);  return affected.length;
 }
 
 export function patchAccount(id: string, patch: { name?: string; manualLabel?: string; cardWords?: string[]; cards?: string[] }) { emit('acc.patch', { id, patch }); }

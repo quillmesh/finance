@@ -7,6 +7,7 @@ import { writeFileSync } from 'node:fs';
 import * as S from '../src/store';
 import * as db from '../src/db';
 import { seedSample } from '../src/seed';
+import { newTx } from '../src/parse/common';
 import { snapshot } from '../tests/unit/snapshot';
 
 const version = process.argv[2];
@@ -28,6 +29,18 @@ const m = S.addManual({ acc: 'privat', date: '2026-10-20', amount: 990, merchant
 S.deleteManual(m);
 S.setRule('privat|test', { cat: 'k-essen', sub: null });
 S.setRule('privat|test', null);
+// ab 0.4.0–0.7.0: Konto-Stichwörter und Karten, Import mit Protokoll und Löschen, Papierkorb, Untaggen
+S.patchAccount('privat', { cardWords: ['Musterkarten AG'], cards: ['541234XXXXXX9876'] });
+const imp = S.importTx([
+  newTx({ id: 'privat:visa:FREEZE1', acc: 'privat', src: 'visa', date: '2026-10-21', amount: 1234, merchant: 'Falsch importiert' }),
+  newTx({ id: 'privat:visa:FREEZE2', acc: 'privat', src: 'visa', date: '2026-10-22', amount: 555, merchant: 'Falsch importiert' }),
+], { name: 'falsch.csv', format: 'visa' });
+S.removeImport(imp.importId!);
+const tagged = [...S.state.tx.values()].filter((t) => t.status === 'tagged' && !t.deleted && t.src !== 'manual');
+S.trashTx([tagged[0].id]);
+S.restoreTx([tagged[0].id]);
+S.trashTx([tagged[1].id]);
+S.untagTx([tagged[2].id]);
 await S.whenSaved();
 const events = await db.allEvents();
 writeFileSync(`tests/unit/alte-daten/v${version}.json`, JSON.stringify(events, null, 1) + '\n');

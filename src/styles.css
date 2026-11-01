@@ -252,3 +252,9 @@ button.wide { width: 100%; padding: 12px; }
 .donut path.click { cursor: pointer; }
 .donut path.click:hover { filter: brightness(1.08); }
 .swipe.one.open .txrow { transform: translateX(-88px); }
+
+/* ---------- 0.8.0: Auswahl beim Löschen einer Unterkategorie ---------- */
+.choices { display: grid; gap: 8px; margin-top: 12px; }
+.choices button { display: grid; gap: 2px; text-align: left; padding: 10px 14px; }
+.choices button .small { font-weight: 400; opacity: .85; }
+.choices button.ghost { text-align: center; }

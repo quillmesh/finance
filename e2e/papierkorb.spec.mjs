@@ -120,3 +120,27 @@ test.describe('Handy', () => {
     await expect(page.locator('#dlg[open]')).toHaveCount(0);
   });
 });
+
+test.describe('Kategorien', () => {
+  test.use(COMPUTER);
+  test('KAT-06: Unterkategorie löschen → neu taggen oder ohne Unterkategorie lassen', async ({ page }) => {
+    await vorbereiten(page); // Pizzeria → Freizeit › Restaurant, Café → Freizeit › Kultur
+    await tab(page, 'settings');
+    const sub = (name) => page.locator('.catedit[data-cat=k-freizeit] .subtag', { has: page.locator(`input[value="${name}"]`) });
+    await sub('Restaurant').locator('[data-act=delSub]').click();
+    await expect(page.locator('#dlg[open]')).toContainText('1 Buchung hat diese Unterkategorie');
+    await page.click('#subCancel');
+    await expect(sub('Restaurant')).toHaveCount(1);
+    await sub('Restaurant').locator('[data-act=delSub]').click();
+    await page.click('#subRetag');
+    await expect(page.locator('#toast')).toContainText('1 Buchungen warten unter «Taggen»');
+    await expect(page.locator('#txcard .mer')).toHaveText('Pizzeria Sole');
+    await tab(page, 'settings');
+    await expect(sub('Restaurant')).toHaveCount(0);
+    await sub('Kultur').locator('[data-act=delSub]').click();
+    await page.click('#subKeep');
+    await tab(page, 'list');
+    await expect(page.locator('#txlist .txrow', { hasText: 'Café Lago' })).toContainText('Freizeit & Ausflüge');
+    await expect(page.locator('#txlist .txrow', { hasText: 'Café Lago' })).not.toContainText('Kultur');
+  });
+});
