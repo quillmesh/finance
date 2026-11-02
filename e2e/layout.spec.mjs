@@ -227,3 +227,27 @@ for (const [geraet, opts] of [['Handy', HANDY], ['Computer', COMPUTER]]) {
     });
   });
 }
+
+test.describe('Langer Vorschlag', () => {
+  for (const [geraet, opts] of [['Handy 360', GERAETE['Handy 360']], ['Handy 390', HANDY]]) {
+    test.describe(geraet, () => {
+      test.use(opts);
+      test('GUI-01: langer Vorschlag wird nicht abgeschnitten', async ({ page }) => {
+        page.touch = true;
+        await gehe(page, '');
+        await importiere(page, 'privat', datei('b.csv', bankCSV([[3, 'Dauerauftrag Muster', '500.00', null], [4, 'Dauerauftrag Muster', '500.00', null]])));
+        await tab(page, 'tag');
+        await drueck(page, '[data-act=share][data-v="5000"]');
+        await drueck(page, '#catgrid [data-act=pickCat][data-id=k-haushalt]');
+        await drueck(page, '#catgrid [data-act=pickSub][data-id=k-haushalt-1]');
+        await expect(page.locator('[data-act=accept]')).toContainText('Gemeinsamer Haushalt › Einzahlung gemeinsames Konto · 50 %');
+        await pruefe(page, 'langer Vorschlag');
+        // Hinweis mit beiden Beträgen ganz sichtbar
+        await drueck(page, '[data-act=share][data-v="6667"]');
+        await expect(page.locator('.shareline')).toContainText('Gemeinsam CHF 500.00');
+        expect(await page.evaluate(() => [...document.querySelectorAll('.shareline .sharehint, .suggestslot .suggest')]
+          .filter((e) => e.scrollWidth > e.clientWidth + 1 || e.scrollHeight > e.clientHeight + 1).map((e) => e.textContent)), 'abgeschnitten').toEqual([]);
+      });
+    });
+  }
+});

@@ -1,5 +1,9 @@
 # Release-Notes
 
+## 0.10.1
+- Taggen auf dem Handy: Ein langer Vorschlag (z. B. «Gemeinsamer Haushalt › Einzahlung gemeinsames Konto · 50 %») bricht auf zwei Zeilen um statt abgeschnitten zu werden.
+- Der Hinweis beim Aufteilen zeigt auf schmalen Handys beide Beträge ganz (bisher fehlte «Gemeinsam CHF …» teilweise).
+
 ## 0.10.0
 - Taggen: Die Reihenfolge der Kategorien lässt sich direkt beim Taggen ändern. Der kleine Knopf ⇅ unten rechts startet das Ordnen; zwei Kategorien antippen, sie tauschen die Plätze. «Fertig» beendet es. Auch ausgegraute Kategorien lassen sich so verschieben; die Tasten 1–0 folgen dem neuen Platz.
 - Für die Unterkategorien gibt es einen eigenen Knopf ⇅ im zweiten Schritt (nach der Wahl der Kategorie). Er ordnet nur die Unterkategorien dieser Kategorie; «Ohne Unterkategorie» und «+ Neue Unterkategorie» bleiben am Schluss.

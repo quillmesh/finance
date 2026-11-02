@@ -8,7 +8,7 @@ Anforderungen und Feature-Liste: Dokument «Finanzapp – Anforderungen» im Cla
 | | Branch | Version | Hinweis |
 | --- | --- | --- | --- |
 | Live | `main` | 0.7.0 | freigegeben 1.11.2026; Sync mit dem privaten Daten-Repo ist eingerichtet; der Nutzer importiert seine echten Daten selbst |
-| Test | `test` | 0.10.0 | enthält 0.8.0, 0.9.0 und 0.10.0, wartet auf «freigeben» |
+| Test | `test` | 0.10.1 | enthält 0.8.0–0.10.1; 0.10.0 freigegeben 2.11.2026, Veröffentlichung scheiterte am Layout-Test → 0.10.1 wartet auf «freigeben» |
 
 Eingefrorene Daten: `tests/unit/alte-daten/v0.3.0*`, `v0.7.0*`. Nach der nächsten Freigabe: `bun scripts/alte-daten-einfrieren.ts <version>`
 (das Skript erzeugt alle Ereignistypen; neue Ereignistypen dort ergänzen).
@@ -55,6 +55,8 @@ Konto per Stichwort ausschliessen; Sicherheits-Ausbau (eigene Domain, App-Sperre
   neuem optionalem Feld `Sub.order`). `logic.liveSubs` sortiert nach `logic.subOrder` (= `order`, sonst Position beim Anlegen ×10,
   daher alte Daten unverändert); `validate` verlangt eine ganze Zahl. Ältere Versionen übernehmen das Feld beim Sync, ignorieren es aber.
   Beim Ordnen ist alles andere `inert`; Hinweis + «Fertig» stehen am Platz des Vorschlags bzw. der Kopfzeile, damit nichts rutscht.
+- 0.10.1: langer Vorschlag und Aufteilungs-Hinweis zweizeilig statt abgeschnitten. Gefunden, weil der Layout-Test mit den
+  Beispieldaten (relativ zu heute) an einem anderen Tag einen langen Vorschlag traf; jetzt fester Test «Langer Vorschlag».
 
 ## Anforderungs-IDs
 

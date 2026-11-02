@@ -332,3 +332,10 @@ dialog .row { gap: var(--gap); }
   .arrbar { font-size: 12px; padding-left: 8px; }
   .arrbar button { height: 28px; padding: 0 10px; font-size: 13px; }
 }
+
+/* 0.10.1: langer Vorschlag bricht auf zwei Zeilen um statt abgeschnitten zu werden (GUI-01) */
+.suggestslot .suggest { white-space: normal; line-height: 1.2; display: flex; align-items: center; justify-content: center; text-align: center; text-wrap: balance; overflow: hidden; }
+@media (max-width: 600px) { .suggestslot .suggest { font-size: 13px; padding: 0 8px; } }
+/* 0.10.1: Hinweis zur Aufteilung darf zweizeilig sein, damit beide Beträge sichtbar bleiben */
+.shareline .sharehint { white-space: normal; line-height: 1.15; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; }
+@media (max-width: 600px) { .shareline .sharehint { font-size: 11.5px; } }
